@@ -113,6 +113,7 @@ main {
 }
 
 .page-footer {
+    z-index: 99999999;
     background-color: #8cc8e2;
     color: gray;
     font-size: 0.7em;
