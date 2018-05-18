@@ -1,8 +1,5 @@
 console.log("working");
 
-var apiKey = "dnhsxuups2jvp66yevxeramm";
-var queryUrl = "http://cors-everywhere.herokuapp.com/http://api.amp.active.com/camping/campgrounds?pstate=TX&api_key=dnhsxuups2jvp66yevxeramm";
-
 function xmlToJson(xml) {
 	
 	// Create the return object
@@ -40,20 +37,30 @@ function xmlToJson(xml) {
 	}
 	return obj;
 };    
-$.ajax({
-    url: queryUrl,
-    method: "GET"
-}).then(function(response){
-    console.log(response);
-// Changes XML to JSON
-    var myObj = xmlToJson(response);
-	console.log(myObj);
-	for (var i=0; i<10; i++){
-	$(".test").text(JSON.stringify(myObj.resultset.result[i]["@attributes"].facilityName));
-	}
-	console.log(JSON.stringify(myObj.resultset.result[3]["@attributes"].facilityName));
-})
 
+$("#cityInputForm").on("click", "#checkWeather-btn", function(event){
+	event.preventDefault();
+	console.log("testing");
+	var state = $("#selectState").val().trim();
+	console.log(state);
+
+	var apiKey = "dnhsxuups2jvp66yevxeramm";
+	var queryUrl = "http://cors-everywhere.herokuapp.com/http://api.amp.active.com/camping/campgrounds?pstate=" + state + "&api_key=dnhsxuups2jvp66yevxeramm";	
+
+	$.ajax({
+		url: queryUrl,
+		method: "GET"
+	}).then(function(response){
+		console.log(response);
+	// Changes XML to JSON
+		var myObj = xmlToJson(response);
+		console.log(myObj);
+		for (var i=0; i<10; i++){
+		$(".test").text(JSON.stringify(myObj.resultset.result[i]["@attributes"].facilityName));
+		}
+		console.log(JSON.stringify(myObj.resultset.result[3]["@attributes"].facilityName));
+	})
+})
 
 $(".test").text("test");
 
