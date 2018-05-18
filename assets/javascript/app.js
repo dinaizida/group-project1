@@ -1,5 +1,3 @@
-console.log("working");
-
 function xmlToJson(xml) {
 	
 	// Create the return object
@@ -48,7 +46,7 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 	var city = $("#city-input").val().trim();
 	var zip = $("#zip-input").val().trim();
 	console.log(state);
-
+	// Beginning Ajax call for Active Access
 	var campsiteApiKey = "dnhsxuups2jvp66yevxeramm";
 	var campsiteQueryUrl = "http://cors-everywhere.herokuapp.com/http://api.amp.active.com/camping/campgrounds?pstate=" + state + "&api_key=" + campsiteApiKey;	
 
@@ -60,22 +58,36 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 	}).then(function(response){
 	// Changes XML to JSON
 		var myObj = xmlToJson(response);
-	console.log(myObj);
+		console.log(myObj);
+		//Pulling campsite name
 		console.log(JSON.stringify(myObj.resultset.result[3]["@attributes"].facilityName));
+		// Pulling campsite latitude
 		console.log(JSON.stringify(myObj.resultset.result[3]["@attributes"].latitude));
-		console.log(JSON.stringify(myObj.resultset.result[3]["@attributes"].longitude));	
-		console.log(JSON.stringify(myObj.resultset.result[3]["@attributes"].facilityPhoto));				
-	 })
-	 var weatherApiKey = "ba9485900797575aadc3a1081bfa14f7";
-	 var weatherQueryUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&APPID=" + weatherApiKey; 
+		// Pulling campsite Longitude
+		console.log(JSON.stringify(myObj.resultset.result[3]["@attributes"].longitude));					
+	})
+
+	// Beginning Ajax call for weather API
+	var weatherApiKey = "ba9485900797575aadc3a1081bfa14f7";
+	var weatherQueryUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&zip=" + zip + "&APPID=" + weatherApiKey; 
 	 
-	 $.ajax({
-		 url: weatherQueryUrl,
-		 method: "GET"
-	 }).then(function(response){
-		 console.log(response);
+	$.ajax({
+		url: weatherQueryUrl,
+		method: "GET"
+	}).then(function(response){
+		var weatherObj = response;
+		console.log(weatherObj);
+		// pulling temparrature
+		console.log(weatherObj.list[0].main.temp)
+		// Pulling wind speed
+		console.log(weatherObj.list[0].wind.speed)
+		// pulling forecast
+		console.log(weatherObj.list[0].weather[0].description)
 	 
+
 	 })
 	}	  
-})
+
+	})
+
 
