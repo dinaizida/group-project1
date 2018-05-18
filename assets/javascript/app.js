@@ -45,25 +45,34 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 
 	console.log("testing");
 	var state = $("#selectState").val().trim();
+	var city = $("#city-input").val().trim();
 	console.log(state);
 
-	var apiKey = "dnhsxuups2jvp66yevxeramm";
-	var queryUrl = "http://cors-everywhere.herokuapp.com/http://api.amp.active.com/camping/campgrounds?pstate=" + state + "&api_key=dnhsxuups2jvp66yevxeramm";	
+	var campsiteApiKey = "dnhsxuups2jvp66yevxeramm";
+	var campsiteQueryUrl = "http://cors-everywhere.herokuapp.com/http://api.amp.active.com/camping/campgrounds?pstate=" + state + "&api_key=" + campsiteApiKey;	
 
 	$.ajax({
-		url: queryUrl,
+		url: campsiteQueryUrl,
 		method: "GET"
 	}).then(function(response){
-		console.log(response);
 	// Changes XML to JSON
 		var myObj = xmlToJson(response);
-		console.log(myObj);
-		for (var i=0; i<10; i++){
-		$(".test").text(JSON.stringify(myObj.resultset.result[i]["@attributes"].facilityName));
-		}
+	console.log(myObj);
 		console.log(JSON.stringify(myObj.resultset.result[3]["@attributes"].facilityName));
-	})
+		console.log(JSON.stringify(myObj.resultset.result[3]["@attributes"].latitude));
+		console.log(JSON.stringify(myObj.resultset.result[3]["@attributes"].longitude));	
+		console.log(JSON.stringify(myObj.resultset.result[3]["@attributes"].facilityPhoto));				
+	 })
+	 var weatherApiKey = "ba9485900797575aadc3a1081bfa14f7";
+	 var weatherQueryUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&APPID=" + weatherApiKey; 
+	 
+	 $.ajax({
+		 url: weatherQueryUrl,
+		 method: "GET"
+	 }).then(function(response){
+		 console.log(response);
+	 
+	 })
+		  
 })
-
-$(".test").text("test");
 
