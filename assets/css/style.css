@@ -139,6 +139,10 @@ a:visited {
     margin: 0 auto;
 }
 
+.hide {
+    visibility: hidden;
+}
+
 @media (max-width: 990px) {}
 
 @media (max-width: 375px) {
@@ -188,4 +192,5 @@ a:visited {
     #shoppingDiv{
         margin-bottom: 10px;
         width: 90%;
+}
 }

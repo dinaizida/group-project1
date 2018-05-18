@@ -40,6 +40,9 @@ function xmlToJson(xml) {
 
 $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 	event.preventDefault();
+
+	$("#secondary-area").removeClass("hide");
+
 	console.log("testing");
 	var state = $("#selectState").val().trim();
 	console.log(state);
