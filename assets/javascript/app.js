@@ -46,11 +46,14 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 	console.log("testing");
 	var state = $("#selectState").val().trim();
 	var city = $("#city-input").val().trim();
+	var zip = $("#zip-input").val().trim();
 	console.log(state);
 
 	var campsiteApiKey = "dnhsxuups2jvp66yevxeramm";
 	var campsiteQueryUrl = "http://cors-everywhere.herokuapp.com/http://api.amp.active.com/camping/campgrounds?pstate=" + state + "&api_key=" + campsiteApiKey;	
 
+
+	if (state.length > 0 && city.length > 0 && zip.length === 5) {
 	$.ajax({
 		url: campsiteQueryUrl,
 		method: "GET"
@@ -73,6 +76,6 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 		 console.log(response);
 	 
 	 })
-		  
+	}	  
 })
 
