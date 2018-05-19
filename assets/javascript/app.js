@@ -1,4 +1,11 @@
 
+window.onload = function(){
+	$('.moreInfo').hide();
+	$('.coldlist').hide();
+	$('.hotlist').hide();
+}
+
+
 
 	// function that chanes xml to JSON
 	function xmlToJson(xml) {
@@ -14,6 +21,7 @@
 					var attribute = xml.attributes.item(j);
 					obj["@attributes"][attribute.nodeName] = attribute.nodeValue;
 				}
+
 			}
 		} else if (xml.nodeType == 3) { // text
 			obj = xml.nodeValue;
@@ -35,6 +43,7 @@
 					obj[nodeName].push(xmlToJson(item));
 				}
 			}
+
 		}return obj;
 	};
 
@@ -117,6 +126,83 @@
 				console.log(weatherObj.city.name);}
 			}
 
+			var fahrenheit = (9/5) * (weatherObj.list[i].main.temp - 273) + 32
+
+				if (fahrenheit < 65) {
+					$('.coldlist').show();
+					var coldItemDiv = $('<div class="simpleDisplay">');
+					for (var i = 0; i < generalList.length; i++ ) {
+		
+						var walmartURL = 'http://api.walmartlabs.com/v1/search?apiKey=dq426fn6pm95592scdkq99j4&query=' + coldList[i] + '&responseGroup=full';
+				
+						$.ajax({
+							url: walmartURL,
+							method: "GET",
+							dataType: 'jsonp',
+							cache: false, 
+							success : function (response) {
+				
+								console.log('response', response)
+								console.log('saleprice', response.items[0].salePrice)
+								var coldItems = response.items
+				
+								coldItemDiv.append ('<div class="productTitle">' + response.query + '</div>')
+				
+								for (var j = 0; j < coldItems.length; j++) {
+								   
+								   if ( j > 2) {
+									   return 
+								   }
+								   coldItemDiv.append ('<div class="moreInfo">' + coldItems[j].name + '<br>' + coldItems[j].salePrice + '</div>')
+								   coldItemDiv.attr('data-clickable', coldItems[j].name)
+								   $('#coldResultslisting').append(coldItemDiv)
+								   console.log('items[i]', coldItems[j])
+								   console.log('items[i].salePrice', coldItems[j].salePrice)
+								}
+							}
+						})
+					}
+				}
+				if (fahrenheit > 85) {
+					$('.hotlist').show();
+					for (var i = 0; i <  hotList.length; i++ ) {
+		
+						var hotWalmartURL = 'http://api.walmartlabs.com/v1/search?apiKey=dq426fn6pm95592scdkq99j4&query=' + hotList[i] + '&responseGroup=full';
+				
+						$.ajax({
+							url: hotWalmartURL,
+							type: "GET",
+							dataType: 'jsonp',
+							cache: false, 
+							success : function (response) {
+		
+								var groupingDiv = $('<div>');
+		
+								// itemDiv.append(groupingDiv);
+								console.log('response', response.items[0].name)
+								console.log('saleprice', response.items[0].salePrice)
+								var items = response.items
+				
+								groupingDiv.append ('<div class="productTitle">' + response.query + '</div>')
+								
+								for (var j = 0; j <= 2; j++) {
+								   groupingDiv.append ('<div class="moreInfo">' + items[j].name + '<br>' + items[j].salePrice + '</div>');
+								   groupingDiv.addClass('groupingDiv');
+								   $('#hotResultslisting').append(groupingDiv);
+								}
+							}
+						})
+					}
+				}
+				if (windspeed > _ ) {
+					//display windy suggested items
+				}
+				if(rainy = true) {
+					//display rainy suggested items
+				}
+			})
+			}
+
             //To convert from Kelvin to Fahrenheit: F = (K - 273.15) * 1.80 + 32
             var tempK = weatherObj.list[0].main.temp;
             // render weather info into Weather table
@@ -140,4 +226,65 @@
             var wWind = $("#w_Wind").text(sessionStorage.getItem("wWind"));
             var wForecast = $("#w_Forecast").text(sessionStorage.getItem("wForecast"));
 		});
-	}});
+	
+
+	var generalList = ['tent', 'stakes', 'hammock', 'sleeping bag', 'bug spray', 'ice chest', 'batteries', 'chairs', 'tarp clips', 'suran wrap', 'zip ties', 'air mattress', 'paper towels', 'trash bags', 'head lamps', 'foils', 'paper towels', 'floaties', 'fishing gear'];
+var coldList = ['blankets', 'gloves', 'long underwear', 'wool socks'];
+var windyList = ['extra stakes', 'rope', 'chapstick'];
+var hotList = ['floppy hats', 'sunscreen', 'sandals', 'ez up']
+
+var itemDiv = $('<div class="simpleDisplay">');
+
+function productDisplay() { 
+
+	for (var i = 0; i < generalList.length; i++ ) {
+
+		var walmartURL = 'http://api.walmartlabs.com/v1/search?apiKey=dq426fn6pm95592scdkq99j4&query=' + generalList[i] + '&responseGroup=full';
+		
+
+		$.ajax({
+			url: walmartURL,
+			type: "GET",
+			dataType: 'jsonp',
+			cache: false, 
+			success : function (response) {
+
+				var groupingDiv = $('<div>');
+
+				// itemDiv.append(groupingDiv);
+				console.log('response', response.items[0].name)
+                console.log('saleprice', response.items[0].salePrice)
+                var items = response.items
+
+				groupingDiv.append ('<div class="productTitle">' + response.query + '</div>')
+				
+
+                for (var j = 0; j <= 2; j++) {
+
+				   groupingDiv.append ('<div class="moreInfo">' + items[j].name + '<br>' + items[j].salePrice + '</div>')
+				   groupingDiv.addClass('groupingDiv')
+                   $('#resultslisting').append(groupingDiv)
+				}
+				
+			}
+		})
+    }
+}
+
+productDisplay();
+
+
+var clicked = false;
+$("body").on("click", '.productTitle', function(event){ 
+	if (clicked === true) { 
+		clicked = false;
+		$(this).parent().find('.moreInfo').hide();
+	}
+	else if (clicked === false) {
+		clicked = true;
+		$(this).parent().find('.moreInfo').show();
+	}
+	console.log('stuff');
+	console.log(this)
+});
+
