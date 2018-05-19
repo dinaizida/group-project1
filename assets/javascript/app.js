@@ -64,7 +64,31 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 		// Pulling campsite latitude
 		console.log(JSON.stringify(myObj.resultset.result[3]["@attributes"].latitude));
 		// Pulling campsite Longitude
-		console.log(JSON.stringify(myObj.resultset.result[3]["@attributes"].longitude));					
+		console.log(JSON.stringify(myObj.resultset.result[3]["@attributes"].longitude));	
+		
+		var latitude = myObj.resultset.result[3]["@attributes"].latitude;
+		var longitude = myObj.resultset.result[3]["@attributes"].longitude;
+
+		window.latitude = latitude;
+		window.longitude = longitude;
+
+		var houseTR = $('<tr class="firstRow">')
+		var tdName = $('<td>' + myObj.resultset.result[3]["@attributes"].facilityName + '</td>')
+		houseTR.append(tdName)
+		$('#campsiteList').prepend(houseTR)
+		
+		var googleURL = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latitude + ',' + longitude + '&location_type=ROOFTOP&result_type=street_address&key=AIzaSyC3waa22L4Uh9nWzsVhpw9CId5Ud3k4atU';
+
+		$.ajax({
+			url: googleURL,
+			method: "GET"
+		}).then(function(response){
+			console.log(response);
+			console.log(response.results[0].formatted_address);
+			var tdAddress = $('<td>' + response.results[0].formatted_address + '</td>')
+			houseTR.append(tdAddress)
+
+		})
 	})
 
 	// Beginning Ajax call for weather API
@@ -84,6 +108,7 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 		// pulling forecast
 		console.log(weatherObj.list[0].weather[0].description)
 	 
+		
 
 	 })
 	}	  
