@@ -149,6 +149,11 @@ a:visited {
     visibility: hidden;
 }
 
+.productTitle {
+    font-weight: bold;
+    font-size: 20px;
+}
+
 @media (max-width: 990px) {}
 
 @media (max-width: 375px) {
@@ -192,7 +197,7 @@ a:visited {
         padding: 0px; 
     }
     .wtd {
-       width: 170px; */
+       width: 170px; 
         width: 45vw;
     }
     .ctd {
@@ -204,3 +209,4 @@ a:visited {
         width: 90%;
 }
 }
+
