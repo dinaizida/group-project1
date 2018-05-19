@@ -1,4 +1,4 @@
-$(document).ready(function(){
+
 
 	// function that chanes xml to JSON
 	function xmlToJson(xml) {
@@ -35,9 +35,8 @@ $(document).ready(function(){
 					obj[nodeName].push(xmlToJson(item));
 				}
 			}
-		}
-		return obj;
-	};    
+		}return obj;
+	};
 
 	$("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 		event.preventDefault();
@@ -60,7 +59,7 @@ $(document).ready(function(){
 			url: campsiteQueryUrl,
 			method: "GET"
 		}).then(function(response){
-		// Changes XML to JSON
+			// Changes XML to JSON
 			var myObj = xmlToJson(response);
 			console.log(myObj);
 			//Pulling campsite name
@@ -68,9 +67,30 @@ $(document).ready(function(){
 			// Pulling campsite latitude
 			console.log(JSON.stringify(myObj.resultset.result[3]["@attributes"].latitude));
 			// Pulling campsite Longitude
-			console.log(JSON.stringify(myObj.resultset.result[3]["@attributes"].longitude));					
-		})
+			console.log(JSON.stringify(myObj.resultset.result[3]["@attributes"].longitude));
+			var latitude = myObj.resultset.result[3]["@attributes"].latitude;
+			var longitude = myObj.resultset.result[3]["@attributes"].longitude;
 
+			window.latitude = latitude;
+			window.longitude = longitude;
+
+			var houseTR = $('<tr class="firstRow">');
+			var tdName = $('<td>' + myObj.resultset.result[3]["@attributes"].facilityName + '</td>');
+			houseTR.append(tdName);
+			$('#campsiteList').prepend(houseTR);
+			
+			var googleURL = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latitude + ',' + longitude + '&location_type=ROOFTOP&result_type=street_address&key=AIzaSyC3waa22L4Uh9nWzsVhpw9CId5Ud3k4atU';
+
+			$.ajax({
+				url: googleURL,
+				method: "GET"
+			}).then(function(response){
+				console.log(response);
+				console.log(response.results[0].formatted_address);
+				var tdAddress = $('<td>' + response.results[0].formatted_address + '</td>')
+				houseTR.append(tdAddress);										
+			})
+		})
 		// Beginning Ajax call for weather API
 		var weatherApiKey = "ba9485900797575aadc3a1081bfa14f7";
 		var weatherQueryUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&zip=" + zip + "&APPID=" + weatherApiKey; 
@@ -119,10 +139,5 @@ $(document).ready(function(){
             var wTemp = $("#w_Temp").text(sessionStorage.getItem("wTemp"));
             var wWind = $("#w_Wind").text(sessionStorage.getItem("wWind"));
             var wForecast = $("#w_Forecast").text(sessionStorage.getItem("wForecast"));
-
-		})
-		}	  
-
-		})
-
-	})
+		});
+	}});
