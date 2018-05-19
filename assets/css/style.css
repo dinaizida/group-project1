@@ -21,7 +21,12 @@ header {
     background-size: 100% 100%;
     box-shadow: 0 6px 6px 0 rgba(0, 0, 0, .14), 0 7px 5px -6px rgba(0, 0, 0, .2), 0 5px 9px 0 rgba(0, 0, 0, .12);
 }
-
+.error{
+    color: #ff7f27;
+}
+.iconTitle{
+    color: #ff7f27;
+}
 #title {
     text-shadow: 2px 2px 1px rgba(150, 150, 150, 1);
     color: #ff7f27;
@@ -29,25 +34,29 @@ header {
     padding-bottom: 15%;
     font-size: 3.5em;
 }
-
-#subtitle {
+#shoppingDiv{
+   width: 60%;
+   margin: auto;
+   margin-bottom: 100px;
+}
+.subtitle {
     text-shadow: 2px 2px 1px rgba(150, 150, 150, 1);
     color: #ff7f27;
     padding-bottom: 1%;
-    font-size: 2em;
+    font-size: 2em; 
 }
 
 #selectState {
     margin-top: 10px;
 }
 
-#cityInputDiv,#shoppingDiv {
+#cityInputDiv {
     margin: 0 auto;
     margin-left: 10%;
     margin-right: 10%;
 }
 
-#cityInputForm,#shoppingForm {
+#cityInputForm {
     padding: 0px 30px;
 }
 
@@ -55,6 +64,8 @@ header {
     min-width: 380px;
     margin-left: 1.5%;
     margin-right: 1.5%;
+   padding-left: 30px;
+    padding-right: 30px; 
 }
 
 #cityWeather {
@@ -71,13 +82,7 @@ header {
     margin-left: 5%;
     margin-right: 5%;
 }
-#shoppingDiv{
-    margin-bottom: 100px;
-    width: 50%;
-   
 
-
-}
 .card-content {
     background-color: #e0ed98;
 }
@@ -160,7 +165,7 @@ a:visited {
         padding-top: 0;
         font-size: 2.8em;
     }
-    #subtitle {
+    .subtitle {
         font-size: 1.2em;
         text-shadow: 1px 1px 0px rgba(150, 150, 150, 1);
     }
@@ -181,14 +186,18 @@ a:visited {
         margin-right: 1%;
     }
     .resultTable {
+        
         margin-left: 3%;
         margin-right: 3%;
+        padding: 0px; 
     }
     .wtd {
-        min-width: 170px;
+       /* width: 170px; */
+       width: 45vw;
     }
     .ctd {
-        min-width: 115px;
+        width: 44vw; 
+        overflow: scroll;
     }
     #shoppingDiv{
         margin-bottom: 10px;
