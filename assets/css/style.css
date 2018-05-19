@@ -61,7 +61,7 @@ header {
 }
 
 .resultTable {
-    min-width: 380px;
+    /* min-width: 380px; */
     margin-left: 1.5%;
     margin-right: 1.5%;
    padding-left: 30px;
@@ -149,6 +149,11 @@ a:visited {
     visibility: hidden;
 }
 
+.productTitle {
+    font-weight: bold;
+    font-size: 20px;
+}
+
 @media (max-width: 990px) {}
 
 @media (max-width: 375px) {
@@ -187,13 +192,13 @@ a:visited {
     }
     .resultTable {
         
-        margin-left: 3%;
-        margin-right: 3%;
+        margin-left: 1%;
+        margin-right: 1%;
         padding: 0px; 
     }
     .wtd {
-       /* width: 170px; */
-       width: 45vw;
+       width: 170px; 
+        width: 45vw;
     }
     .ctd {
         width: 44vw; 
@@ -204,7 +209,4 @@ a:visited {
         width: 90%;
 }
 }
-.productTitle {
-    font-weight: bold;
-    font-size: 20px;
-}
+
