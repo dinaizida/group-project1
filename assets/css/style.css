@@ -194,3 +194,7 @@ a:visited {
         width: 90%;
 }
 }
+.productTitle {
+    font-weight: bold;
+    font-size: 20px;
+}
