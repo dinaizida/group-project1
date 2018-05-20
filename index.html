@@ -154,27 +154,71 @@
                                     <div class="card-content">
                                         <span class="card-title"><i class=" iconTitle medium material-icons">wb_sunny</i><h3>Weather Today</h3></span>
                                     </div>
-                                    <div class="row">
+                                    <div style="overflow-x:auto;" class="row">
 
-                                        <table class=" resultTable table table-hover table-responsive-md table-borderless highlight ">
+                                        <table style="overflow-x:auto;" class=" resultTable table table-hover table-responsive-md table-borderless highlight ">
+                                            <thead id="thead">
+                                                <tr>
+                                                    <th class="ctd"></th>
+                                                    <th class="ctd">MON</th>
+                                                    <th class="ctd">TUS</th>
+                                                    <th class="ctd">WED</th>
+                                                    <th class="ctd">THU</th>
+                                                    <th class="ctd">FRI</th>
+
+                                                </tr>
+                                            </thead>
                                             <tbody>
                                                 <tr>
                                                     <td class="wtd">City</td>
+                                                    <td id="w_City" class="wtd">Austin#</td>
+                                                    <td id="w_City" class="wtd">Houston</td>
+                                                    <td id="w_City" class="wtd">San Antonio</td>
+                                                    <td id="w_City" class="wtd">San Antonio</td>
+                                                    <td id="w_City" class="wtd">San Antonio</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="wtd">Temp (F) Current</td>
+                                                    <td id="w_City" class="wtd">##</td>
+                                                    <td id="w_City" class="wtd">##</td>
+                                                    <td id="w_City" class="wtd">##</td>
+                                                    <td id="w_City" class="wtd">##</td>
                                                     <td id="w_City" class="wtd">##</td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="wtd">Temp (F)</td>
-                                                    <td id="w_Temp" class="wtd">##</td>
+                                                    <td class="wtd">Temp (F) High</td>
+                                                    <td id="w_City" class="wtd">##</td>
+                                                    <td id="w_City" class="wtd">##</td>
+                                                    <td id="w_City" class="wtd">##</td>
+                                                    <td id="w_City" class="wtd">##</td>
+                                                    <td id="w_City" class="wtd">##</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="wtd">Temp (F) Low</td>
+                                                    <td id="w_City" class="wtd">##</td>
+                                                    <td id="w_City" class="wtd">##</td>
+                                                    <td id="w_City" class="wtd">##</td>
+                                                    <td id="w_City" class="wtd">##</td>
+                                                    <td id="w_City" class="wtd">##</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="wtd">Wind Speed (MPH)</td>
-                                                    <td id="w_Wind" class="wtd">##</td>
+                                                    <td id="w_City" class="wtd">###</td>
+                                                    <td id="w_City" class="wtd">###</td>
+                                                    <td id="w_City" class="wtd">###</td>
+                                                    <td id="w_City" class="wtd">###</td>
+                                                    <td id="w_City" class="wtd">###</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="wtd">Forecast</td>
-                                                    <td id="w_Forecast" class="wtd">##</td>
+                                                    <td id="w_City" class="wtd">cloudy</td>
+                                                    <td id="w_City" class="wtd">cloudy</td>
+                                                    <td id="w_City" class="wtd">cloudy</td>
+                                                    <td id="w_City" class="wtd">cloudy#</td>
+                                                    <td id="w_City" class="wtd">cloudy</td>
                                                 </tr>
                                             </tbody>
+
                                         </table>
 
                                     </div>
@@ -190,8 +234,8 @@
                                     <div class="card-content">
                                         <span class="card-title"><i class=" iconTitle medium material-icons">terrain</i><h3>Local Camptsites</h3></span>
                                     </div>
-                                    <div class="row">
-                                        <table class=" resultTable table table-striped table-responsive-md  table-borderless centered highlight">
+                                    <div style="overflow-x:auto;" class="row">
+                                        <table style="overflow-x:auto;" class=" resultTable table table-striped table-responsive-md  table-borderless centered highlight">
                                             <thead id="thead">
                                                 <tr>
                                                     <th class="ctd">Name</th>
@@ -200,7 +244,16 @@
                                                 </tr>
                                             </thead>
                                             <tbody id="campsiteList">
+<<<<<<< HEAD
                                                 
+=======
+
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td>Address<span><i class=" iconTitle small material-icons">directions</i></span><span></span></td>
+
+                                                </tr>
+>>>>>>> master
 
                                                 <tr>
                                                     <td></td>
@@ -226,6 +279,7 @@
                     </div>
                 </div>
                 <!-- shopping form -->
+
                 <div class="row">
                     <div class="col-md-12">
                         <div id="shoppingDiv" class="card z-depth-3">
@@ -242,142 +296,142 @@
                             </div>
                             <div class="card-content grey lighten-4">
                                 <div id="test4">
-                                        <div class="card">
-                                                <div class="card-image waves-effect waves-block waves-light">
-                                                  <img class="activator" src="assets/images/rainboots.jpg">
-                                                </div>
-                                                <div class="card-content">
-                                                  <span class="card-title activator grey-text text-darken-4">Rainboots<a class="btn-floating pulse lime darken-1 right"><i class="material-icons">menu</i></a></span>
-                                                </div>
-                                                <div class="card-reveal">
-                                                  <span class="card-title grey-text text-darken-4">Rainboots<i class="material-icons right">close</i></span>
-                                                  
-                                                  <ul class="collapsible">
-                                                        <li>
-                                                          <div class="collapsible-header"><i class="material-icons">add_shopping_cart</i>Brand one</div>
-                                                          <div class="collapsible-body">
-                                                              <ul>
-                                                                  <li><a href="#">name</a></li>
-                                                                  <li><a href="#">price</a></li>
-                                                                  <li><a href="#">rating</a></li>
-                                                              </ul>
-                                                          </div>
-                                                        </li>
-                                                        <li>
-                                                          <div class="collapsible-header"><i class="material-icons">add_shopping_cart</i>Brand two</div>
-                                                          <div class="collapsible-body">
-                                                                <ul>
-                                                                        <li><a href="#">name</a></li>
-                                                                        <li><a href="#">price</a></li>
-                                                                        <li><a href="#">rating</a></li>
-                                                                    </ul>
-                                                          </div>
-                                                        </li>
-                                                        <li>
-                                                          <div class="collapsible-header"><i class="material-icons">add_shopping_cart</i>Brand three</div>
-                                                          <div class="collapsible-body">
-                                                                <ul>
-                                                                        <li><a href="#">name</a></li>
-                                                                        <li><a href="#">price</a></li>
-                                                                        <li><a href="#">rating</a></li>
-                                                                    </ul>
-                                                          </div>
-                                                        </li>
-                                                      </ul>
-                                                </div>
+                                    <div class="card">
+                                        <div class="card-image waves-effect waves-block waves-light">
+                                            <img class="activator" src="assets/images/rainboots.jpg">
                                         </div>
+                                        <div class="card-content">
+                                            <span class="card-title activator grey-text text-darken-4">Rainboots<a class="btn-floating pulse lime darken-1 right"><i class="material-icons">menu</i></a></span>
+                                        </div>
+                                        <div class="card-reveal">
+                                            <span class="card-title grey-text text-darken-4">Rainboots<i class="material-icons right">close</i></span>
+
+                                            <ul class="collapsible">
+                                                <li>
+                                                    <div class="collapsible-header"><i class="material-icons">add_shopping_cart</i>Brand one</div>
+                                                    <div class="collapsible-body">
+                                                        <ul>
+                                                            <li><a href="#">name</a></li>
+                                                            <li><a href="#">price</a></li>
+                                                            <li><a href="#">rating</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="collapsible-header"><i class="material-icons">add_shopping_cart</i>Brand two</div>
+                                                    <div class="collapsible-body">
+                                                        <ul>
+                                                            <li><a href="#">name</a></li>
+                                                            <li><a href="#">price</a></li>
+                                                            <li><a href="#">rating</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="collapsible-header"><i class="material-icons">add_shopping_cart</i>Brand three</div>
+                                                    <div class="collapsible-body">
+                                                        <ul>
+                                                            <li><a href="#">name</a></li>
+                                                            <li><a href="#">price</a></li>
+                                                            <li><a href="#">rating</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div id="test5">
-                                        <div class="card">
-                                                <div class="card-image waves-effect waves-block waves-light">
-                                                  <img class="activator" src="assets/images/hats.jpg">
-                                                </div>
-                                                <div class="card-content">
-                                                  <span class="card-title activator grey-text text-darken-4">Hats<a class="btn-floating pulse lime darken-1 right"><i class="material-icons">menu</i></a></span>
-                                                </div>
-                                                <div class="card-reveal">
-                                                  <span class="card-title grey-text text-darken-4">Hats<i class="material-icons right">close</i></span>
-                                                  
-                                                  <ul class="collapsible">
-                                                        <li>
-                                                          <div class="collapsible-header"><i class="material-icons">add_shopping_cart</i>Brand one</div>
-                                                          <div class="collapsible-body">
-                                                              <ul>
-                                                                  <li><a href="#">name</a></li>
-                                                                  <li><a href="#">price</a></li>
-                                                                  <li><a href="#">rating</a></li>
-                                                              </ul>
-                                                          </div>
-                                                        </li>
-                                                        <li>
-                                                          <div class="collapsible-header"><i class="material-icons">add_shopping_cart</i>Brand two</div>
-                                                          <div class="collapsible-body">
-                                                                <ul>
-                                                                        <li><a href="#">name</a></li>
-                                                                        <li><a href="#">price</a></li>
-                                                                        <li><a href="#">rating</a></li>
-                                                                    </ul>
-                                                          </div>
-                                                        </li>
-                                                        <li>
-                                                          <div class="collapsible-header"><i class="material-icons">add_shopping_cart</i>Brand three</div>
-                                                          <div class="collapsible-body">
-                                                                <ul>
-                                                                        <li><a href="#">name</a></li>
-                                                                        <li><a href="#">price</a></li>
-                                                                        <li><a href="#">rating</a></li>
-                                                                    </ul>
-                                                          </div>
-                                                        </li>
-                                                      </ul>
-                                                </div>
+                                    <div class="card">
+                                        <div class="card-image waves-effect waves-block waves-light">
+                                            <img class="activator" src="assets/images/hats.jpg">
                                         </div>
+                                        <div class="card-content">
+                                            <span class="card-title activator grey-text text-darken-4">Hats<a class="btn-floating pulse lime darken-1 right"><i class="material-icons">menu</i></a></span>
+                                        </div>
+                                        <div class="card-reveal">
+                                            <span class="card-title grey-text text-darken-4">Hats<i class="material-icons right">close</i></span>
+
+                                            <ul class="collapsible">
+                                                <li>
+                                                    <div class="collapsible-header"><i class="material-icons">add_shopping_cart</i>Brand one</div>
+                                                    <div class="collapsible-body">
+                                                        <ul>
+                                                            <li><a href="#">name</a></li>
+                                                            <li><a href="#">price</a></li>
+                                                            <li><a href="#">rating</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="collapsible-header"><i class="material-icons">add_shopping_cart</i>Brand two</div>
+                                                    <div class="collapsible-body">
+                                                        <ul>
+                                                            <li><a href="#">name</a></li>
+                                                            <li><a href="#">price</a></li>
+                                                            <li><a href="#">rating</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="collapsible-header"><i class="material-icons">add_shopping_cart</i>Brand three</div>
+                                                    <div class="collapsible-body">
+                                                        <ul>
+                                                            <li><a href="#">name</a></li>
+                                                            <li><a href="#">price</a></li>
+                                                            <li><a href="#">rating</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div id="test6">
-                                        <div class="card">
-                                                <div class="card-image waves-effect waves-block waves-light">
-                                                  <img class="activator" src="assets/images/sunscreen.jpg">
-                                                </div>
-                                                <div class="card-content">
-                                                  <span class="card-title activator grey-text text-darken-4">Sunscreens<a class="btn-floating pulse lime darken-1 right"><i class="material-icons">menu</i></a></span>
-                                                </div>
-                                                <div class="card-reveal">
-                                                  <span class="card-title grey-text text-darken-4">Sunscreens<i class="material-icons right">close</i></span>
-                                                  
-                                                  <ul class="collapsible">
-                                                        <li>
-                                                          <div class="collapsible-header"><i class="material-icons">add_shopping_cart</i>Brand one</div>
-                                                          <div class="collapsible-body">
-                                                              <ul>
-                                                                  <li><a href="#">name</a></li>
-                                                                  <li><a href="#">price</a></li>
-                                                                  <li><a href="#">rating</a></li>
-                                                              </ul>
-                                                          </div>
-                                                        </li>
-                                                        <li>
-                                                          <div class="collapsible-header"><i class="material-icons">add_shopping_cart</i>Brand two</div>
-                                                          <div class="collapsible-body">
-                                                                <ul>
-                                                                        <li><a href="#">name</a></li>
-                                                                        <li><a href="#">price</a></li>
-                                                                        <li><a href="#">rating</a></li>
-                                                                    </ul>
-                                                          </div>
-                                                        </li>
-                                                        <li>
-                                                          <div class="collapsible-header"><i class="material-icons">add_shopping_cart</i>Brand three</div>
-                                                          <div class="collapsible-body">
-                                                                <ul>
-                                                                        <li><a href="#">name</a></li>
-                                                                        <li><a href="#">price</a></li>
-                                                                        <li><a href="#">rating</a></li>
-                                                                    </ul>
-                                                          </div>
-                                                        </li>
-                                                      </ul>
-                                                </div>
+                                    <div class="card">
+                                        <div class="card-image waves-effect waves-block waves-light">
+                                            <img class="activator" src="assets/images/sunscreen.jpg">
                                         </div>
+                                        <div class="card-content">
+                                            <span class="card-title activator grey-text text-darken-4">Sunscreens<a class="btn-floating pulse lime darken-1 right"><i class="material-icons">menu</i></a></span>
+                                        </div>
+                                        <div class="card-reveal">
+                                            <span class="card-title grey-text text-darken-4">Sunscreens<i class="material-icons right">close</i></span>
+
+                                            <ul class="collapsible">
+                                                <li>
+                                                    <div class="collapsible-header"><i class="material-icons">add_shopping_cart</i>Brand one</div>
+                                                    <div class="collapsible-body">
+                                                        <ul>
+                                                            <li><a href="#">name</a></li>
+                                                            <li><a href="#">price</a></li>
+                                                            <li><a href="#">rating</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="collapsible-header"><i class="material-icons">add_shopping_cart</i>Brand two</div>
+                                                    <div class="collapsible-body">
+                                                        <ul>
+                                                            <li><a href="#">name</a></li>
+                                                            <li><a href="#">price</a></li>
+                                                            <li><a href="#">rating</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="collapsible-header"><i class="material-icons">add_shopping_cart</i>Brand three</div>
+                                                    <div class="collapsible-body">
+                                                        <ul>
+                                                            <li><a href="#">name</a></li>
+                                                            <li><a href="#">price</a></li>
+                                                            <li><a href="#">rating</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
 
                             </div>
@@ -387,6 +441,38 @@
 
                 </div>
 
+                <!-- <div class="row" id="shoppingDiv">
+                    <div class="col m12">
+                            <div class="card z-depth-3">
+                                <div class="card-content">
+                                    <span class="card-title">Must-Have Camping Essentials</span>
+                                </div>
+                               <div id="resultslisting"></div>
+                </div>
+
+                <div class="row coldlist" id="shoppingDiv">
+                    <div class="col m12">
+                            <div class="card z-depth-3">
+                                <div class="card-content">
+                                    <span class="card-title">Looks like itll be chilly. Here are some cold weather Essentials</span>
+                                </div>
+                               <div id="coldResultslisting"></div>
+                            </div>
+                        </div>      
+            
+                </div>
+                <div class="row  hotlist" id="shoppingDiv">
+                    <div class="col m12">
+                            <div class="card z-depth-3">
+                                <div class="card-content">
+                                    <span class="card-title">Looks like there is some heat today. Here are some hot weather Essentials</span>
+                                </div>
+                               <div id="hotResultslisting"></div>
+                            </div>
+                        </div>      
+            
+                </div> -->
+
             </div>
         </div>
         <br>
@@ -394,7 +480,7 @@
         <br>
         <br>
         <br>
-       
+
         <!-- footer  -->
         <footer class="page-footer">
 
