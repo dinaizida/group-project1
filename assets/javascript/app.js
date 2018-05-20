@@ -1,4 +1,4 @@
-
+//hide non input fields on window load
 window.onload = function(){
 	$('.moreInfo').hide();
 	$('.coldlist').hide();
@@ -6,8 +6,7 @@ window.onload = function(){
 }
 
 
-
-	// function that chanes xml to JSON
+	// function that changes xml to JSON
 	function xmlToJson(xml) {
 		
 		// Create the return object
@@ -47,23 +46,71 @@ window.onload = function(){
 		}return obj;
 	};
 
+	//on submit button click test to see if user input fits all criteria
 	$("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 		event.preventDefault();
-
-		$("#secondary-area").removeClass("hide");
-
+	
 		console.log("testing");
-		var state = $("#selectState").val().trim();
+
+		//assign exprexxions to test input type
+		var nameReg = /^[A-Za-z]+$/;
+		var numberReg =  /^[0-9]+$/;
+
+		//setting validity of each input to false
+		var validCity = false;
+		var validZip = false;
+		var validState = false;
+
+		//check if city field is blank or contains a non letter character
+		//else city is valid = true
 		var city = $("#city-input").val().trim();
+		if(city == ""){
+			$('#formErrorCity').text(' ' + 'Please enter ' +' ' );
+		} 
+		else if(!nameReg.test(city)){
+			$('#formErrorCity').text(' ' + ' Letters only for '+ ' ' );
+		}
+		else{
+			validCity = true;
+		}
+
+		//check if zip field blank,contains a non number or is shorter than 5 numbers
+		//else zip is valid = true
 		var zip = $("#zip-input").val().trim();
-		console.log(state);
+		if(zip == ""){
+			$('#formErrorZip').text(' ' + 'Please enter ' +' ' );
+		}
+		else if(!numberReg.test(zip)){
+			$('#formErrorZip').text(' ' + ' Numbers only for '+ ' ' );
+		}
+		else if(zip.length !== 5){
+			$('#formErrorZip').text(' ' + ' Please enter valid' + ' ');
+		}
+		else{
+			validZip = true;
+		}
+		
+		//check if state is blank
+		//else state is valid = true
+		var state = $("#selectState").val().trim();
+		if(state == ""){
+			$('#formErrorState').text(' ' + 'Please ' +' ');
+		} 
+		else{
+			validState = true;
+		}
+
+
 
 		// Beginning Ajax call for Active Access
 		var campsiteApiKey = "dnhsxuups2jvp66yevxeramm";
 		var campsiteQueryUrl = "http://cors-everywhere.herokuapp.com/http://api.amp.active.com/camping/campgrounds?pstate=" + state + "&siteType=2003&api_key=" + campsiteApiKey;	
 
 
-		if (state.length > 0 && city.length > 0 && zip.length === 5) {
+		
+		if( validCity && validState && validZip ){
+			$("#secondary-area").removeClass("hide");
+			$(".error").empty()
 		$.ajax({
 			url: campsiteQueryUrl,
 			method: "GET"
