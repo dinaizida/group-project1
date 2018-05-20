@@ -71,6 +71,7 @@ window.onload = function(){
 			$('#formErrorCity').text(' ' + ' Letters only for '+ ' ' );
 		}
 		else{
+			$(".city-error").remove();
 			validCity = true;
 		}
 
@@ -87,6 +88,7 @@ window.onload = function(){
 			$('#formErrorZip').text(' ' + ' Please enter valid' + ' ');
 		}
 		else{
+			$(".zip-error").remove();
 			validZip = true;
 		}
 		
@@ -97,6 +99,7 @@ window.onload = function(){
 			$('#formErrorState').text(' ' + 'Please ' +' ');
 		} 
 		else{
+			$(".state-error").remove();
 			validState = true;
 		}
 
