@@ -113,6 +113,7 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 				url: campsiteQueryUrl,
 				method: "GET"
 			}).then(function(response){
+
 				// Changes XML to JSON
 				var myObj = xmlToJson(response);
 				console.log(myObj);
@@ -139,11 +140,12 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 					}).then(function(response){
 						// console.log(response);
 						// console.log(response.results[0].formatted_address);
+						var mapQuery = (response.results[0].formatted_address).replace(/ /g , "+");						
 						var tdAddress = response.results[0].formatted_address;	
-						var houseTr= ("<tr><td>" + campSiteName + "</td><td>" + tdAddress + "</td></tr>");
+						var houseTr= ("<tr><td>" + campSiteName + "</td><td><a href='https://maps.google.com/?q=" + mapQuery + "'target='_blank'>" + tdAddress + "</a></td></tr>");
 						$('#campsiteList').prepend(houseTr);
 					})
-				}
+				}								
 			})
 			// Beginning Ajax call for weather API
 			var weatherApiKey = "ba9485900797575aadc3a1081bfa14f7";
