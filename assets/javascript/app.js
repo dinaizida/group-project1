@@ -149,7 +149,8 @@ window.onload = function(){
 			}).then(function(response){
 				console.log(response);
 				console.log(response.results[0].formatted_address);
-				var tdAddress = $('<td>' + response.results[0].formatted_address + '</td>')
+				mapQuery = (response.results[0].formatted_address).replace(/ /g , "+");
+				var tdAddress = $('<td><a href="https://maps.google.com/?q=' + mapQuery + '">' + response.results[0].formatted_address + '</a></td>')
 				houseTR.append(tdAddress);										
 			})
 		})
