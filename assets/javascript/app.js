@@ -1,65 +1,121 @@
-	// function that chanes xml to JSON
-	function xmlToJson(xml) {
-		
-		// Create the return object
-		var obj = {};
+//hide non input fields on window load
+window.onload = function(){
+	$('.moreInfo').hide();
+	$('.coldlist').hide();
+	$('.hotlist').hide();
+}
+// function that changes xml to JSON
+function xmlToJson(xml) {
+	
+	// Create the return object
+	var obj = {};
 
-		if (xml.nodeType == 1) { // element
-			// do attributes
-			if (xml.attributes.length > 0) {
-			obj["@attributes"] = {};
-				for (var j = 0; j < xml.attributes.length; j++) {
-					var attribute = xml.attributes.item(j);
-					obj["@attributes"][attribute.nodeName] = attribute.nodeValue;
-				}
+	if (xml.nodeType == 1) { // element
+		// do attributes
+		if (xml.attributes.length > 0) {
+		obj["@attributes"] = {};
+			for (var j = 0; j < xml.attributes.length; j++) {
+				var attribute = xml.attributes.item(j);
+				obj["@attributes"][attribute.nodeName] = attribute.nodeValue;
 			}
-		} else if (xml.nodeType == 3) { // text
-			obj = xml.nodeValue;
+
+		}
+	} else if (xml.nodeType == 3) { // text
+		obj = xml.nodeValue;
+	}
+
+	// do children
+	if (xml.hasChildNodes()) {
+		for(var i = 0; i < xml.childNodes.length; i++) {
+			var item = xml.childNodes.item(i);
+			var nodeName = item.nodeName;
+			if (typeof(obj[nodeName]) == "undefined") {
+				obj[nodeName] = xmlToJson(item);
+			} else {
+				if (typeof(obj[nodeName].push) == "undefined") {
+					var old = obj[nodeName];
+					obj[nodeName] = [];
+					obj[nodeName].push(old);
+				}
+				obj[nodeName].push(xmlToJson(item));
+			}
 		}
 
-		// do children
-		if (xml.hasChildNodes()) {
-			for(var i = 0; i < xml.childNodes.length; i++) {
-				var item = xml.childNodes.item(i);
-				var nodeName = item.nodeName;
-				if (typeof(obj[nodeName]) == "undefined") {
-					obj[nodeName] = xmlToJson(item);
-				} else {
-					if (typeof(obj[nodeName].push) == "undefined") {
-						var old = obj[nodeName];
-						obj[nodeName] = [];
-						obj[nodeName].push(old);
-					}
-					obj[nodeName].push(xmlToJson(item));
-				}
-			}
-		}return obj;
-	};
+	}return obj;
+};
 
-	$("#cityInputForm").on("click", "#checkWeather-btn", function(event){
-		event.preventDefault();
+//on submit button click test to see if user input fits all criteria
+$("#cityInputForm").on("click", "#checkWeather-btn", function(event){
+	event.preventDefault();
+	console.log("testing");
+	//assign exprexxions to test input type
+	var nameReg = /^[A-Za-z]+$/;
+	var numberReg =  /^[0-9]+$/;
 
-		$("#secondary-area").removeClass("hide");
+	//setting validity of each input to false
+	var validCity = false;
+	var validZip = false;
+	var validState = false;
 
-		console.log("testing");
-		var state = $("#selectState").val().trim();
-		var city = $("#city-input").val().trim();
-		var zip = $("#zip-input").val().trim();
-		console.log(state);
+	//check if city field is blank or contains a non letter character
+	//else city is valid = true
+	var city = $("#city-input").val().trim();
+	if(city == ""){
+		$('#formErrorCity').text(' ' + 'Please enter ' +' ' );
+	} 
+	else if(!nameReg.test(city)){
+		$('#formErrorCity').text(' ' + ' Letters only for '+ ' ' );
+	}
+	else{
+		$(".city-error").remove();
+		validCity = true;
+	}
 
-		// Beginning Ajax call for Active Access
-		var campsiteApiKey = "dnhsxuups2jvp66yevxeramm";
-		var campsiteQueryUrl = "http://cors-everywhere.herokuapp.com/http://api.amp.active.com/camping/campgrounds?pstate=" + state + "&siteType=2003&api_key=" + campsiteApiKey;	
+	//check if zip field blank,contains a non number or is shorter than 5 numbers
+	//else zip is valid = true
+	var zip = $("#zip-input").val().trim();
+	if(zip == ""){
+		$('#formErrorZip').text(' ' + 'Please enter ' +' ' );
+	}
+	else if(!numberReg.test(zip)){
+		$('#formErrorZip').text(' ' + ' Numbers only for '+ ' ' );
+	}
+	else if(zip.length !== 5){
+		$('#formErrorZip').text(' ' + ' Please enter valid' + ' ');
+	}
+	else{
+		$(".zip-error").remove();
+		validZip = true;
+	}
+	
+	//check if state is blank
+	//else state is valid = true
+	var state = $("#selectState").val().trim();
+	if(state == ""){
+		$('#formErrorState').text(' ' + 'Please ' +' ');
+	} 
+	else{
+		$(".state-error").remove();
+		validState = true;
+	}
+	// Beginning Ajax call for Active Access
+	var campsiteApiKey = "dnhsxuups2jvp66yevxeramm";
+	var campsiteQueryUrl = "http://cors-everywhere.herokuapp.com/http://api.amp.active.com/camping/campgrounds?pstate=" + state + "&siteType=2003&api_key=" + campsiteApiKey;	
 
+	if (state.length > 0 && city.length > 0 && zip.length === 5) {
+		//if input valid show and begin all other data
+		if( validCity && validState && validZip ){
+			$("#secondary-area").removeClass("hide");
+			$(".error").empty();
 
-		if (state.length > 0 && city.length > 0 && zip.length === 5) {
+			//call the campsite API
 			$.ajax({
 				url: campsiteQueryUrl,
 				method: "GET"
 			}).then(function(response){
 				// Changes XML to JSON
 				var myObj = xmlToJson(response);
-				// console.log(myObj);
+				console.log(myObj);
 
 				for(var i=0; i < myObj.resultset.result.length; i++){
 					//Pulling campsite name
@@ -68,9 +124,9 @@
 					// console.log(JSON.stringify(myObj.resultset.result[i]["@attributes"].latitude));
 					// Pulling campsite Longitude
 					// console.log(JSON.stringify(myObj.resultset.result[i]["@attributes"].longitude));
-					var latitude = myObj.resultset.result[i]["@attributes"].latitude;
-					var longitude = myObj.resultset.result[i]["@attributes"].longitude;
-					var campSiteName= myObj.resultset.result[i]["@attributes"].facilityName;
+					let latitude = myObj.resultset.result[i]["@attributes"].latitude;
+					let longitude = myObj.resultset.result[i]["@attributes"].longitude;
+					let campSiteName= myObj.resultset.result[i]["@attributes"].facilityName;
 					console.log (campSiteName);
 					window.latitude = latitude;
 					window.longitude = longitude;								
@@ -92,6 +148,14 @@
 			// Beginning Ajax call for weather API
 			var weatherApiKey = "ba9485900797575aadc3a1081bfa14f7";
 			var weatherQueryUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&zip=" + zip + "&APPID=" + weatherApiKey; 
+			// Moment.js functions to assign correct days to the weather display
+			//format as day of week and day of month with ordinal. Add days and format
+			var today = moment().format("ddd, Do");
+			$(".day-1").text(today);
+			$(".day-2").text(moment().add(1 ,"days").format("ddd, Do"));
+			$(".day-3").text(moment().add(2 ,"days").format("ddd, Do"));
+			$(".day-4").text(moment().add(3 ,"days").format("ddd, Do"));
+			$(".day-5").text(moment().add(4 ,"days").format("ddd, Do"));			
 			
 			$.ajax({
 				url: weatherQueryUrl,
@@ -137,6 +201,141 @@
 				var wTemp = $("#w_Temp").text(sessionStorage.getItem("wTemp"));
 				var wWind = $("#w_Wind").text(sessionStorage.getItem("wWind"));
 				var wForecast = $("#w_Forecast").text(sessionStorage.getItem("wForecast"));
+				var fahrenheit = (9/5) * (weatherObj.list[i].main.temp - 273) + 32
+
+				if (fahrenheit < 65) {
+					$('.coldlist').show();
+					var coldItemDiv = $('<div class="simpleDisplay">');
+					for (var i = 0; i < generalList.length; i++ ) {
+		
+						var walmartURL = 'http://api.walmartlabs.com/v1/search?apiKey=dq426fn6pm95592scdkq99j4&query=' + coldList[i] + '&responseGroup=full';
+				
+						$.ajax({
+							url: walmartURL,
+							method: "GET",
+							dataType: 'jsonp',
+							cache: false, 
+							success : function (response) {
+				
+								console.log('response', response)
+								console.log('saleprice', response.items[0].salePrice)
+								var coldItems = response.items
+				
+								coldItemDiv.append ('<div class="productTitle">' + response.query + '</div>')
+				
+								for (var j = 0; j < coldItems.length; j++) {
+									
+									if ( j > 2) {
+										return 
+									}
+									coldItemDiv.append ('<div class="moreInfo">' + coldItems[j].name + '<br>' + coldItems[j].salePrice + '</div>')
+									coldItemDiv.attr('data-clickable', coldItems[j].name)
+									$('#coldResultslisting').append(coldItemDiv)
+									console.log('items[i]', coldItems[j])
+									console.log('items[i].salePrice', coldItems[j].salePrice)
+								}
+							}
+						})
+					}
+				}
+				if (fahrenheit > 85) {
+					$('.hotlist').show();
+					for (var i = 0; i <  hotList.length; i++ ) {
+		
+						var hotWalmartURL = 'http://api.walmartlabs.com/v1/search?apiKey=dq426fn6pm95592scdkq99j4&query=' + hotList[i] + '&responseGroup=full';
+				
+						$.ajax({
+							url: hotWalmartURL,
+							type: "GET",
+							dataType: 'jsonp',
+							cache: false, 
+							success : function (response) {
+		
+								var groupingDiv = $('<div>');
+		
+								// itemDiv.append(groupingDiv);
+								console.log('response', response.items[0].name)
+								console.log('saleprice', response.items[0].salePrice)
+								var items = response.items
+				
+								groupingDiv.append ('<div class="productTitle">' + response.query + '</div>')
+								
+								for (var j = 0; j <= 2; j++) {
+									groupingDiv.append ('<div class="moreInfo">' + items[j].name + '<br>' + items[j].salePrice + '</div>');
+									groupingDiv.addClass('groupingDiv');
+									$('#hotResultslisting').append(groupingDiv);
+								}
+							}
+						})
+					}
+				}
+				if (windspeed > _ ) {
+					//display windy suggested items
+				}
+				if(rainy = true) {
+					//display rainy suggested items
+				}
+							
 			});
 		}
-	});
+	};
+})
+
+var generalList = ['tent', 'stakes', 'hammock', 'sleeping bag', 'bug spray', 'ice chest', 'batteries', 'chairs', 'tarp clips', 'suran wrap', 'zip ties', 'air mattress', 'paper towels', 'trash bags', 'head lamps', 'foils', 'paper towels', 'floaties', 'fishing gear'];
+var coldList = ['blankets', 'gloves', 'long underwear', 'wool socks'];
+var windyList = ['extra stakes', 'rope', 'chapstick'];
+var hotList = ['floppy hats', 'sunscreen', 'sandals', 'ez up']
+
+var itemDiv = $('<div class="simpleDisplay">');
+
+function productDisplay() { 
+
+	for (var i = 0; i < generalList.length; i++ ) {
+
+		var walmartURL = 'http://api.walmartlabs.com/v1/search?apiKey=dq426fn6pm95592scdkq99j4&query=' + generalList[i] + '&responseGroup=full';
+		
+
+		$.ajax({
+			url: walmartURL,
+			type: "GET",
+			dataType: 'jsonp',
+			cache: false, 
+			success : function (response) {
+
+				var groupingDiv = $('<div>');
+
+				// itemDiv.append(groupingDiv);
+				console.log('response', response.items[0].name)
+				console.log('saleprice', response.items[0].salePrice)
+				var items = response.items
+
+				groupingDiv.append ('<div class="productTitle">' + response.query + '</div>')
+				
+
+				for (var j = 0; j <= 2; j++) {
+
+					groupingDiv.append ('<div class="moreInfo">' + items[j].name + '<br>' + items[j].salePrice + '</div>')
+					groupingDiv.addClass('groupingDiv')
+					$('#resultslisting').append(groupingDiv)
+				}
+				
+			}
+		})
+	}
+}
+productDisplay();
+
+var clicked = false;
+$("body").on("click", '.productTitle', function(event){ 
+if (clicked === true) { 
+	clicked = false;
+	$(this).parent().find('.moreInfo').hide();
+}
+else if (clicked === false) {
+	clicked = true;
+	$(this).parent().find('.moreInfo').show();
+}
+console.log('stuff');
+console.log(this)
+});
+
