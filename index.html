@@ -172,7 +172,7 @@
                                             <tbody>
                                                 <tr>
                                                     <td class="wtd">City</td>
-                                                    <td id="w_City" class="wtd">Austin</td>
+                                                    <td id="w_City" class="wtd">Austin#</td>
                                                     <td id="w_City" class="wtd">Houston</td>
                                                     <td id="w_City" class="wtd">San Antonio</td>
                                                     <td id="w_City" class="wtd">San Antonio</td>
@@ -180,27 +180,27 @@
                                                 </tr>
                                                 <tr>
                                                     <td class="wtd">Temp (F) Current</td>
-                                                    <td id="w_City" class="wtd">###</td>
-                                                    <td id="w_City" class="wtd">###</td>
-                                                    <td id="w_City" class="wtd">###</td>
-                                                    <td id="w_City" class="wtd">###</td>
-                                                    <td id="w_City" class="wtd">###</td>
+                                                    <td id="w_City" class="wtd">##</td>
+                                                    <td id="w_City" class="wtd">##</td>
+                                                    <td id="w_City" class="wtd">##</td>
+                                                    <td id="w_City" class="wtd">##</td>
+                                                    <td id="w_City" class="wtd">##</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="wtd">Temp (F) High</td>
-                                                    <td id="w_City" class="wtd">###</td>
-                                                    <td id="w_City" class="wtd">###</td>
-                                                    <td id="w_City" class="wtd">###</td>
-                                                    <td id="w_City" class="wtd">###</td>
-                                                    <td id="w_City" class="wtd">###</td>
+                                                    <td id="w_City" class="wtd">##</td>
+                                                    <td id="w_City" class="wtd">##</td>
+                                                    <td id="w_City" class="wtd">##</td>
+                                                    <td id="w_City" class="wtd">##</td>
+                                                    <td id="w_City" class="wtd">##</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="wtd">Temp (F) Low</td>
-                                                    <td id="w_City" class="wtd">###</td>
-                                                    <td id="w_City" class="wtd">###</td>
-                                                    <td id="w_City" class="wtd">###</td>
-                                                    <td id="w_City" class="wtd">###</td>
-                                                    <td id="w_City" class="wtd">###</td>
+                                                    <td id="w_City" class="wtd">##</td>
+                                                    <td id="w_City" class="wtd">##</td>
+                                                    <td id="w_City" class="wtd">##</td>
+                                                    <td id="w_City" class="wtd">##</td>
+                                                    <td id="w_City" class="wtd">##</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="wtd">Wind Speed (MPH)</td>
@@ -236,7 +236,7 @@
                                         <span class="card-title"><i class=" iconTitle medium material-icons">terrain</i><h3>Local Camptsites</h3></span>
                                     </div>
                                     <div style="overflow-x:auto;" class="row">
-                                        <table style="overflow-x:auto;" class=" left-align resultTable table table-striped table-responsive-md  table-borderless highlight">
+                                        <table style="overflow-x:auto;" class=" resultTable table table-striped table-responsive-md  table-borderless centered highlight">
                                             <thead id="thead">
                                                 <tr>
                                                     <th class="ctd">Name</th>
@@ -244,11 +244,19 @@
 
                                                 </tr>
                                             </thead>
-                                            <tbody id="page">
-                                                <ul class= "pagination waves-effect waves-light " >
-                                                    <li class='waves-effect ' id='previous-page'><i class='material-icons'>chevron_left</i></li>
-                                                </ul>
-                                                
+                                            <tbody id="campsiteList">
+
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td>Address<span><i class=" iconTitle small material-icons">directions</i></span><span></span></td>
+
+                                                </tr>
+
+                                                <tr>
+                                                    <td></td>
+
+                                                    <td><a class="btn-floating pulse lime darken-1"><i class="material-icons right">fast_forward</i></a></td>
+                                                </tr>
 
                                             </tbody>
                                         </table>
@@ -438,7 +446,6 @@
                                 </div>
                                <div id="resultslisting"></div>
                 </div>
-
                 <div class="row coldlist" id="shoppingDiv">
                     <div class="col m12">
                             <div class="card z-depth-3">
@@ -448,7 +455,7 @@
                                <div id="coldResultslisting"></div>
                             </div>
                         </div>      
-
+            
                 </div>
                 <div class="row  hotlist" id="shoppingDiv">
                     <div class="col m12">
@@ -459,7 +466,7 @@
                                <div id="hotResultslisting"></div>
                             </div>
                         </div>      
-
+            
                 </div> -->
 
             </div>
@@ -489,7 +496,6 @@
                             function init() {
                                 getCopyrightYear();
                             }
-
                             function getCopyrightYear() {
                                 var d = new Date();
                                 var thisYear = d.getFullYear();
