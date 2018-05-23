@@ -228,63 +228,57 @@ window.onload = function(){
 		});
 	
 
-	var generalList = ['tent', 'stakes', 'hammock', 'sleeping bag', 'bug spray', 'ice chest', 'batteries', 'chairs', 'tarp clips', 'suran wrap', 'zip ties', 'air mattress', 'paper towels', 'trash bags', 'head lamps', 'foils', 'paper towels', 'floaties', 'fishing gear'];
-var coldList = ['blankets', 'gloves', 'long underwear', 'wool socks'];
+var generalList = ['tent', 'hammock', 'sleepingbag'];
+var coldList = ['gloves', 'long underwear', 'wool socks'];
 var windyList = ['extra stakes', 'rope', 'chapstick'];
-var hotList = ['floppy hats', 'sunscreen', 'sandals', 'ez up']
+var hotList = ['floppy hats', 'sunscreen', 'sandals']
 
-var itemDiv = $('<div class="simpleDisplay">');
 
 function productDisplay() { 
 
 	for (var i = 0; i < generalList.length; i++ ) {
 
 		var walmartURL = 'http://api.walmartlabs.com/v1/search?apiKey=dq426fn6pm95592scdkq99j4&query=' + generalList[i] + '&responseGroup=full';
-		
+		// console.log(i)
 
-		$.ajax({
-			url: walmartURL,
-			type: "GET",
-			dataType: 'jsonp',
-			cache: false, 
-			success : function (response) {
+		(function(i) {
 
-				var groupingDiv = $('<div>');
+			$.ajax({
+				url: walmartURL,
+				type: "GET",
+				dataType: 'jsonp',
+				cache: false, 
+				success : function (response) {
 
-				// itemDiv.append(groupingDiv);
-				console.log('response', response.items[0].name)
-                console.log('saleprice', response.items[0].salePrice)
-                var items = response.items
+					var groupingDiv = $('<div>');
 
-				groupingDiv.append ('<div class="productTitle">' + response.query + '</div>')
-				
-
-                for (var j = 0; j <= 2; j++) {
-
-				   groupingDiv.append ('<div class="moreInfo">' + items[j].name + '<br>' + items[j].salePrice + '</div>')
-				   groupingDiv.addClass('groupingDiv')
-                   $('#resultslisting').append(groupingDiv)
-				}
-				
-			}
+					// itemDiv.append(groupingDiv);
+					console.log('response', response)
+					console.log('i', i)
+					var items = response.items
+					// $(`test${}`)
+					
+		}(i)});
+	
 		})
-    }
+	}
 }
+
 
 productDisplay();
 
 
-var clicked = false;
-$("body").on("click", '.productTitle', function(event){ 
-	if (clicked === true) { 
-		clicked = false;
-		$(this).parent().find('.moreInfo').hide();
-	}
-	else if (clicked === false) {
-		clicked = true;
-		$(this).parent().find('.moreInfo').show();
-	}
-	console.log('stuff');
-	console.log(this)
-});
+
+// var clicked = false;
+// $("body").on("click", '.mything', function(event){ 
+// 	if (this.child = ) { 
+		
+// 	}
+// 	else if (clicked === false) {
+	
+// 	}
+// 	console.log('stuff');
+// 	console.log('this', this)
+// });
+
 
