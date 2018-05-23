@@ -108,6 +108,14 @@ thead {
     margin: auto;
 }
 
+.hoverMagic{
+    display: none;
+    font-size: 12px;
+}
+
+.nameButton:hover .hoverMagic{
+    display: block;
+}
 
 /* footer */
 
