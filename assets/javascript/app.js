@@ -113,6 +113,7 @@ window.onload = function(){
 		if( validCity && validState && validZip ){
 			$("#secondary-area").removeClass("hide");
 			$(".error").empty()
+			
 
 		//call the campsite API
 		$.ajax({
@@ -150,7 +151,7 @@ window.onload = function(){
 				console.log(response);
 				console.log(response.results[0].formatted_address);
 				mapQuery = (response.results[0].formatted_address).replace(/ /g , "+");
-				var tdAddress = $('<td><a href="https://maps.google.com/?q=' + mapQuery + '">' + response.results[0].formatted_address + '</a></td>')
+				var tdAddress = $('<td><a href="https://maps.google.com/?q=' + mapQuery + '" target="_blank">' + response.results[0].formatted_address + '</a></td>')
 				houseTR.append(tdAddress);										
 			})
 		})
