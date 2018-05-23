@@ -49,7 +49,7 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 	event.preventDefault();
 	console.log("testing");
 	//assign exprexxions to test input type
-	var nameReg = /^[A-Za-z]+$/;
+	var nameReg = /^[A-Za-z ]+$/;
 	var numberReg =  /^[0-9]+$/;
 
 	//setting validity of each input to false
@@ -118,7 +118,7 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 				var myObj = xmlToJson(response);
 				console.log(myObj);
 
-				for(var i=0; i < myObj.resultset.result.length; i++){
+				for(var i=0; i < 5; i++){
 					//Pulling campsite name
 					// console.log(JSON.stringify(myObj.resultset.result[i]["@attributes"].facilityName));
 					// Pulling campsite latitude
