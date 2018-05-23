@@ -340,4 +340,3 @@ else if (clicked === false) {
 console.log('stuff');
 console.log(this)
 });
-
