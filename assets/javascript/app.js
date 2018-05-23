@@ -153,63 +153,7 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 	};
 })
 
-var generalList = ['tent', 'stakes', 'hammock', 'sleeping bag', 'bug spray', 'ice chest', 'batteries', 'chairs', 'tarp clips', 'suran wrap', 'zip ties', 'air mattress', 'paper towels', 'trash bags', 'head lamps', 'foils', 'paper towels', 'floaties', 'fishing gear'];
-var coldList = ['blankets', 'gloves', 'long underwear', 'wool socks'];
-var windyList = ['extra stakes', 'rope', 'chapstick'];
-var hotList = ['floppy hats', 'sunscreen', 'sandals', 'ez up']
 
-var itemDiv = $('<div class="simpleDisplay">');
-
-function productDisplay() { 
-
-	for (var i = 0; i < generalList.length; i++ ) {
-
-		var walmartURL = 'http://api.walmartlabs.com/v1/search?apiKey=dq426fn6pm95592scdkq99j4&query=' + generalList[i] + '&responseGroup=full';
-		
-
-		$.ajax({
-			url: walmartURL,
-			type: "GET",
-			dataType: 'jsonp',
-			cache: false, 
-			success : function (response) {
-
-				var groupingDiv = $('<div>');
-
-				// itemDiv.append(groupingDiv);
-				console.log('response', response.items[0].name)
-				console.log('saleprice', response.items[0].salePrice)
-				var items = response.items
-
-				groupingDiv.append ('<div class="productTitle">' + response.query + '</div>')
-				
-
-				for (var j = 0; j <= 2; j++) {
-
-					groupingDiv.append ('<div class="moreInfo">' + items[j].name + '<br>' + items[j].salePrice + '</div>')
-					groupingDiv.addClass('groupingDiv')
-					$('#resultslisting').append(groupingDiv)
-				}
-				
-			}
-		})
-	}
-}
-productDisplay();
-
-var clicked = false;
-$("body").on("click", '.productTitle', function(event){ 
-if (clicked === true) { 
-	clicked = false;
-	$(this).parent().find('.moreInfo').hide();
-}
-else if (clicked === false) {
-	clicked = true;
-	$(this).parent().find('.moreInfo').show();
-}
-console.log('stuff');
-console.log(this)
-});
 
 	$("#campsiteList").on("click", ".nameButton", function(){
 		event.preventDefault();
@@ -275,70 +219,12 @@ console.log(this)
 				var fahrenheit = (9/5) * (weatherObj.list[i].main.temp - 273) + 32
 
 				if (fahrenheit < 65) {
-					$('.coldlist').show();
-					var coldItemDiv = $('<div class="simpleDisplay">');
-					for (var i = 0; i < generalList.length; i++ ) {
-		
-						var walmartURL = 'https://api.walmartlabs.com/v1/search?apiKey=dq426fn6pm95592scdkq99j4&query=' + coldList[i] + '&responseGroup=full';
-				
-						$.ajax({
-							url: walmartURL,
-							method: "GET",
-							dataType: 'jsonp',
-							cache: false, 
-							success : function (response) {
-				
-								console.log('response', response)
-								console.log('saleprice', response.items[0].salePrice)
-								var coldItems = response.items
-				
-								coldItemDiv.append ('<div class="productTitle">' + response.query + '</div>')
-				
-								for (var j = 0; j < coldItems.length; j++) {
-									
-									if ( j > 2) {
-										return 
-									}
-									coldItemDiv.append ('<div class="moreInfo">' + coldItems[j].name + '<br>' + coldItems[j].salePrice + '</div>')
-									coldItemDiv.attr('data-clickable', coldItems[j].name)
-									$('#coldResultslisting').append(coldItemDiv)
-									console.log('items[i]', coldItems[j])
-									console.log('items[i].salePrice', coldItems[j].salePrice)
-								}
-							}
-						})
-					}
+					// $('.coldlist').show();
+
 				}
 				if (fahrenheit > 85) {
-					$('.hotlist').show();
-					for (var i = 0; i <  hotList.length; i++ ) {
-		
-						var hotWalmartURL = 'https://api.walmartlabs.com/v1/search?apiKey=dq426fn6pm95592scdkq99j4&query=' + hotList[i] + '&responseGroup=full';
-				
-						$.ajax({
-							url: hotWalmartURL,
-							type: "GET",
-							dataType: 'jsonp',
-							cache: false, 
-							success : function (response) {
-		
-								var groupingDiv = $('<div>');
-		
-								// itemDiv.append(groupingDiv);
-								console.log('response', response.items[0].name)
-								console.log('saleprice', response.items[0].salePrice)
-								var items = response.items
-				
-								groupingDiv.append ('<div class="productTitle">' + response.query + '</div>')
-								
-								for (var j = 0; j <= 2; j++) {
-									groupingDiv.append ('<div class="moreInfo">' + items[j].name + '<br>' + items[j].salePrice + '</div>');
-									groupingDiv.addClass('groupingDiv');
-									$('#hotResultslisting').append(groupingDiv);
-								}
-							}
-						})
-					}
+					// $('.hotlist').show();
+					
 				}
 				if (windspeed > _ ) {
 					//display windy suggested items
@@ -351,4 +237,78 @@ console.log(this)
 
 		});
 
+	
+
+var generalList = ['tent', 'hammock', 'sleepingbag'];
+var coldList = ['gloves', 'long underwear', 'wool socks'];
+var windyList = ['extra stakes', 'rope', 'chapstick'];
+var hotList = ['floppy hats', 'sunscreen', 'sandals']
+
+
+function productDisplay() { 
+
+	for (let i = 0; i < generalList.length; i++ ) {
+
+		var walmartURL = 'http://api.walmartlabs.com/v1/search?apiKey=dq426fn6pm95592scdkq99j4&query=' + generalList[i] + '&responseGroup=full';
+
+			$.ajax({
+				url: walmartURL,
+				type: "GET",
+				dataType: 'jsonp',
+				cache: false, 
+				success : function (response) {
+
+					console.log('response', response)
+					var items = response.items
+
+					$(`#tab${i}`).text(response.query)
+					$(`.menuTitle${i}`).text(response.query)
+					$(`.brandMenuTitle${i}`).text(response.query)
+					$(`.image${i}`).attr("src", items[0].largeImage);
+
+					$(`.brandOne${i}`).text(items[0].brandName)
+					$(`.brandTwo${i}`).text(items[1].brandName)
+					$(`.brandThree${i}`).text(items[2].brandName)
+
+					$(`#listOne${i}`).append(`<ul>
+											  <li><a href="#">${items[0].name}</li>
+											  <li><a href="#">Price: $${items[0].salePrice}</a></li>
+											  <li><a href="#">This item has a customer review of: ${items[0].customerRating} stars</a></li>
+											  </ul>`)
+
+					$(`#listTwo${i}`).append(`<ul>
+											  <li><a href="#">${items[1].name}</li>
+						  					  <li><a href="#">Price: $${items[1].salePrice}</a></li>
+											  <li><a href="#">This item has a customer review of: ${items[1].customerRating} stars</a></li>
+											  </ul>`)
+
+					$(`#listThree${i}`).append(`<ul>
+												<li><a href="#">${items[2].name}</li>
+												<li><a href="#">Price: $${items[2].salePrice}</a></li>
+												<li><a href="#">This item has a customer review of: ${items[2].customerRating} stars</a></li>
+												</ul>`)
+				}
+			})
+	}
+}
+
+
+productDisplay();
+
+
+
+
+
+
+// var clicked = false;
+// $("body").on("click", '.mything', function(event){ 
+// 	if (this.child = ) { 
+		
+// 	}
+// 	else if (clicked === false) {
+	
+// 	}
+// 	console.log('stuff');
+// 	console.log('this', this)
+// });
 
