@@ -100,7 +100,7 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 	}
 	// Beginning Ajax call for Active Access
 	var campsiteApiKey = "dnhsxuups2jvp66yevxeramm";
-	var campsiteQueryUrl = "http://cors-everywhere.herokuapp.com/http://api.amp.active.com/camping/campgrounds?pstate=" + state + "&siteType=2003&api_key=" + campsiteApiKey;	
+	var campsiteQueryUrl = "https://cors-everywhere.herokuapp.com/http://api.amp.active.com/camping/campgrounds?pstate=" + state + "&siteType=2003&api_key=" + campsiteApiKey;	
 
 	if (state.length > 0 && city.length > 0 && zip.length === 5) {
 		//if input valid show and begin all other data
@@ -218,7 +218,7 @@ console.log(this)
 
 	// Beginning Ajax call for weather API
 			var weatherApiKey = "ba9485900797575aadc3a1081bfa14f7";
-			var weatherQueryUrl = "http://api.openweathermap.org/data/2.5/forecast?zip=" + currentZip + "&APPID=" + weatherApiKey; 
+			var weatherQueryUrl = "https://api.openweathermap.org/data/2.5/forecast?zip=" + currentZip + "&APPID=" + weatherApiKey; 
 			// Moment.js functions to assign correct days to the weather display
 			//format as day of week and day of month with ordinal. Add days and format
 			var today = moment().format("ddd, Do");
@@ -279,7 +279,7 @@ console.log(this)
 					var coldItemDiv = $('<div class="simpleDisplay">');
 					for (var i = 0; i < generalList.length; i++ ) {
 		
-						var walmartURL = 'http://api.walmartlabs.com/v1/search?apiKey=dq426fn6pm95592scdkq99j4&query=' + coldList[i] + '&responseGroup=full';
+						var walmartURL = 'https://api.walmartlabs.com/v1/search?apiKey=dq426fn6pm95592scdkq99j4&query=' + coldList[i] + '&responseGroup=full';
 				
 						$.ajax({
 							url: walmartURL,
@@ -313,7 +313,7 @@ console.log(this)
 					$('.hotlist').show();
 					for (var i = 0; i <  hotList.length; i++ ) {
 		
-						var hotWalmartURL = 'http://api.walmartlabs.com/v1/search?apiKey=dq426fn6pm95592scdkq99j4&query=' + hotList[i] + '&responseGroup=full';
+						var hotWalmartURL = 'https://api.walmartlabs.com/v1/search?apiKey=dq426fn6pm95592scdkq99j4&query=' + hotList[i] + '&responseGroup=full';
 				
 						$.ajax({
 							url: hotWalmartURL,
@@ -349,5 +349,6 @@ console.log(this)
 							
 			});		
 
-	})
+		});
+
 

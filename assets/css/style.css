@@ -11,7 +11,9 @@ body {
     background-size: cover;
     background-position: center;
 }
-
+a {
+    color: red;
+}
 header {
     background-image: url(../images/header.jpg);
     background-repeat: no-repeat;
@@ -99,6 +101,11 @@ thead {
     width: 100%;
     background-color: #8cc8e2;
     color: white;
+}
+.pagination {
+    text-shadow: 2px 2px 1px rgba(150, 150, 150, 1);
+    color: #ff7f27;
+    margin: auto;
 }
 
 .hoverMagic{
