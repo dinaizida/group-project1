@@ -49,7 +49,7 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 	event.preventDefault();
 	console.log("testing");
 	//assign exprexxions to test input type
-	var nameReg = /^[A-Za-z]+$/;
+	var nameReg = /^[A-Za-z ]+$/;
 	var numberReg =  /^[0-9]+$/;
 
 	//setting validity of each input to false
@@ -138,18 +138,87 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 						url: googleURL,
 						method: "GET"
 					}).then(function(response){
-						// console.log(response);
+						console.log(response);
+						console.log("TEST" + response.results[0].address_components[6].long_name);
+						var zipCode = response.results[0].address_components[6].long_name;
 						// console.log(response.results[0].formatted_address);
 						var mapQuery = (response.results[0].formatted_address).replace(/ /g , "+");						
 						var tdAddress = response.results[0].formatted_address;	
-						var houseTr= ("<tr><td>" + campSiteName + "</td><td><a href='https://maps.google.com/?q=" + mapQuery + "'target='_blank'>" + tdAddress + "</a></td></tr>");
-						$('#campsiteList').prepend(houseTr);
+						var houseTr = (`<tr><td><a class='nameButton' data-Zipcode=${zipCode}>` + campSiteName + "<p class='hoverMagic'>click to view weather</p>" + "</a></td><td><a href='https://maps.google.com/?q=" + mapQuery + "'target='_blank'>" + tdAddress + "</a></td></tr>")
+						$('#campsiteList').append(houseTr);
 					})
 				}								
 			})
-			// Beginning Ajax call for weather API
+		}
+	};
+})
+
+var generalList = ['tent', 'stakes', 'hammock', 'sleeping bag', 'bug spray', 'ice chest', 'batteries', 'chairs', 'tarp clips', 'suran wrap', 'zip ties', 'air mattress', 'paper towels', 'trash bags', 'head lamps', 'foils', 'paper towels', 'floaties', 'fishing gear'];
+var coldList = ['blankets', 'gloves', 'long underwear', 'wool socks'];
+var windyList = ['extra stakes', 'rope', 'chapstick'];
+var hotList = ['floppy hats', 'sunscreen', 'sandals', 'ez up']
+
+var itemDiv = $('<div class="simpleDisplay">');
+
+function productDisplay() { 
+
+	for (var i = 0; i < generalList.length; i++ ) {
+
+		var walmartURL = 'http://api.walmartlabs.com/v1/search?apiKey=dq426fn6pm95592scdkq99j4&query=' + generalList[i] + '&responseGroup=full';
+		
+
+		$.ajax({
+			url: walmartURL,
+			type: "GET",
+			dataType: 'jsonp',
+			cache: false, 
+			success : function (response) {
+
+				var groupingDiv = $('<div>');
+
+				// itemDiv.append(groupingDiv);
+				console.log('response', response.items[0].name)
+				console.log('saleprice', response.items[0].salePrice)
+				var items = response.items
+
+				groupingDiv.append ('<div class="productTitle">' + response.query + '</div>')
+				
+
+				for (var j = 0; j <= 2; j++) {
+
+					groupingDiv.append ('<div class="moreInfo">' + items[j].name + '<br>' + items[j].salePrice + '</div>')
+					groupingDiv.addClass('groupingDiv')
+					$('#resultslisting').append(groupingDiv)
+				}
+				
+			}
+		})
+	}
+}
+productDisplay();
+
+var clicked = false;
+$("body").on("click", '.productTitle', function(event){ 
+if (clicked === true) { 
+	clicked = false;
+	$(this).parent().find('.moreInfo').hide();
+}
+else if (clicked === false) {
+	clicked = true;
+	$(this).parent().find('.moreInfo').show();
+}
+console.log('stuff');
+console.log(this)
+});
+
+	$("#campsiteList").on("click", ".nameButton", function(){
+		event.preventDefault();
+		var currentZip = $(this).attr("data-zipCode");
+		console.log(currentZip);
+
+	// Beginning Ajax call for weather API
 			var weatherApiKey = "ba9485900797575aadc3a1081bfa14f7";
-			var weatherQueryUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&zip=" + zip + "&APPID=" + weatherApiKey; 
+			var weatherQueryUrl = "https://api.openweathermap.org/data/2.5/forecast?zip=" + currentZip + "&APPID=" + weatherApiKey; 
 			// Moment.js functions to assign correct days to the weather display
 			//format as day of week and day of month with ordinal. Add days and format
 			var today = moment().format("ddd, Do");
@@ -278,65 +347,8 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 					//display rainy suggested items
 				}
 							
-			});
-		}
-	};
-})
+			});		
 
-var generalList = ['tent', 'stakes', 'hammock', 'sleeping bag', 'bug spray', 'ice chest', 'batteries', 'chairs', 'tarp clips', 'suran wrap', 'zip ties', 'air mattress', 'paper towels', 'trash bags', 'head lamps', 'foils', 'paper towels', 'floaties', 'fishing gear'];
-var coldList = ['blankets', 'gloves', 'long underwear', 'wool socks'];
-var windyList = ['extra stakes', 'rope', 'chapstick'];
-var hotList = ['floppy hats', 'sunscreen', 'sandals', 'ez up']
+		});
 
-var itemDiv = $('<div class="simpleDisplay">');
 
-function productDisplay() { 
-
-	for (var i = 0; i < generalList.length; i++ ) {
-
-		var walmartURL = 'https://api.walmartlabs.com/v1/search?apiKey=dq426fn6pm95592scdkq99j4&query=' + generalList[i] + '&responseGroup=full';
-		
-
-		$.ajax({
-			url: walmartURL,
-			type: "GET",
-			dataType: 'jsonp',
-			cache: false, 
-			success : function (response) {
-
-				var groupingDiv = $('<div>');
-
-				// itemDiv.append(groupingDiv);
-				console.log('response', response.items[0].name)
-				console.log('saleprice', response.items[0].salePrice)
-				var items = response.items
-
-				groupingDiv.append ('<div class="productTitle">' + response.query + '</div>')
-				
-
-				for (var j = 0; j <= 2; j++) {
-
-					groupingDiv.append ('<div class="moreInfo">' + items[j].name + '<br>' + items[j].salePrice + '</div>')
-					groupingDiv.addClass('groupingDiv')
-					$('#resultslisting').append(groupingDiv)
-				}
-				
-			}
-		})
-	}
-}
-productDisplay();
-
-var clicked = false;
-$("body").on("click", '.productTitle', function(event){ 
-if (clicked === true) { 
-	clicked = false;
-	$(this).parent().find('.moreInfo').hide();
-}
-else if (clicked === false) {
-	clicked = true;
-	$(this).parent().find('.moreInfo').show();
-}
-console.log('stuff');
-console.log(this)
-});
