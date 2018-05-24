@@ -47,7 +47,6 @@ function xmlToJson(xml) {
 //on submit button click test to see if user input fits all criteria
 $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 	event.preventDefault();
-	console.log("testing");
 	//assign exprexxions to test input type
 	var nameReg = /^[A-Za-z ]+$/;
 	var numberReg =  /^[0-9]+$/;
@@ -102,67 +101,55 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 	var campsiteApiKey = "dnhsxuups2jvp66yevxeramm";
 	var campsiteQueryUrl = "https://cors-everywhere.herokuapp.com/http://api.amp.active.com/camping/campgrounds?pstate=" + state + "&siteType=2003&api_key=" + campsiteApiKey;	
 
-	if (state.length > 0 && city.length > 0 && zip.length === 5) {
-		//if input valid show and begin all other data
-		if( validCity && validState && validZip ){
-			$("#secondary-area").removeClass("hide");
-			$(".error").empty();
 
-			//call the campsite API
-			$.ajax({
-				url: campsiteQueryUrl,
-				method: "GET"
-			}).then(function(response){
+	if( validCity && validState && validZip ){
+		$("#secondary-area").removeClass("hide");
+		$(".error").empty();
 
-				// Changes XML to JSON
-				var myObj = xmlToJson(response);
-				console.log(myObj);
+		//call the campsite API
+		$.ajax({
+			url: campsiteQueryUrl,
+			method: "GET"
+		}).then(function(response){
 
-				for(var i=0; i < 5; i++){
-					//Pulling campsite name
-					// console.log(JSON.stringify(myObj.resultset.result[i]["@attributes"].facilityName));
-					// Pulling campsite latitude
-					// console.log(JSON.stringify(myObj.resultset.result[i]["@attributes"].latitude));
-					// Pulling campsite Longitude
-					// console.log(JSON.stringify(myObj.resultset.result[i]["@attributes"].longitude));
-					let latitude = myObj.resultset.result[i]["@attributes"].latitude;
-					let longitude = myObj.resultset.result[i]["@attributes"].longitude;
-					let campSiteName= myObj.resultset.result[i]["@attributes"].facilityName;
-					console.log (campSiteName);
-					window.latitude = latitude;
-					window.longitude = longitude;								
-					var googleURL = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latitude + ',' + longitude + '&location_type=ROOFTOP&result_type=street_address&key=AIzaSyC3waa22L4Uh9nWzsVhpw9CId5Ud3k4atU';
+			// Changes XML to JSON
+			var myObj = xmlToJson(response);
+
+			for(var i=0; i < 5; i++){
+				
+				let latitude = myObj.resultset.result[i]["@attributes"].latitude;
+				let longitude = myObj.resultset.result[i]["@attributes"].longitude;
+				let campSiteName= myObj.resultset.result[i]["@attributes"].facilityName;
+				window.latitude = latitude;
+				window.longitude = longitude;								
+				var googleURL = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latitude + ',' + longitude + '&location_type=ROOFTOP&result_type=street_address&key=AIzaSyC3waa22L4Uh9nWzsVhpw9CId5Ud3k4atU';
 
 
-					$.ajax({
-						url: googleURL,
-						method: "GET"
-					}).then(function(response){
-						console.log(response);
-						console.log("TEST" + response.results[0].address_components[6].long_name);
-						var zipCode = response.results[0].address_components[6].long_name;
-						// console.log(response.results[0].formatted_address);
-						var mapQuery = (response.results[0].formatted_address).replace(/ /g , "+");						
-						var tdAddress = response.results[0].formatted_address;	
-						var houseTr = (`<tr><td><a class='nameButton' data-Zipcode=${zipCode}>` + campSiteName + "<p class='hoverMagic'>click to view weather</p>" + "</a></td><td><a href='https://maps.google.com/?q=" + mapQuery + "'target='_blank'>" + tdAddress + "</a></td></tr>")
-						$('#campsiteList').append(houseTr);
-					})
-				}								
-			})
-		}
-	};
-})
-
+				$.ajax({
+					url: googleURL,
+					method: "GET"
+				}).then(function(response){
+					console.log(response);
+					//console.log("TEST" + response.results[0].address_components[6].long_name);
+					var zipCode = response.results[0].address_components[6].long_name;
+					// console.log(response.results[0].formatted_address);
+					var mapQuery = (response.results[0].formatted_address).replace(/ /g , "+");						
+					var tdAddress = response.results[0].formatted_address;	
+					var houseTr = (`<tr><td><a class='nameButton' data-Zipcode=${zipCode}>` + campSiteName + "<p class='hoverMagic'>click to view weather</p>" + "</a></td><td><a href='https://maps.google.com/?q=" + mapQuery + "'target='_blank'>" + tdAddress + "</a></td></tr>")
+					$('#campsiteList').append(houseTr);
+				})
+			}								
+		})
+	
 
 
 	$("#campsiteList").on("click", ".nameButton", function(){
 		event.preventDefault();
 		var currentZip = $(this).attr("data-zipCode");
-		console.log(currentZip);
 
 	// Beginning Ajax call for weather API
 			var weatherApiKey = "ba9485900797575aadc3a1081bfa14f7";
-			var weatherQueryUrl = "https://api.openweathermap.org/data/2.5/forecast?zip=" + currentZip + "&APPID=" + weatherApiKey; 
+			var weatherQueryUrl = "http://api.openweathermap.org/data/2.5/forecast?zip=" + currentZip + "&APPID=" + weatherApiKey; 
 			// Moment.js functions to assign correct days to the weather display
 			//format as day of week and day of month with ordinal. Add days and format
 			var today = moment().format("ddd, Do");
@@ -176,6 +163,7 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 				url: weatherQueryUrl,
 				method: "GET"
 			}).then(function(response){
+				console.log("working")
 				var weatherObj = response;
 				console.log(weatherObj);
 				// This forloop is checking today's and the next 5 day's weather
@@ -249,7 +237,7 @@ function productDisplay() {
 
 	for (let i = 0; i < generalList.length; i++ ) {
 
-		var walmartURL = 'http://api.walmartlabs.com/v1/search?apiKey=dq426fn6pm95592scdkq99j4&query=' + generalList[i] + '&responseGroup=full';
+		var walmartURL = 'https://api.walmartlabs.com/v1/search?apiKey=dq426fn6pm95592scdkq99j4&query=' + generalList[i] + '&responseGroup=full';
 
 			$.ajax({
 				url: walmartURL,
@@ -295,6 +283,8 @@ function productDisplay() {
 
 productDisplay();
 
+};
+})
 
 
 
