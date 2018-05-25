@@ -20,7 +20,7 @@ function xmlToJson(xml) {
 			}
 
 		}
-	} else if (xml.nodeType == 3) { // text
+	} else if (xml.nodeType == 3) { // append
 		obj = xml.nodeValue;
 	}
 
@@ -61,10 +61,10 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 	//else city is valid = true
 	var city = $("#city-input").val().trim();
 	if(city == ""){
-		$('#formErrorCity').text(' ' + 'Please enter ' +' ' );
+		$('#formErrorCity').append(' ' + 'Please enter ' +' ' );
 	} 
 	else if(!nameReg.test(city)){
-		$('#formErrorCity').text(' ' + ' Letters only for '+ ' ' );
+		$('#formErrorCity').append(' ' + ' Letters only for '+ ' ' );
 	}
 	else{
 		$(".city-error").remove();
@@ -75,13 +75,13 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 	//else zip is valid = true
 	var zip = $("#zip-input").val().trim();
 	if(zip == ""){
-		$('#formErrorZip').text(' ' + 'Please enter ' +' ' );
+		$('#formErrorZip').append(' ' + 'Please enter ' +' ' );
 	}
 	else if(!numberReg.test(zip)){
-		$('#formErrorZip').text(' ' + ' Numbers only for '+ ' ' );
+		$('#formErrorZip').append(' ' + ' Numbers only for '+ ' ' );
 	}
 	else if(zip.length !== 5){
-		$('#formErrorZip').text(' ' + ' Please enter valid' + ' ');
+		$('#formErrorZip').append(' ' + ' Please enter valid' + ' ');
 	}
 	else{
 		$(".zip-error").remove();
@@ -92,7 +92,7 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 	//else state is valid = true
 	var state = $("#selectState").val().trim();
 	if(state == ""){
-		$('#formErrorState').text(' ' + 'Please ' +' ');
+		$('#formErrorState').append(' ' + 'Please ' +' ');
 	} 
 	else{
 		$(".state-error").remove();
@@ -166,11 +166,11 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 			// Moment.js functions to assign correct days to the weather display
 			//format as day of week and day of month with ordinal. Add days and format
 			var today = moment().format("ddd, Do");
-			$(".day-1").text(today);
-			$(".day-2").text(moment().add(1 ,"days").format("ddd, Do"));
-			$(".day-3").text(moment().add(2 ,"days").format("ddd, Do"));
-			$(".day-4").text(moment().add(3 ,"days").format("ddd, Do"));
-			$(".day-5").text(moment().add(4 ,"days").format("ddd, Do"));			
+			$(".day-1").append(today);
+			$(".day-2").append(moment().add(1 ,"days").format("ddd, Do"));
+			$(".day-3").append(moment().add(2 ,"days").format("ddd, Do"));
+			$(".day-4").append(moment().add(3 ,"days").format("ddd, Do"));
+			$(".day-5").append(moment().add(4 ,"days").format("ddd, Do"));			
 			
 			$.ajax({
 				url: weatherQueryUrl,
@@ -181,7 +181,11 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 				// This forloop is checking today's and the next 5 day's weather
 				for(var i=0; i<weatherObj.list.length; i++){
 					if (i === 0 || i === 2 || i === 10 || i === 18 || i === 26 || i === 34){
-					console.log(weatherObj.list[i].main.temp);
+					console.log('main temp',weatherObj.list[i].main.temp);
+					var mainTemp = weatherObj.list[i].main.temp
+					var fahrenheit = (9/5) * (mainTemp - 273.15) + 32;
+					console.log('fahrenheit', fahrenheit)
+
 					// pulling today's high temperature
 					console.log(weatherObj.list[i].main.temp_max);
 					// pulling today's low temp
@@ -192,13 +196,124 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 					console.log(weatherObj.list[i].weather[0].description);
 					//pulling city name
 					console.log(weatherObj.city.name);}
+
+					/// COLD //////////////////////////////////////////////////////////////
+					if (fahrenheit < 65 ) {
+						$('#coldRelatedProduct-area').removeClass("hide")
+						$('.coldlist').show();
+	
+						for (let i = 0; i < generalList.length; i++ ) {
+	
+							var coldwalmartURL = 'http://api.walmartlabs.com/v1/search?apiKey=dq426fn6pm95592scdkq99j4&query=' + coldList[i] + '&responseGroup=full';
+					
+								$.ajax({
+									url: coldwalmartURL,
+									type: "GET",
+									dataType: 'jsonp',
+									cache: false, 
+									success : function (response) {
+					
+										console.log('response', response)
+										var items = response.items
+					
+										$(`#coldtab${i}`).text(response.query)
+										$(`.coldmenuTitle${i}`).append(response.query)
+										$(`.coldbrandMenuTitle${i}`).append(response.query)
+										$(`.coldimage${i}`).attr("src", items[0].largeImage);
+					
+										$(`.coldbrandOne${i}`).append(items[0].brandName)
+										$(`.coldbrandTwo${i}`).append(items[1].brandName)
+										$(`.coldbrandThree${i}`).append(items[2].brandName)
+					
+										$(`#coldlistOne${i}`).append(`<ul>
+																  <li><a href="#">${items[0].name}</li>
+																  <li><a href="#">Price: $${items[0].salePrice}</a></li>
+																  <li><a href="#">This item has a customer review of: ${items[0].customerRating} stars</a></li>
+																  </ul>`)
+					
+										$(`#coldlistTwo${i}`).append(`<ul>
+																  <li><a href="#">${items[1].name}</li>
+																	<li><a href="#">Price: $${items[1].salePrice}</a></li>
+																  <li><a href="#">This item has a customer review of: ${items[1].customerRating} stars</a></li>
+																  </ul>`)
+					
+										$(`#coldlistThree${i}`).append(`<ul>
+																	<li><a href="#">${items[2].name}</li>
+																	<li><a href="#">Price: $${items[2].salePrice}</a></li>
+																	<li><a href="#">This item has a customer review of: ${items[2].customerRating} stars</a></li>
+																	</ul>`)
+									}
+								})
+						}
+	
+					}
+					/// WARM /////////////////////////////////////////////////////
+					if (fahrenheit > 85) {
+						$('#hotRelatedProduct-area').removeClass("hide")
+						$('.hotlist').show();
+	
+						for (let i = 0; i < hotList.length; i++ ) {
+	
+							var hotwalmartURL = 'http://api.walmartlabs.com/v1/search?apiKey=dq426fn6pm95592scdkq99j4&query=' + hotList[i] + '&responseGroup=full';
+					
+								$.ajax({
+									url: hotwalmartURL,
+									type: "GET",
+									dataType: 'jsonp',
+									cache: false, 
+									success : function (response) {
+					
+										console.log('response', response)
+										var items = response.items
+					
+										$(`#hottab${i}`).text(response.query)
+										$(`.hotmenuTitle${i}`).append(response.query)
+										$(`.hotbrandMenuTitle${i}`).append(response.query)
+										$(`.hotimage${i}`).attr("src", items[0].largeImage);
+					
+										$(`.hotbrandOne${i}`).append(items[0].brandName)
+										$(`.hotbrandTwo${i}`).append(items[1].brandName)
+										$(`.hotbrandThree${i}`).append(items[2].brandName)
+					
+										$(`#hotlistOne${i}`).append(`<ul>
+																  <li><a href="#">${items[0].name}</li>
+																  <li><a href="#">Price: $${items[0].salePrice}</a></li>
+																  <li><a href="#">This item has a customer review of: ${items[0].customerRating} stars</a></li>
+																  </ul>`)
+					
+										$(`#hotlistTwo${i}`).append(`<ul>
+																  <li><a href="#">${items[1].name}</li>
+																	<li><a href="#">Price: $${items[1].salePrice}</a></li>
+																  <li><a href="#">This item has a customer review of: ${items[1].customerRating} stars</a></li>
+																  </ul>`)
+					
+										$(`#hotlistThree${i}`).append(`<ul>
+																	<li><a href="#">${items[2].name}</li>
+																	<li><a href="#">Price: $${items[2].salePrice}</a></li>
+																	<li><a href="#">This item has a customer review of: ${items[2].customerRating} stars</a></li>
+																	</ul>`)
+									}
+								})
+						}
+						
+					}
+					/// WINDY /////////////////////////////////////////////////////
+					if (fahrenheit > _ ) {
+						//display windy suggested items
+					}
+					/// RAINY /////////////////////////////////////////////////////
+					if(fahrenheit = true) {
+						//display rainy suggested items
+					}
+
 				}
 
 				//To convert from Kelvin to Fahrenheit: F = (K - 273.15) * 1.80 + 32
 				var tempK = weatherObj.list[0].main.temp;
+				console.log('temperature', tempK)
 				// render weather info into Weather table
 				var wCity = weatherObj.city.name;
-				var wTemp = Math.round((tempK - 273.15) * 1.80 + 32);
+				var wTemp = (9/5) * (tempK - 273.15) + 32;
 				var wWind = weatherObj.list[0].wind.speed;
 				var wForecast = weatherObj.list[0].weather[0].description;
 
@@ -216,22 +331,8 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 				var wTemp = $("#w_Temp").text(sessionStorage.getItem("wTemp"));
 				var wWind = $("#w_Wind").text(sessionStorage.getItem("wWind"));
 				var wForecast = $("#w_Forecast").text(sessionStorage.getItem("wForecast"));
-				var fahrenheit = (9/5) * (weatherObj.list[i].main.temp - 273) + 32
-
-				if (fahrenheit < 65) {
-					// $('.coldlist').show();
-
-				}
-				if (fahrenheit > 85) {
-					// $('.hotlist').show();
-					
-				}
-				if (windspeed > _ ) {
-					//display windy suggested items
-				}
-				if(rainy = true) {
-					//display rainy suggested items
-				}
+				
+				console.log('fahrenheit', wTemp)
 							
 			});		
 
@@ -242,7 +343,8 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 var generalList = ['tent', 'hammock', 'sleepingbag'];
 var coldList = ['gloves', 'long underwear', 'wool socks'];
 var windyList = ['extra stakes', 'rope', 'chapstick'];
-var hotList = ['floppy hats', 'sunscreen', 'sandals']
+var hotList = ['floppy hats', 'sunscreen', 'sandals'];
+var rainyList = ['rainboots', 'umbrella', 'tarp'];
 
 
 function productDisplay() { 
@@ -262,13 +364,13 @@ function productDisplay() {
 					var items = response.items
 
 					$(`#tab${i}`).text(response.query)
-					$(`.menuTitle${i}`).text(response.query)
-					$(`.brandMenuTitle${i}`).text(response.query)
+					$(`.menuTitle${i}`).append(response.query)
+					$(`.brandMenuTitle${i}`).append(response.query)
 					$(`.image${i}`).attr("src", items[0].largeImage);
 
-					$(`.brandOne${i}`).text(items[0].brandName)
-					$(`.brandTwo${i}`).text(items[1].brandName)
-					$(`.brandThree${i}`).text(items[2].brandName)
+					$(`.brandOne${i}`).append(items[0].brandName)
+					$(`.brandTwo${i}`).append(items[1].brandName)
+					$(`.brandThree${i}`).append(items[2].brandName)
 
 					$(`#listOne${i}`).append(`<ul>
 											  <li><a href="#">${items[0].name}</li>
