@@ -104,9 +104,9 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 	var campsiteApiKey = "dnhsxuups2jvp66yevxeramm";
 	var campsiteQueryUrl = "https://cors-everywhere.herokuapp.com/http://api.amp.active.com/camping/campgrounds?pstate=" + state + "&siteType=2003&api_key=" + campsiteApiKey;	
 
-	if (state.length > 0 && city.length > 0 && zip.length === 5) {
+	if (state.length > 0) {
 		//if input valid show and begin all other data
-		if( validCity && validState && validZip ){
+		if(validState){
 			$("#secondary-area").removeClass("hide");
 			$(".error").empty();
 			var today = moment().format("ddd, Do");
