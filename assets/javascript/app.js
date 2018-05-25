@@ -189,7 +189,8 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 					console.log('fahrenheit', fahrenheit)
 
 					// pulling today's high temperature
-					console.log(weatherObj.list[i].main.temp_max);
+					console.log('todays high temperature', weatherObj.list[i].main.temp_max);
+					console.log('i', i)
 					// pulling today's low temp
 					console.log(weatherObj.list[i].main.temp_min);
 					// Pulling wind speed
@@ -204,7 +205,7 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 						$('#coldRelatedProduct-area').removeClass("hide")
 						$('.coldlist').show();
 	
-						for (let i = 0; i < generalList.length; i++ ) {
+						for (let i = 0; i < coldList.length; i++ ) {
 	
 							var coldwalmartURL = 'http://api.walmartlabs.com/v1/search?apiKey=dq426fn6pm95592scdkq99j4&query=' + coldList[i] + '&responseGroup=full';
 					
@@ -250,7 +251,7 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 	
 					}
 					/// WARM /////////////////////////////////////////////////////
-					if (fahrenheit > 85) {
+					if (fahrenheit > 75) {
 						$('#hotRelatedProduct-area').removeClass("hide")
 						$('.hotlist').show();
 	
@@ -387,10 +388,12 @@ function productDisplay() {
 											  </ul>`)
 
 					$(`#listThree${i}`).append(`<ul>
-												<li><a href="#">${items[2].name}</li>
-												<li><a href="#">Price: $${items[2].salePrice}</a></li>
-												<li><a href="#">This item has a customer review of: ${items[2].customerRating} stars</a></li>
+												<li><a href="#">${items[3].name}</li>
+												<li><a href="#">Price: $${items[3].salePrice}</a></li>
+												<li><a href="#">This item has a customer review of: ${items[3].customerRating} stars</a></li>
 												</ul>`)
+
+					
 				}
 			})
 	}
