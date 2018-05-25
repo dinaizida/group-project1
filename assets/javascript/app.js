@@ -47,6 +47,8 @@ function xmlToJson(xml) {
 //on submit button click test to see if user input fits all criteria
 $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 	event.preventDefault();
+	$('#campsiteList').empty();	
+
 	console.log("testing");
 	//assign exprexxions to test input type
 	var nameReg = /^[A-Za-z ]+$/;
@@ -102,10 +104,9 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 	var campsiteApiKey = "dnhsxuups2jvp66yevxeramm";
 	var campsiteQueryUrl = "https://cors-everywhere.herokuapp.com/http://api.amp.active.com/camping/campgrounds?pstate=" + state + "&siteType=2003&api_key=" + campsiteApiKey;	
 
-	if (state.length > 0 && city.length > 0 && zip.length === 5) {
+	if (state.length > 0) {
 		//if input valid show and begin all other data
-		if( validCity && validState && validZip ){
-
+		if(validState){
 			$("#secondary-area").removeClass("hide");
 			$(".error").empty();
 			var today = moment().format("ddd, Do");
@@ -125,7 +126,7 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 				var myObj = xmlToJson(response);
 				console.log(myObj);
 
-				for(var i=0; i < 5; i++){
+				for(var i=0; i < myObj.resultset.result.length; i++){
 					//Pulling campsite name
 					// console.log(JSON.stringify(myObj.resultset.result[i]["@attributes"].facilityName));
 					// Pulling campsite latitude
@@ -151,7 +152,7 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 						// console.log(response.results[0].formatted_address);
 						var mapQuery = (response.results[0].formatted_address).replace(/ /g , "+");						
 						var tdAddress = response.results[0].formatted_address;	
-						var houseTr = (`<tr><td><a class='nameButton' data-Zipcode=${zipCode}>` + campSiteName + "<p class='hoverMagic'>click to view weather</p>" + "</a></td><td><a href='https://maps.google.com/?q=" + mapQuery + "'target='_blank'>" + tdAddress + "</a></td></tr>")
+						var houseTr = (`<tr><td><span><i data-Zipcode=${zipCode} class='iconTitle small material-icons nameButton'>wb_sunny</i></span>` + campSiteName + "</a></td><td><a href='https://maps.google.com/?q=" + mapQuery + "'target='_blank'>" + tdAddress + "</a></td></tr>")
 						$('#campsiteList').append(houseTr);
 					})
 				}								
@@ -159,8 +160,6 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 		}
 	};
 })
-
-
 
 	$("#campsiteList").on("click", ".nameButton", function(){
 		event.preventDefault();
@@ -171,8 +170,7 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 			var weatherApiKey = "ba9485900797575aadc3a1081bfa14f7";
 			var weatherQueryUrl = "https://api.openweathermap.org/data/2.5/forecast?zip=" + currentZip + "&APPID=" + weatherApiKey; 
 			// Moment.js functions to assign correct days to the weather display
-			//format as day of week and day of month with ordinal. Add days and format
-						
+			//format as day of week and day of month with ordinal. Add days and format					
 			
 			$.ajax({
 				url: weatherQueryUrl,
@@ -194,8 +192,10 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 					console.log('fahrenheit', fahrenheit)
 
 					// pulling today's high temperature
+
 					console.log('todays high temperature', weatherObj.list[i].main.temp_max);
 					console.log('i', i)
+
 					// pulling today's low temp
 					console.log(weatherObj.list[i].main.temp_min);
 					// Pulling wind speed
@@ -204,6 +204,7 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 					console.log(weatherObj.list[i].weather[0].description);
 					//pulling city name
 					console.log(weatherObj.city.name);}
+
 
                     if(i===0){
                         var city = weatherObj.city.name;
@@ -221,10 +222,10 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
                         $("#tempL0").empty();
                         $("#wind0").empty();
                         $("#for0").empty();
-                        $("#tempC0").append(Math.round((tempCurrentK - 273.15) * 1.80 + 32));
-                        $("#tempH0").append(Math.round((tempMaxK - 273.15) * 1.80 + 32));
-                        $("#tempL0").append(Math.round((tempMinK - 273.15) * 1.80 + 32));
-                        $("#wind0").append(weatherObj.list[i].wind.speed);
+                        $("#tempC0").append(Math.round((tempCurrentK - 273.15) * 1.80 + 32)+ "°");
+                        $("#tempH0").append(Math.round((tempMaxK - 273.15) * 1.80 + 32)+ "°");
+                        $("#tempL0").append(Math.round((tempMinK - 273.15) * 1.80 + 32)+ "°");
+                        $("#wind0").append(weatherObj.list[i].wind.speed + "mph");
                         $("#for0").append(weatherObj.list[i].weather[0].description);
                         
                     }else if(i===2){
@@ -243,10 +244,10 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
                         $("#tempL2").empty();
                         $("#wind2").empty();
                         $("#for2").empty();
-                        $("#tempC2").append(Math.round((tempCurrentK - 273.15) * 1.80 + 32));
-                        $("#tempH2").append(Math.round((tempMaxK - 273.15) * 1.80 + 32));
-                        $("#tempL2").append(Math.round((tempMinK - 273.15) * 1.80 + 32));
-                        $("#wind2").append(weatherObj.list[i].wind.speed);
+                        $("#tempC2").append(Math.round((tempCurrentK - 273.15) * 1.80 + 32)+ "°");
+                        $("#tempH2").append(Math.round((tempMaxK - 273.15) * 1.80 + 32)+ "°");
+                        $("#tempL2").append(Math.round((tempMinK - 273.15) * 1.80 + 32)+ "°");
+                        $("#wind2").append(weatherObj.list[i].wind.speed + "mph");
                         $("#for2").append(weatherObj.list[i].weather[0].description);
                         
                     }else if(i===10){
@@ -264,10 +265,10 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
                         $("#tempL10").empty();
                         $("#wind10").empty();
                         $("#for10").empty();
-                        $("#tempC10").append(Math.round((tempCurrentK - 273.15) * 1.80 + 32));
-                        $("#tempH10").append(Math.round((tempMaxK - 273.15) * 1.80 + 32));
-                        $("#tempL10").append(Math.round((tempMinK - 273.15) * 1.80 + 32));
-                        $("#wind10").append(weatherObj.list[i].wind.speed);
+                        $("#tempC10").append(Math.round((tempCurrentK - 273.15) * 1.80 + 32)+ "°");
+                        $("#tempH10").append(Math.round((tempMaxK - 273.15) * 1.80 + 32)+ "°");
+                        $("#tempL10").append(Math.round((tempMinK - 273.15) * 1.80 + 32)+ "°");
+                        $("#wind10").append(weatherObj.list[i].wind.speed+ "mph");
                         $("#for10").append(weatherObj.list[i].weather[0].description);
                         
                     }else if(i===18){
@@ -285,10 +286,10 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
                         $("#tempL18").empty();
                         $("#wind18").empty();
                         $("#for18").empty();
-                        $("#tempC18").append(Math.round((tempCurrentK - 273.15) * 1.80 + 32));
-                        $("#tempH18").append(Math.round((tempMaxK - 273.15) * 1.80 + 32));
-                        $("#tempL18").append(Math.round((tempMinK - 273.15) * 1.80 + 32));
-                        $("#wind18").append(weatherObj.list[i].wind.speed);
+                        $("#tempC18").append(Math.round((tempCurrentK - 273.15) * 1.80 + 32)+ "°");
+                        $("#tempH18").append(Math.round((tempMaxK - 273.15) * 1.80 + 32)+ "°");
+                        $("#tempL18").append(Math.round((tempMinK - 273.15) * 1.80 + 32)+ "°");
+                        $("#wind18").append(weatherObj.list[i].wind.speed + "mph");
                         $("#for18").append(weatherObj.list[i].weather[0].description);
                         
                     }else if(i===26){
@@ -307,10 +308,10 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
                         $("#tempL26").empty();
                         $("#wind26").empty();
                         $("#for26").empty();
-                        $("#tempC26").append(Math.round((tempCurrentK - 273.15) * 1.80 + 32));
-                        $("#tempH26").append(Math.round((tempMaxK - 273.15) * 1.80 + 32));
-                        $("#tempL26").append(Math.round((tempMinK - 273.15) * 1.80 + 32));
-                        $("#wind26").append(weatherObj.list[i].wind.speed);
+                        $("#tempC26").append(Math.round((tempCurrentK - 273.15) * 1.80 + 32)+ "°");
+                        $("#tempH26").append(Math.round((tempMaxK - 273.15) * 1.80 + 32)+ "°");
+                        $("#tempL26").append(Math.round((tempMinK - 273.15) * 1.80 + 32)+ "°");
+                        $("#wind26").append(weatherObj.list[i].wind.speed+ "mph");
                         $("#for26").append(weatherObj.list[i].weather[0].description);
                         
 					}
@@ -375,6 +376,7 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 				}
 				/// WARM /////////////////////////////////////////////////////
 				if (fahrenheit > 75) {
+
 						$('#hotRelatedProduct-area').removeClass("hide")
 						$('.hotlist').show();
 	
@@ -425,8 +427,16 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 								})
 						}
 						
+					}
+					/// WINDY /////////////////////////////////////////////////////
+					if (fahrenheit > _ ) {
+						//display windy suggested items
+					}
+					/// RAINY /////////////////////////////////////////////////////
+					if(fahrenheit = true) {
+						//display rainy suggested items
+					}
 
-				}
 
 				//To convert from Kelvin to Fahrenheit: F = (K - 273.15) * 1.80 + 32
 				var tempK = weatherObj.list[0].main.temp;
@@ -526,16 +536,4 @@ productDisplay();
 
 
 
-
-// var clicked = false;
-// $("body").on("click", '.mything', function(event){ 
-// 	if (this.child = ) { 
-		
-// 	}
-// 	else if (clicked === false) {
-	
-// 	}
-// 	console.log('stuff');
-// 	console.log('this', this)
-// });
 
