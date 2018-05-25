@@ -105,7 +105,6 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 	if (state.length > 0 && city.length > 0 && zip.length === 5) {
 		//if input valid show and begin all other data
 		if( validCity && validState && validZip ){
-
 			$("#secondary-area").removeClass("hide");
 			$(".error").empty();
 			var today = moment().format("ddd, Do");
@@ -151,7 +150,7 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 						// console.log(response.results[0].formatted_address);
 						var mapQuery = (response.results[0].formatted_address).replace(/ /g , "+");						
 						var tdAddress = response.results[0].formatted_address;	
-						var houseTr = (`<tr><td><a class='nameButton' data-Zipcode=${zipCode}>` + campSiteName + "<p class='hoverMagic'>click to view weather</p>" + "</a></td><td><a href='https://maps.google.com/?q=" + mapQuery + "'target='_blank'>" + tdAddress + "</a></td></tr>")
+						var houseTr = (`<tr><td><span><i data-Zipcode=${zipCode} class='iconTitle small material-icons nameButton'>wb_sunny</i></span>` + campSiteName + "</a></td><td><a href='https://maps.google.com/?q=" + mapQuery + "'target='_blank'>" + tdAddress + "</a></td></tr>")
 						$('#campsiteList').append(houseTr);
 					})
 				}								
@@ -159,8 +158,6 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 		}
 	};
 })
-
-
 
 	$("#campsiteList").on("click", ".nameButton", function(){
 		event.preventDefault();
@@ -171,8 +168,7 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 			var weatherApiKey = "ba9485900797575aadc3a1081bfa14f7";
 			var weatherQueryUrl = "https://api.openweathermap.org/data/2.5/forecast?zip=" + currentZip + "&APPID=" + weatherApiKey; 
 			// Moment.js functions to assign correct days to the weather display
-			//format as day of week and day of month with ordinal. Add days and format
-						
+			//format as day of week and day of month with ordinal. Add days and format					
 			
 			$.ajax({
 				url: weatherQueryUrl,
@@ -191,8 +187,10 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 					console.log('fahrenheit', fahrenheit)
 
 					// pulling today's high temperature
+
 					console.log('todays high temperature', weatherObj.list[i].main.temp_max);
 					console.log('i', i)
+
 					// pulling today's low temp
 					console.log(weatherObj.list[i].main.temp_min);
 					// Pulling wind speed
@@ -201,6 +199,7 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 					console.log(weatherObj.list[i].weather[0].description);
 					//pulling city name
 					console.log(weatherObj.city.name);}
+
 
                     if(i===0){
                         var city = weatherObj.city.name;
@@ -325,7 +324,7 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 						$('.coldlist').show();
 	
 						for (let i = 0; i < coldList.length; i++ ) {
-	
+
 							var coldwalmartURL = 'http://api.walmartlabs.com/v1/search?apiKey=dq426fn6pm95592scdkq99j4&query=' + coldList[i] + '&responseGroup=full';
 					
 								$.ajax({
@@ -370,7 +369,9 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 	
 					}
 					/// WARM /////////////////////////////////////////////////////
-					if (fahrenheit > 75) {
+
+					if (fahrenheit > 85) {
+
 						$('#hotRelatedProduct-area').removeClass("hide")
 						$('.hotlist').show();
 	
@@ -418,8 +419,16 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 								})
 						}
 						
+					}
+					/// WINDY /////////////////////////////////////////////////////
+					if (fahrenheit > _ ) {
+						//display windy suggested items
+					}
+					/// RAINY /////////////////////////////////////////////////////
+					if(fahrenheit = true) {
+						//display rainy suggested items
+					}
 
-				}
 
 				//To convert from Kelvin to Fahrenheit: F = (K - 273.15) * 1.80 + 32
 				var tempK = weatherObj.list[0].main.temp;
@@ -528,4 +537,3 @@ productDisplay();
 // 	console.log('stuff');
 // 	console.log('this', this)
 // });
-

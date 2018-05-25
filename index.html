@@ -161,14 +161,15 @@
                                             <thead id="thead">
                                                 <tr>
                                                     <th class="ctd"></th>
-                                                    <th class="ctd day-1">MON</th>
-                                                    <th class="ctd day-2">TUS</th>
-                                                    <th class="ctd day-3">WED</th>
-                                                    <th class="ctd day-4">THU</th>
-                                                    <th class="ctd day-5">FRI</th>
+                                                    <th class="ctd day-1">Temp (F) Current</th>
+                                                    <th class="ctd day-2">Temp (F) High</th>
+                                                    <th class="ctd day-3">Temp (F) Low</th>
+                                                    <th class="ctd day-4">Wind Speed (MPH)</th>
+                                                    <th class="ctd day-5">Forecast</th>
 
                                                 </tr>
                                             </thead>
+
                                             <tbody id = "weather">
                                              
                                                     <tr id = "wTempC">
@@ -229,7 +230,7 @@
                                         <span class="card-title"><i class=" iconTitle medium material-icons">terrain</i><h3>Local Camptsites</h3></span>
                                     </div>
                                     <div style="overflow-x:auto;" class="row">
-                                        <table style="overflow-x:auto;" class=" resultTable table table-striped table-responsive-md  table-borderless centered highlight">
+                                        <table style="overflow-x:auto; overflow-y: scroll" class=" resultTable table table-striped table-responsive-md  table-borderless left-align highlight">
                                             <thead id="thead">
                                                 <tr>
                                                     <th class="ctd">Name</th>
@@ -238,12 +239,6 @@
                                                 </tr>
                                             </thead>
                                             <tbody id="campsiteList">
-
-                                                <tr>
-                                                    <td></td>
-
-                                                    <td><a class="btn-floating pulse lime darken-1"><i class="material-icons right">fast_forward</i></a></td>
-                                                </tr>
 
                                             </tbody>
                                         </table>
