@@ -181,8 +181,10 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 				// This forloop is checking today's and the next 5 day's weather
 				for(var i=0; i<weatherObj.list.length; i++){
 					if (i === 0 || i === 2 || i === 10 || i === 18 || i === 26 || i === 34){
+						
 					console.log('main temp',weatherObj.list[i].main.temp);
 					var mainTemp = weatherObj.list[i].main.temp
+
 					var fahrenheit = (9/5) * (mainTemp - 273.15) + 32;
 					console.log('fahrenheit', fahrenheit)
 
