@@ -108,15 +108,8 @@ thead {
     margin: auto;
 }
 
-.hoverMagic{
-    display: none;
-    font-size: 12px;
-}
-
-.nameButton:hover .hoverMagic{
-    display: block;
-    cursor: pointer;
-}
+.campsiteList {
+    overflow-y: scroll }
 
 /* footer */
 
@@ -169,6 +162,8 @@ a:visited {
     font-weight: bold;
     font-size: 20px;
 }
+
+
 
 @media (max-width: 990px) {}
 
