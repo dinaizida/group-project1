@@ -115,6 +115,7 @@ thead {
 
 .nameButton:hover .hoverMagic{
     display: block;
+    cursor: pointer;
 }
 
 /* footer */

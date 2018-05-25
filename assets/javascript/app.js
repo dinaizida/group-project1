@@ -144,7 +144,7 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 						// console.log(response.results[0].formatted_address);
 						var mapQuery = (response.results[0].formatted_address).replace(/ /g , "+");						
 						var tdAddress = response.results[0].formatted_address;	
-						var houseTr = (`<tr><td><a class='nameButton' data-Zipcode=${zipCode}>` + campSiteName + "<p class='hoverMagic'>click to view weather</p>" + "</a></td><td><a href='https://maps.google.com/?q=" + mapQuery + "'target='_blank'>" + tdAddress + "</a></td></tr>")
+						var houseTr = (`<tr><td><a class='nameButton' data-Zipcode=${zipCode}>` + campSiteName + "<p class='hoverMagic'>click to check out the weather</p>" + "</a></td><td><a href='https://maps.google.com/?q=" + mapQuery + "'target='_blank'>" + tdAddress + "</a></td></tr>")
 						$('#campsiteList').append(houseTr);
 					})
 				}								
@@ -237,7 +237,10 @@ console.log(this)
 				// This forloop is checking today's and the next 5 day's weather
 				for(var i=0; i<weatherObj.list.length; i++){
 					if (i === 0 || i === 2 || i === 10 || i === 18 || i === 26 || i === 34){
+					// pulling today's temperature
 					console.log(weatherObj.list[i].main.temp);
+
+					
 					// pulling today's high temperature
 					console.log(weatherObj.list[i].main.temp_max);
 					// pulling today's low temp
@@ -247,8 +250,14 @@ console.log(this)
 					// pulling forecast
 					console.log(weatherObj.list[i].weather[0].description);
 					//pulling city name
-					console.log(weatherObj.city.name);}
+					console.log(weatherObj.city.name);
+					var weatherTr = (`<tr><td>`)
+
+					}
 				}
+
+				// var houseTr = (`<tr><td><a class='nameButton' data-Zipcode=${zipCode}>` + campSiteName + "<p class='hoverMagic'>click to check out the weather</p>" + "</a></td><td><a href='https://maps.google.com/?q=" + mapQuery + "'target='_blank'>" + tdAddress + "</a></td></tr>")
+
 
 				//To convert from Kelvin to Fahrenheit: F = (K - 273.15) * 1.80 + 32
 				var tempK = weatherObj.list[0].main.temp;
@@ -349,6 +358,6 @@ console.log(this)
 							
 			});		
 
-		});
+	});
 
 
