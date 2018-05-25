@@ -47,6 +47,8 @@ function xmlToJson(xml) {
 //on submit button click test to see if user input fits all criteria
 $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 	event.preventDefault();
+	$('#campsiteList').empty();	
+
 	console.log("testing");
 	//assign exprexxions to test input type
 	var nameReg = /^[A-Za-z ]+$/;
@@ -124,7 +126,7 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 				var myObj = xmlToJson(response);
 				console.log(myObj);
 
-				for(var i=0; i < 5; i++){
+				for(var i=0; i < myObj.resultset.result.length; i++){
 					//Pulling campsite name
 					// console.log(JSON.stringify(myObj.resultset.result[i]["@attributes"].facilityName));
 					// Pulling campsite latitude
@@ -217,10 +219,10 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
                         $("#tempL0").empty();
                         $("#wind0").empty();
                         $("#for0").empty();
-                        $("#tempC0").append(Math.round((tempCurrentK - 273.15) * 1.80 + 32));
-                        $("#tempH0").append(Math.round((tempMaxK - 273.15) * 1.80 + 32));
-                        $("#tempL0").append(Math.round((tempMinK - 273.15) * 1.80 + 32));
-                        $("#wind0").append(weatherObj.list[i].wind.speed);
+                        $("#tempC0").append(Math.round((tempCurrentK - 273.15) * 1.80 + 32)+ "°");
+                        $("#tempH0").append(Math.round((tempMaxK - 273.15) * 1.80 + 32)+ "°");
+                        $("#tempL0").append(Math.round((tempMinK - 273.15) * 1.80 + 32)+ "°");
+                        $("#wind0").append(weatherObj.list[i].wind.speed + "mph");
                         $("#for0").append(weatherObj.list[i].weather[0].description);
                         
                     }else if(i===2){
@@ -239,10 +241,10 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
                         $("#tempL2").empty();
                         $("#wind2").empty();
                         $("#for2").empty();
-                        $("#tempC2").append(Math.round((tempCurrentK - 273.15) * 1.80 + 32));
-                        $("#tempH2").append(Math.round((tempMaxK - 273.15) * 1.80 + 32));
-                        $("#tempL2").append(Math.round((tempMinK - 273.15) * 1.80 + 32));
-                        $("#wind2").append(weatherObj.list[i].wind.speed);
+                        $("#tempC2").append(Math.round((tempCurrentK - 273.15) * 1.80 + 32)+ "°");
+                        $("#tempH2").append(Math.round((tempMaxK - 273.15) * 1.80 + 32)+ "°");
+                        $("#tempL2").append(Math.round((tempMinK - 273.15) * 1.80 + 32)+ "°");
+                        $("#wind2").append(weatherObj.list[i].wind.speed + "mph");
                         $("#for2").append(weatherObj.list[i].weather[0].description);
                         
                     }else if(i===10){
@@ -260,10 +262,10 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
                         $("#tempL10").empty();
                         $("#wind10").empty();
                         $("#for10").empty();
-                        $("#tempC10").append(Math.round((tempCurrentK - 273.15) * 1.80 + 32));
-                        $("#tempH10").append(Math.round((tempMaxK - 273.15) * 1.80 + 32));
-                        $("#tempL10").append(Math.round((tempMinK - 273.15) * 1.80 + 32));
-                        $("#wind10").append(weatherObj.list[i].wind.speed);
+                        $("#tempC10").append(Math.round((tempCurrentK - 273.15) * 1.80 + 32)+ "°");
+                        $("#tempH10").append(Math.round((tempMaxK - 273.15) * 1.80 + 32)+ "°");
+                        $("#tempL10").append(Math.round((tempMinK - 273.15) * 1.80 + 32)+ "°");
+                        $("#wind10").append(weatherObj.list[i].wind.speed+ "mph");
                         $("#for10").append(weatherObj.list[i].weather[0].description);
                         
                     }else if(i===18){
@@ -281,10 +283,10 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
                         $("#tempL18").empty();
                         $("#wind18").empty();
                         $("#for18").empty();
-                        $("#tempC18").append(Math.round((tempCurrentK - 273.15) * 1.80 + 32));
-                        $("#tempH18").append(Math.round((tempMaxK - 273.15) * 1.80 + 32));
-                        $("#tempL18").append(Math.round((tempMinK - 273.15) * 1.80 + 32));
-                        $("#wind18").append(weatherObj.list[i].wind.speed);
+                        $("#tempC18").append(Math.round((tempCurrentK - 273.15) * 1.80 + 32)+ "°");
+                        $("#tempH18").append(Math.round((tempMaxK - 273.15) * 1.80 + 32)+ "°");
+                        $("#tempL18").append(Math.round((tempMinK - 273.15) * 1.80 + 32)+ "°");
+                        $("#wind18").append(weatherObj.list[i].wind.speed + "mph");
                         $("#for18").append(weatherObj.list[i].weather[0].description);
                         
                     }else if(i===26){
@@ -303,10 +305,10 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
                         $("#tempL26").empty();
                         $("#wind26").empty();
                         $("#for26").empty();
-                        $("#tempC26").append(Math.round((tempCurrentK - 273.15) * 1.80 + 32));
-                        $("#tempH26").append(Math.round((tempMaxK - 273.15) * 1.80 + 32));
-                        $("#tempL26").append(Math.round((tempMinK - 273.15) * 1.80 + 32));
-                        $("#wind26").append(weatherObj.list[i].wind.speed);
+                        $("#tempC26").append(Math.round((tempCurrentK - 273.15) * 1.80 + 32)+ "°");
+                        $("#tempH26").append(Math.round((tempMaxK - 273.15) * 1.80 + 32)+ "°");
+                        $("#tempL26").append(Math.round((tempMinK - 273.15) * 1.80 + 32)+ "°");
+                        $("#wind26").append(weatherObj.list[i].wind.speed+ "mph");
                         $("#for26").append(weatherObj.list[i].weather[0].description);
                         
                     }
