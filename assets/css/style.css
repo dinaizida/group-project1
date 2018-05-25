@@ -12,7 +12,10 @@ body {
     background-position: center;
 }
 a {
-    color: red;
+    color: #1d8ab8;
+}
+a:visited {
+    color: #1d8ab8;
 }
 header {
     background-image: url(../images/header.jpg);
@@ -54,8 +57,8 @@ header {
 
 #cityInputDiv {
     margin: 0 auto;
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 30%;
+    margin-right: 30%;
 }
 
 #cityInputForm {
@@ -102,11 +105,11 @@ thead {
     background-color: #8cc8e2;
     color: white;
 }
-.pagination {
+/* .pagination {
     text-shadow: 2px 2px 1px rgba(150, 150, 150, 1);
     color: #ff7f27;
     margin: auto;
-}
+} */
 
 .testing-scroll {
     overflow: scroll ;
@@ -142,8 +145,8 @@ main {
     width: 100%;
 }
 
-.page-footer a:link,
-a:visited {
+.page-footer a:link, .page-footer a:visited
+{
     color: gray;
 }
 
@@ -176,6 +179,7 @@ a:visited {
     .x12 {
         width: 100%;
     }
+   
     .page-footer {
         display: none;
     }
