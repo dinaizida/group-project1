@@ -105,8 +105,15 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 	if (state.length > 0 && city.length > 0 && zip.length === 5) {
 		//if input valid show and begin all other data
 		if( validCity && validState && validZip ){
+
 			$("#secondary-area").removeClass("hide");
 			$(".error").empty();
+			var today = moment().format("ddd, Do");
+			$(".day-1").text(today);
+			$(".day-2").text(moment().add(1 ,"days").format("ddd, Do"));
+			$(".day-3").text(moment().add(2 ,"days").format("ddd, Do"));
+			$(".day-4").text(moment().add(3 ,"days").format("ddd, Do"));
+			$(".day-5").text(moment().add(4 ,"days").format("ddd, Do"));
 
 			//call the campsite API
 			$.ajax({
@@ -165,12 +172,7 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 			var weatherQueryUrl = "https://api.openweathermap.org/data/2.5/forecast?zip=" + currentZip + "&APPID=" + weatherApiKey; 
 			// Moment.js functions to assign correct days to the weather display
 			//format as day of week and day of month with ordinal. Add days and format
-			var today = moment().format("ddd, Do");
-			$(".day-1").append(today);
-			$(".day-2").append(moment().add(1 ,"days").format("ddd, Do"));
-			$(".day-3").append(moment().add(2 ,"days").format("ddd, Do"));
-			$(".day-4").append(moment().add(3 ,"days").format("ddd, Do"));
-			$(".day-5").append(moment().add(4 ,"days").format("ddd, Do"));			
+						
 			
 			$.ajax({
 				url: weatherQueryUrl,
