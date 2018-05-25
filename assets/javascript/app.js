@@ -53,40 +53,40 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 	var numberReg =  /^[0-9]+$/;
 
 	//setting validity of each input to false
-	var validCity = false;
-	var validZip = false;
+	// var validCity = false;
+	// var validZip = false;
 	var validState = false;
 
 	//check if city field is blank or contains a non letter character
 	//else city is valid = true
-	var city = $("#city-input").val().trim();
-	if(city == ""){
-		$('#formErrorCity').append(' ' + 'Please enter ' +' ' );
-	} 
-	else if(!nameReg.test(city)){
-		$('#formErrorCity').append(' ' + ' Letters only for '+ ' ' );
-	}
-	else{
-		$(".city-error").remove();
-		validCity = true;
-	}
+	// var city = $("#city-input").val().trim();
+	// if(city == ""){
+	// 	$('#formErrorCity').append(' ' + 'Please enter ' +' ' );
+	// } 
+	// else if(!nameReg.test(city)){
+	// 	$('#formErrorCity').append(' ' + ' Letters only for '+ ' ' );
+	// }
+	// else{
+	// 	$(".city-error").remove();
+	// 	validCity = true;
+	// }
 
 	//check if zip field blank,contains a non number or is shorter than 5 numbers
 	//else zip is valid = true
-	var zip = $("#zip-input").val().trim();
-	if(zip == ""){
-		$('#formErrorZip').append(' ' + 'Please enter ' +' ' );
-	}
-	else if(!numberReg.test(zip)){
-		$('#formErrorZip').append(' ' + ' Numbers only for '+ ' ' );
-	}
-	else if(zip.length !== 5){
-		$('#formErrorZip').append(' ' + ' Please enter valid' + ' ');
-	}
-	else{
-		$(".zip-error").remove();
-		validZip = true;
-	}
+	// var zip = $("#zip-input").val().trim();
+	// if(zip == ""){
+	// 	$('#formErrorZip').append(' ' + 'Please enter ' +' ' );
+	// }
+	// else if(!numberReg.test(zip)){
+	// 	$('#formErrorZip').append(' ' + ' Numbers only for '+ ' ' );
+	// }
+	// else if(zip.length !== 5){
+	// 	$('#formErrorZip').append(' ' + ' Please enter valid' + ' ');
+	// }
+	// else{
+	// 	$(".zip-error").remove();
+	// 	validZip = true;
+	// }
 	
 	//check if state is blank
 	//else state is valid = true
@@ -102,9 +102,9 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 	var campsiteApiKey = "dnhsxuups2jvp66yevxeramm";
 	var campsiteQueryUrl = "https://cors-everywhere.herokuapp.com/http://api.amp.active.com/camping/campgrounds?pstate=" + state + "&siteType=2003&api_key=" + campsiteApiKey;	
 
-	if (state.length > 0 && city.length > 0 && zip.length === 5) {
+	if (state.length > 0 ) {
 		//if input valid show and begin all other data
-		if( validCity && validState && validZip ){
+		if(validState){
 			$("#secondary-area").removeClass("hide");
 			$(".error").empty();
 			var today = moment().format("ddd, Do");

@@ -29,14 +29,14 @@
 
     <main="container">
         <header class=" jumbotron">
-            <h1 id="title"> GO CAMPING!</h1>
+            <h1 id="title"> LET's GO CAMPING!</h1>
 
         </header>
         <!-- main div -->
         <div id="wrapper">
             <div class="row">
                 <div class="col-md-12 col-sm-12">
-                    <h3 class="subtitle">Lets Find a Campsite with a Nice Weather!</h3>
+                    <h3 class="subtitle">Where Are We Camping?</h3>
                 </div>
             </div>
             <!-- form to select a city -->
@@ -49,16 +49,7 @@
                         <div class="row">
                             <form class="col m12" id="cityInputForm">
                                 <div class="row">
-                                    <div class="bmd-form-group col m4">
-                                        <label for="city-input"><span class="errorIcon"><i class=" error tiny material-icons city-error">error</i></span><span class="error city-error" id="formErrorCity"></span>City</label>
-                                        <input class="form-control form-control-sm form-control-xs" id="city-input" type="text" />
-                                    </div>
-
-                                    <div class="bmd-form-group col m4">
-
-                                        <label for="zip-input"><span class="errorIcon"><i class=" error tiny material-icons zip-error">error</i></span><span class="error zip-error" id="formErrorZip"></span>Zip Code</label>
-                                        <input class="form-control form-control-sm form-control-xs" id="zip-input" type="text" />
-                                    </div>
+                                   
 
                                     <div class="bmd-form-group col m4">
                                         <label for="selectState" class="bmd-label-floating"><span class="errorIcon"><i class=" error tiny material-icons state-error">error</i></span><span class="error state-error" id="formErrorState"></span>Select State</label>
@@ -146,9 +137,38 @@
             <!-- weather table and campsite table -->
             <div class="hide" id="secondary-area">
                 <div class="row" id="apiResult">
-
-                    <div class="col  m4">
-                        <!-- weather info Table -->
+                     <!-- campsite info Table -->
+                        <div class="col  m6">
+                                <div class="row result">
+                                    <div class="col m12">
+                                        <div class="card z-depth-3">
+                                            <div class="card-content">
+                                                <span class="card-title"><i class=" iconTitle medium material-icons">terrain</i><h3>Local Camptsites</h3></span>
+                                            </div>
+                                            <div style="overflow-x:auto;" class="row">
+                                                <table style="overflow-x:auto; overflow-y: scroll" class=" resultTable table table-striped table-responsive-md  table-borderless left-align highlight">
+                                                    <thead id="thead">
+                                                        <tr>
+                                                            <th class="ctd">Name</th>
+                                                            <th class="ctd">Address</th>
+        
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="campsiteList">
+        
+                                                    </tbody>
+                                                </table>
+        
+                                            </div>
+                                        </div>
+                                    </div>
+        
+                                </div>
+        
+                            </div>
+                    <!-- weather info Table -->
+                    <div class="col  m6">
+                        
                         <div class="row result">
                             <div class="col  m12">
                                 <div class="card z-depth-3">
@@ -221,35 +241,8 @@
                             </div>
                         </div>
                     </div>
-                    <!-- campsite info Table -->
-                    <div class="col  m8">
-                        <div class="row result">
-                            <div class="col m12">
-                                <div class="card z-depth-3">
-                                    <div class="card-content">
-                                        <span class="card-title"><i class=" iconTitle medium material-icons">terrain</i><h3>Local Camptsites</h3></span>
-                                    </div>
-                                    <div style="overflow-x:auto;" class="row">
-                                        <table style="overflow-x:auto; overflow-y: scroll" class=" resultTable table table-striped table-responsive-md  table-borderless left-align highlight">
-                                            <thead id="thead">
-                                                <tr>
-                                                    <th class="ctd">Name</th>
-                                                    <th class="ctd">Address</th>
-
-                                                </tr>
-                                            </thead>
-                                            <tbody id="campsiteList">
-
-                                            </tbody>
-                                        </table>
-
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
+                   
+                   
                 </div>
                 <!-- shopping section -->
                 <div class="row">
