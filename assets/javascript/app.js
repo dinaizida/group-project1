@@ -368,23 +368,23 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 										$(`.coldbrandThree${i}`).append(items[2].brandName)
 					
 										$(`#coldlistOne${i}`).append(`<ul>
-																	<li><a href="#">${items[0].name}</li>
-																	<li><a href="#">Price: $${items[0].salePrice}</a></li>
-																	<li><a href="#">This item has a customer review of: ${items[0].customerRating} stars</a></li>
+																	<li><a href="${items[0].productUrl}">${items[0].name}</li>
+																	<li><a href="${items[0].productUrl}">Price: $${items[0].salePrice}</a></li>
+																	<li><a href="${items[0].productUrl}">This item has a customer review of: ${items[0].customerRating} stars</a></li>
 																	<li><img src="${items[0].imageEntities[0].thumbnailImage}"></li>
 																	</ul>`)
 					
 										$(`#coldlistTwo${i}`).append(`<ul>
-																	<li><a href="#">${items[1].name}</li>
-																	<li><a href="#">Price: $${items[1].salePrice}</a></li>
-																	<li><a href="#">This item has a customer review of: ${items[1].customerRating} stars</a></li>
+																	<li><a href="${items[1].productUrl}">${items[1].name}</li>
+																	<li><a href="${items[1].productUrl}">Price: $${items[1].salePrice}</a></li>
+																	<li><a href="${items[1].productUrl}">This item has a customer review of: ${items[1].customerRating} stars</a></li>
 																	<li><img src="${items[1].imageEntities[0].thumbnailImage}"></li>
 																	</ul>`)
 					
 										$(`#coldlistThree${i}`).append(`<ul>
-																	<li><a href="#">${items[2].name}</li>
-																	<li><a href="#">Price: $${items[2].salePrice}</a></li>
-																	<li><a href="#">This item has a customer review of: ${items[2].customerRating} stars</a></li>
+																	<li><a href="${items[2].productUrl}">${items[2].name}</li>
+																	<li><a href="${items[2].productUrl}">Price: $${items[2].salePrice}</a></li>
+																	<li><a href="${items[2].productUrl}">This item has a customer review of: ${items[2].customerRating} stars</a></li>
 																	<li><img src="${items[2].imageEntities[0].thumbnailImage}"></li>
 																	</ul>`)
 									}
@@ -431,23 +431,23 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 											$(`.hotbrandThree${i}`).append(items[2].brandName)
 						
 											$(`#hotlistOne${i}`).append(`<ul>
-																	<li><a href="#">${items[0].name}</li>
-																	<li><a href="#">Price: $${items[0].salePrice}</a></li>
-																	<li><a href="#">This item has a customer review of: ${items[0].customerRating} stars</a></li>
+																	<li><a href="${items[0].productUrl}">${items[0].name}</li>
+																	<li><a href="${items[0].productUrl}">Price: $${items[0].salePrice}</a></li>
+																	<li><a href="${items[0].productUrl}">This item has a customer review of: ${items[0].customerRating} stars</a></li>
 																	<li><img src="${items[0].imageEntities[0].thumbnailImage}"></li>
 																	</ul>`)
 						
 											$(`#hotlistTwo${i}`).append(`<ul>
-																	<li><a href="#">${items[1].name}</li>
-																		<li><a href="#">Price: $${items[1].salePrice}</a></li>
-																	<li><a href="#">This item has a customer review of: ${items[1].customerRating} stars</a></li>
+																	<li><a href="${items[1].productUrl}">${items[1].name}</li>
+																	<li><a href="${items[1].productUrl}">Price: $${items[1].salePrice}</a></li>
+																	<li><a href="${items[1].productUrl}">This item has a customer review of: ${items[1].customerRating} stars</a></li>
 																	<li><img src="${items[1].imageEntities[0].thumbnailImage}"></li>
 																	</ul>`)
 						
 											$(`#hotlistThree${i}`).append(`<ul>
-																		<li><a href="#">${items[2].name}</li>
-																		<li><a href="#">Price: $${items[2].salePrice}</a></li>
-																		<li><a href="#">This item has a customer review of: ${items[2].customerRating} stars</a></li>
+																		<li><a href="${items[2].productUrl}">${items[2].name}</li>
+																		<li><a href="${items[2].productUrl}">Price: $${items[2].salePrice}</a></li>
+																		<li><a href="${items[2].productUrl}">This item has a customer review of: ${items[2].customerRating} stars</a></li>
 																		<li><img src="${items[2].imageEntities[0].thumbnailImage}"></li>
 																		</ul>`)
 										}
@@ -494,23 +494,23 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 											$(`.windbrandThree${i}`).append(items[2].brandName)
 						
 											$(`#windlistOne${i}`).append(`<ul>
-																	<li><a href="#">${items[0].name}</li>
-																	<li><a href="#">Price: $${items[0].salePrice}</a></li>
-																	<li><a href="#">This item has a customer review of: ${items[0].customerRating} stars</a></li>
+																	<li><a href="${items[0].productUrl}">${items[0].name}</li>
+																	<li><a href="${items[0].productUrl}">Price: $${items[0].salePrice}</a></li>
+																	<li><a href="${items[0].productUrl}">This item has a customer review of: ${items[0].customerRating} stars</a></li>
 																	<li><img src="${items[0].imageEntities[0].thumbnailImage}"></li>
 																	</ul>`)
 						
 											$(`#windlistTwo${i}`).append(`<ul>
-																	<li><a href="#">${items[1].name}</li>
-																		<li><a href="#">Price: $${items[1].salePrice}</a></li>
-																	<li><a href="#">This item has a customer review of: ${items[1].customerRating} stars</a></li>
+																	<li><a href="${items[1].productUrl}">${items[1].name}</li>
+																	<li><a href="${items[1].productUrl}">Price: $${items[1].salePrice}</a></li>
+																	<li><a href="${items[1].productUrl}">This item has a customer review of: ${items[1].customerRating} stars</a></li>
 																	<li><img src="${items[1].imageEntities[0].thumbnailImage}"></li>
 																	</ul>`)
 						
 											$(`#windlistThree${i}`).append(`<ul>
-																		<li><a href="#">${items[2].name}</li>
-																		<li><a href="#">Price: $${items[2].salePrice}</a></li>
-																		<li><a href="#">This item has a customer review of: ${items[2].customerRating} stars</a></li>
+																		<li><a href="${items[2].productUrl}">${items[2].name}</li>
+																		<li><a href="${items[2].productUrl}">Price: $${items[2].salePrice}</a></li>
+																		<li><a href="${items[2].productUrl}">This item has a customer review of: ${items[2].customerRating} stars</a></li>
 																		<li><img src="${items[2].imageEntities[0].thumbnailImage}"></li>
 																		</ul>`)
 										}
@@ -557,23 +557,23 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 											$(`.rainbrandThree${i}`).append(items[2].brandName)
 						
 											$(`#rainlistOne${i}`).append(`<ul>
-																	  <li><a href="#">${items[0].name}</li>
-																	  <li><a href="#">Price: $${items[0].salePrice}</a></li>
-																	  <li><a href="#">This item has a customer review of: ${items[0].customerRating} stars</a></li>
+																	  <li><a href="${items[0].productUrl}">${items[0].name}</li>
+																	  <li><a href="${items[0].productUrl}">Price: $${items[0].salePrice}</a></li>
+																	  <li><a href="${items[0].productUrl}">This item has a customer review of: ${items[0].customerRating} stars</a></li>
 																	  <li><img src="${items[0].imageEntities[0].thumbnailImage}"></li>
 																	  </ul>`)
 						
 											$(`#rainlistTwo${i}`).append(`<ul>
-																	  <li><a href="#">${items[1].name}</li>
-																		<li><a href="#">Price: $${items[1].salePrice}</a></li>
-																	  <li><a href="#">This item has a customer review of: ${items[1].customerRating} stars</a></li>
+																	  <li><a href="${items[1].productUrl}">${items[1].name}</li>
+																	  <li><a href="${items[1].productUrl}">Price: $${items[1].salePrice}</a></li>
+																	  <li><a href="${items[1].productUrl}">This item has a customer review of: ${items[1].customerRating} stars</a></li>
 																	  <li><img src="${items[1].imageEntities[0].thumbnailImage}"></li>
 																	  </ul>`)
 						
 											$(`#rainlistThree${i}`).append(`<ul>
-																		<li><a href="#">${items[2].name}</li>
-																		<li><a href="#">Price: $${items[2].salePrice}</a></li>
-																		<li><a href="#">This item has a customer review of: ${items[2].customerRating} stars</a></li>
+																		<li><a href="${items[2].productUrl}">${items[2].name}</li>
+																		<li><a href="${items[2].productUrl}">Price: $${items[2].salePrice}</a></li>
+																		<li><a href="${items[2].productUrl}">This item has a customer review of: ${items[2].customerRating} stars</a></li>
 																		<li><img src="${items[2].imageEntities[0].thumbnailImage}"></li>
 																		</ul>`)
 										}
@@ -652,23 +652,23 @@ function productDisplay() {
 					$(`.brandThree${i}`).append(items[2].brandName)
 
 					$(`#listOne${i}`).append(`<ul>
-											  <li><a href="#">${items[0].name}</li>
-											  <li><a href="#">Price: $${items[0].salePrice}</a></li>
-											  <li><a href="#">This item has a customer review of: ${items[0].customerRating} stars</a></li>
+											  <li><a href="${items[0].productUrl}">${items[0].name}</li>
+											  <li><a href="${items[0].productUrl}">Price: $${items[0].salePrice}</a></li>
+											  <li><a href="${items[0].productUrl}">This item has a customer review of: ${items[0].customerRating} stars</a></li>
 											  <li><img src="${items[0].imageEntities[0].thumbnailImage}"></li>
 											  </ul>`)
 
 					$(`#listTwo${i}`).append(`<ul>
-											  <li><a href="#">${items[1].name}</li>
-						  					  <li><a href="#">Price: $${items[1].salePrice}</a></li>
-											  <li><a href="#">This item has a customer review of: ${items[1].customerRating} stars</a></li>
+											  <li><a href="${items[1].productUrl}">${items[1].name}</li>
+						  					  <li><a href="${items[1].productUrl}">Price: $${items[1].salePrice}</a></li>
+											  <li><a href="${items[1].productUrl}">This item has a customer review of: ${items[1].customerRating} stars</a></li>
 											  <li><img src="${items[1].imageEntities[0].thumbnailImage}"></li>
 											  </ul>`)
 
 					$(`#listThree${i}`).append(`<ul>
-												<li><a href="#">${items[3].name}</li>
-												<li><a href="#">Price: $${items[3].salePrice}</a></li>
-												<li><a href="#">This item has a customer review of: ${items[3].customerRating} stars</a></li>
+												<li><a href="${items[2].productUrl}">${items[2].name}</li>
+												<li><a href="${items[2].productUrl}">Price: $${items[2].salePrice}</a></li>
+												<li><a href="${items[2].productUrl}">This item has a customer review of: ${items[2].customerRating} stars</a></li>
 												<li><img src="${items[2].imageEntities[0].thumbnailImage}"></li>
 												</ul>`)
 
