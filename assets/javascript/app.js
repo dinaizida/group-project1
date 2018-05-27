@@ -6,7 +6,7 @@ window.onload = function(){
 }
 // function that changes xml to JSON
 function xmlToJson(xml) {
-	
+
 	// Create the return object
 	var obj = {};
 
@@ -47,7 +47,7 @@ function xmlToJson(xml) {
 //on submit button click test to see if user input fits all criteria
 $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 	event.preventDefault();
-	$('#campsiteList').empty();	
+	$('#campsiteList').empty();
 
 	console.log("testing");
 	//assign exprexxions to test input type
@@ -64,7 +64,7 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 	// var city = $("#city-input").val().trim();
 	// if(city == ""){
 	// 	$('#formErrorCity').append(' ' + 'Please enter ' +' ' );
-	// } 
+	// }
 	// else if(!nameReg.test(city)){
 	// 	$('#formErrorCity').append(' ' + ' Letters only for '+ ' ' );
 	// }
@@ -89,20 +89,20 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 	// 	$(".zip-error").remove();
 	// 	validZip = true;
 	// }
-	
+
 	//check if state is blank
 	//else state is valid = true
 	var state = $("#selectState").val().trim();
 	if(state == ""){
 		$('#formErrorState').append(' ' + 'Please ' +' ');
-	} 
+	}
 	else{
 		$(".state-error").remove();
 		validState = true;
 	}
 	// Beginning Ajax call for Active Access
 	var campsiteApiKey = "dnhsxuups2jvp66yevxeramm";
-	var campsiteQueryUrl = "https://cors-everywhere.herokuapp.com/http://api.amp.active.com/camping/campgrounds?pstate=" + state + "&siteType=2003&api_key=" + campsiteApiKey;	
+	var campsiteQueryUrl = "https://cors-everywhere.herokuapp.com/http://api.amp.active.com/camping/campgrounds?pstate=" + state + "&siteType=2003&api_key=" + campsiteApiKey;
 
 
 	if (state.length > 0) {
@@ -140,7 +140,7 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 					let campSiteName= myObj.resultset.result[i]["@attributes"].facilityName;
 					console.log (campSiteName);
 					window.latitude = latitude;
-					window.longitude = longitude;								
+					window.longitude = longitude;
 					var googleURL = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latitude + ',' + longitude + '&location_type=ROOFTOP&result_type=street_address&key=AIzaSyC3waa22L4Uh9nWzsVhpw9CId5Ud3k4atU';
 
 
@@ -152,8 +152,8 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 						console.log("TEST" + response.results[0].address_components[6].long_name);
 						var zipCode = response.results[0].address_components[6].long_name;
 						// console.log(response.results[0].formatted_address);
-						var mapQuery = (response.results[0].formatted_address).replace(/ /g , "+");						
-						var tdAddress = response.results[0].formatted_address;	
+						var mapQuery = (response.results[0].formatted_address).replace(/ /g , "+");
+						var tdAddress = response.results[0].formatted_address;
 						var houseTr = (`<tr><td><span><i data-Zipcode=${zipCode} class='iconTitle small material-icons nameButton'>wb_sunny</i></span>` + campSiteName + "</a></td><td><a href='https://maps.google.com/?q=" + mapQuery + "'target='_blank'>" + tdAddress + "</a></td></tr>")
 						$('#campsiteList').append(houseTr);
 					})
@@ -170,10 +170,10 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 
 	// Beginning Ajax call for weather API
 			var weatherApiKey = "ba9485900797575aadc3a1081bfa14f7";
-			var weatherQueryUrl = "https://api.openweathermap.org/data/2.5/forecast?zip=" + currentZip + "&APPID=" + weatherApiKey; 
+			var weatherQueryUrl = "https://api.openweathermap.org/data/2.5/forecast?zip=" + currentZip + "&APPID=" + weatherApiKey;
 			// Moment.js functions to assign correct days to the weather display
-			//format as day of week and day of month with ordinal. Add days and format					
-			
+			//format as day of week and day of month with ordinal. Add days and format
+
 			$.ajax({
 				url: weatherQueryUrl,
 				method: "GET"
@@ -186,7 +186,7 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 
 				for(var i=0; i<weatherObj.list.length; i++){
 					if (i === 0 || i === 2 || i === 10 || i === 18 || i === 26 || i === 34){
-						
+
 					console.log('main temp',weatherObj.list[i].main.temp);
 					var mainTemp = weatherObj.list[i].main.temp
 
@@ -218,7 +218,7 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
                         var tempMinF = Math.round((tempMinK - 273.15) * 1.80 + 32);
                         var wind = weatherObj.list[i].wind.speed;
                         var forecast = weatherObj.list[i].weather[0].description;
-                        
+
                         $("#tempC0").empty();
                         $("#tempH0").empty();
                         $("#tempL0").empty();
@@ -229,7 +229,7 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
                         $("#tempL0").append(Math.round((tempMinK - 273.15) * 1.80 + 32)+ "°");
                         $("#wind0").append(weatherObj.list[i].wind.speed + "mph");
                         $("#for0").append(weatherObj.list[i].weather[0].description);
-                        
+
                     }else if(i===2){
                         var city = weatherObj.city.name;
                         var tempCurrentK = weatherObj.list[i].main.temp;
@@ -240,7 +240,7 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
                         var tempMinF = Math.round((tempMinK - 273.15) * 1.80 + 32);
                         var wind = weatherObj.list[i].wind.speed;
                         var forecast = weatherObj.list[i].weather[0].description;
-                        
+
                         $("#tempC2").empty();
                         $("#tempH2").empty();
                         $("#tempL2").empty();
@@ -251,7 +251,7 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
                         $("#tempL2").append(Math.round((tempMinK - 273.15) * 1.80 + 32)+ "°");
                         $("#wind2").append(weatherObj.list[i].wind.speed + "mph");
                         $("#for2").append(weatherObj.list[i].weather[0].description);
-                        
+
                     }else if(i===10){
                         var city = weatherObj.city.name;
                         var tempCurrentK = weatherObj.list[i].main.temp;
@@ -272,7 +272,7 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
                         $("#tempL10").append(Math.round((tempMinK - 273.15) * 1.80 + 32)+ "°");
                         $("#wind10").append(weatherObj.list[i].wind.speed+ "mph");
                         $("#for10").append(weatherObj.list[i].weather[0].description);
-                        
+
                     }else if(i===18){
                         var city = weatherObj.city.name;
                         var tempCurrentK = weatherObj.list[i].main.temp;
@@ -293,7 +293,7 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
                         $("#tempL18").append(Math.round((tempMinK - 273.15) * 1.80 + 32)+ "°");
                         $("#wind18").append(weatherObj.list[i].wind.speed + "mph");
                         $("#for18").append(weatherObj.list[i].weather[0].description);
-                        
+
                     }else if(i===26){
                         var city = weatherObj.city.name;
                         var tempCurrentK = weatherObj.list[i].main.temp;
@@ -315,10 +315,10 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
                         $("#tempL26").append(Math.round((tempMinK - 273.15) * 1.80 + 32)+ "°");
                         $("#wind26").append(weatherObj.list[i].wind.speed+ "mph");
                         $("#for26").append(weatherObj.list[i].weather[0].description);
-                        
+
 					}
-				
-                    
+
+
                 }
                 $("#cityWeather").empty();
                 $("#cityWeather").append("5 Day Forecast for " +city);
@@ -331,40 +331,40 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 					for (let i = 0; i < coldList.length; i++ ) {
 
 						var coldwalmartURL = 'http://api.walmartlabs.com/v1/search?apiKey=dq426fn6pm95592scdkq99j4&query=' + coldList[i] + '&responseGroup=full';
-				
+
 							$.ajax({
 								url: coldwalmartURL,
 								type: "GET",
 								dataType: 'jsonp',
-								cache: false, 
+								cache: false,
 								success : function (response) {
-				
+
 									console.log('response', response)
 									var items = response.items
-				
+
 									$(`#coldtab${i}`).text(response.query)
 									$(`.coldmenuTitle${i}`).append(response.query)
 									$(`.coldbrandMenuTitle${i}`).append(response.query)
 									$(`.coldimage${i}`).attr("src", items[0].largeImage);
-				
+
 									$(`.coldbrandOne${i}`).append(items[0].brandName)
 									$(`.coldbrandTwo${i}`).append(items[1].brandName)
 									$(`.coldbrandThree${i}`).append(items[2].brandName)
-				
+
 									$(`#coldlistOne${i}`).append(`<ul>
 																<li><a href="#">${items[0].name}</li>
 																<li><a href="#">Price: $${items[0].salePrice}</a></li>
 																<li><a href="#">This item has a customer review of: ${items[0].customerRating} stars</a></li>
 																<li><img src="${items[0].imageEntities[0].thumbnailImage}"></li>
 																</ul>`)
-				
+
 									$(`#coldlistTwo${i}`).append(`<ul>
 																<li><a href="#">${items[1].name}</li>
 																<li><a href="#">Price: $${items[1].salePrice}</a></li>
 																<li><a href="#">This item has a customer review of: ${items[1].customerRating} stars</a></li>
 																<li><img src="${items[1].imageEntities[0].thumbnailImage}"></li>
 																</ul>`)
-				
+
 									$(`#coldlistThree${i}`).append(`<ul>
 																<li><a href="#">${items[2].name}</li>
 																<li><a href="#">Price: $${items[2].salePrice}</a></li>
@@ -381,44 +381,44 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 
 						$('#hotRelatedProduct-area').removeClass("hide")
 						$('.hotlist').show();
-	
+
 						for (let i = 0; i < hotList.length; i++ ) {
-	
+
 							var hotwalmartURL = 'http://api.walmartlabs.com/v1/search?apiKey=dq426fn6pm95592scdkq99j4&query=' + hotList[i] + '&responseGroup=full';
-					
+
 								$.ajax({
 									url: hotwalmartURL,
 									type: "GET",
 									dataType: 'jsonp',
-									cache: false, 
+									cache: false,
 									success : function (response) {
-					
+
 										console.log('response', response)
 										var items = response.items
-					
+
 										$(`#hottab${i}`).text(response.query)
 										$(`.hotmenuTitle${i}`).append(response.query)
 										$(`.hotbrandMenuTitle${i}`).append(response.query)
 										$(`.hotimage${i}`).attr("src", items[0].largeImage);
-					
+
 										$(`.hotbrandOne${i}`).append(items[0].brandName)
 										$(`.hotbrandTwo${i}`).append(items[1].brandName)
 										$(`.hotbrandThree${i}`).append(items[2].brandName)
-					
+
 										$(`#hotlistOne${i}`).append(`<ul>
 																  <li><a href="#">${items[0].name}</li>
 																  <li><a href="#">Price: $${items[0].salePrice}</a></li>
 																  <li><a href="#">This item has a customer review of: ${items[0].customerRating} stars</a></li>
 																  <li><img src="${items[0].imageEntities[0].thumbnailImage}"></li>
 																  </ul>`)
-					
+
 										$(`#hotlistTwo${i}`).append(`<ul>
 																  <li><a href="#">${items[1].name}</li>
 																	<li><a href="#">Price: $${items[1].salePrice}</a></li>
 																  <li><a href="#">This item has a customer review of: ${items[1].customerRating} stars</a></li>
 																  <li><img src="${items[1].imageEntities[0].thumbnailImage}"></li>
 																  </ul>`)
-					
+
 										$(`#hotlistThree${i}`).append(`<ul>
 																	<li><a href="#">${items[2].name}</li>
 																	<li><a href="#">Price: $${items[2].salePrice}</a></li>
@@ -428,7 +428,7 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 									}
 								})
 						}
-						
+
 					}
 					/// WINDY /////////////////////////////////////////////////////
 					if (fahrenheit > _ ) {
@@ -463,14 +463,14 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 				var wTemp = $("#w_Temp").text(sessionStorage.getItem("wTemp"));
 				var wWind = $("#w_Wind").text(sessionStorage.getItem("wWind"));
 				var wForecast = $("#w_Forecast").text(sessionStorage.getItem("wForecast"));
-				
+
 				console.log('fahrenheit', wTemp)
-							
-			});		
+
+			});
 
 		});
 
-	
+
 
 var generalList = ['tent', 'hammock', 'sleepingbag'];
 var coldList = ['winter gloves', 'long underwear', 'wool socks'];
@@ -479,7 +479,7 @@ var hotList = ['floppy hats', 'sunscreen', 'sandals'];
 var rainyList = ['rainboots', 'umbrella', 'tarp'];
 
 
-function productDisplay() { 
+function productDisplay() {
 
 	for (let i = 0; i < generalList.length; i++ ) {
 
@@ -489,7 +489,7 @@ function productDisplay() {
 				url: walmartURL,
 				type: "GET",
 				dataType: 'jsonp',
-				cache: false, 
+				cache: false,
 				success : function (response) {
 
 					console.log('response', response)
@@ -525,7 +525,7 @@ function productDisplay() {
 												<li><img src="${items[2].imageEntities[0].thumbnailImage}"></li>
 												</ul>`)
 
-					
+
 				}
 			})
 	}
@@ -533,9 +533,3 @@ function productDisplay() {
 
 
 productDisplay();
-
-
-
-
-
-
