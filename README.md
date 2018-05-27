@@ -23,4 +23,4 @@ Next the user can click a button displayed next to a campsite's name and the wea
 
 Finally when the user clicks for the weather the list of supplies will update and display items related to the weather they can expect to experience. The list will display different catagories that eaach have their own brands, prices, ratings, and a picture of the product. 
 
-Technologies Used: HTML, CSS, jQuery, JavaScript, API, Firebase, Materialize, Bootstrap, Affinity Photo.
+Technologies Used: HTML, CSS, jQuery, JavaScript, API, Materialize, Bootstrap, Affinity Photo.

@@ -346,7 +346,7 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 					else {
 						for (let i = 0; i < coldList.length; i++ ) {
 
-							var coldwalmartURL = 'http://api.walmartlabs.com/v1/search?apiKey=dq426fn6pm95592scdkq99j4&query=' + coldList[i] + '&responseGroup=full';
+							var coldwalmartURL = 'https://api.walmartlabs.com/v1/search?apiKey=dq426fn6pm95592scdkq99j4&query=' + coldList[i] + '&responseGroup=full';
 					
 								$.ajax({
 									url: coldwalmartURL,
@@ -409,7 +409,7 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 						else {
 							for (let i = 0; i < hotList.length; i++ ) {
 		
-								var hotwalmartURL = 'http://api.walmartlabs.com/v1/search?apiKey=dq426fn6pm95592scdkq99j4&query=' + hotList[i] + '&responseGroup=full';
+								var hotwalmartURL = 'https://api.walmartlabs.com/v1/search?apiKey=dq426fn6pm95592scdkq99j4&query=' + hotList[i] + '&responseGroup=full';
 						
 									$.ajax({
 										url: hotwalmartURL,
@@ -472,7 +472,7 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 						else {
 							for (let i = 0; i < windList.length; i++ ) {
 		
-								var windwalmartURL = 'http://api.walmartlabs.com/v1/search?apiKey=dq426fn6pm95592scdkq99j4&query=' + windyList[i] + '&responseGroup=full';
+								var windwalmartURL = 'https://api.walmartlabs.com/v1/search?apiKey=dq426fn6pm95592scdkq99j4&query=' + windyList[i] + '&responseGroup=full';
 						
 									$.ajax({
 										url: windwalmartURL,
@@ -535,7 +535,7 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 						else {
 							for (let i = 0; i < rainyList.length; i++ ) {
 	
-								var rainwalmartURL = 'http://api.walmartlabs.com/v1/search?apiKey=dq426fn6pm95592scdkq99j4&query=' + rainyList[i] + '&responseGroup=full';
+								var rainwalmartURL = 'https://api.walmartlabs.com/v1/search?apiKey=dq426fn6pm95592scdkq99j4&query=' + rainyList[i] + '&responseGroup=full';
 						
 									$.ajax({
 										url: rainwalmartURL,
@@ -630,7 +630,7 @@ function productDisplay() {
 
 	for (let i = 0; i < generalList.length; i++ ) {
 
-		var walmartURL = 'http://api.walmartlabs.com/v1/search?apiKey=dq426fn6pm95592scdkq99j4&query=' + generalList[i] + '&responseGroup=full';
+		var walmartURL = 'https://api.walmartlabs.com/v1/search?apiKey=dq426fn6pm95592scdkq99j4&query=' + generalList[i] + '&responseGroup=full';
 
 			$.ajax({
 				url: walmartURL,
