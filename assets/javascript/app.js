@@ -1,5 +1,8 @@
 //hide non input fields on window load
 window.onload = function(){
+	$('#cityInputDiv').addClass('scale-in');
+	$('#cityInputDiv').fadeIn();
+
 	$('.moreInfo').hide();
 	$('.coldlist').hide();
 	$('.hotlist').hide();
@@ -43,7 +46,14 @@ function xmlToJson(xml) {
 
 	}return obj;
 };
-
+//function to empty weather table when another state selected in the input form
+function cleanWeatherTable() {
+	$(".cT").empty();
+	$(".cH").empty();
+	$(".cL").empty();
+	$(".wS").empty();
+	$(".wF").empty();
+}
 //on submit button click test to see if user input fits all criteria
 $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 	event.preventDefault();
@@ -117,6 +127,10 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 			$(".day-3").text(moment().add(2 ,"days").format("ddd, Do"));
 			$(".day-4").text(moment().add(3 ,"days").format("ddd, Do"));
 			$(".day-5").text(moment().add(4 ,"days").format("ddd, Do"));
+		   
+			// to empty weather table 
+			cleanWeatherTable();
+			
 
 			//call the campsite API
 			$.ajax({
@@ -161,6 +175,14 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 			})
 		}
 	};
+	$('#coldRelatedProduct-area').addClass("hide")
+	$('.coldlist').hide();
+	$('#hotRelatedProduct-area').addClass("hide")
+	$('.hotlist').hide();
+	$('#rainRelatedProduct-area').addClass("hide")
+	$('.rainlist').hide();
+	$('#windRelatedProduct-area').addClass("hide")
+	$('.windlist').hide();
 })
 
 	$("#campsiteList").on("click", ".nameButton", function(){
@@ -202,8 +224,10 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 					console.log(weatherObj.list[i].main.temp_min);
 					// Pulling wind speed
 					console.log(weatherObj.list[i].wind.speed);
+					var windSpeed = weatherObj.list[i].wind.speed;
 					// pulling forecast
 					console.log(weatherObj.list[i].weather[0].description);
+					var rainCheck = weatherObj.list[i].weather[0].main
 					//pulling city name
 					console.log(weatherObj.city.name);}
 
@@ -321,73 +345,25 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 
                 }
                 $("#cityWeather").empty();
-                $("#cityWeather").append("5 Day Forecast for " +city);
+				$("#cityWeather").append("5 Day Forecast for " +city);
+				
+				console.log('weather i', i)
 
 				/// COLD //////////////////////////////////////////////////////////////
 				if (fahrenheit < 65 ) {
 					$('#coldRelatedProduct-area').removeClass("hide")
 					$('.coldlist').show();
 
-					for (let i = 0; i < coldList.length; i++ ) {
-
-						var coldwalmartURL = 'http://api.walmartlabs.com/v1/search?apiKey=dq426fn6pm95592scdkq99j4&query=' + coldList[i] + '&responseGroup=full';
-
-							$.ajax({
-								url: coldwalmartURL,
-								type: "GET",
-								dataType: 'jsonp',
-								cache: false,
-								success : function (response) {
-
-									console.log('response', response)
-									var items = response.items
-
-									$(`#coldtab${i}`).text(response.query)
-									$(`.coldmenuTitle${i}`).append(response.query)
-									$(`.coldbrandMenuTitle${i}`).append(response.query)
-									$(`.coldimage${i}`).attr("src", items[0].largeImage);
-
-									$(`.coldbrandOne${i}`).append(items[0].brandName)
-									$(`.coldbrandTwo${i}`).append(items[1].brandName)
-									$(`.coldbrandThree${i}`).append(items[2].brandName)
-
-									$(`#coldlistOne${i}`).append(`<ul>
-																<li><a href="#">${items[0].name}</li>
-																<li><a href="#">Price: $${items[0].salePrice}</a></li>
-																<li><a href="#">This item has a customer review of: ${items[0].customerRating} stars</a></li>
-																<li><img src="${items[0].imageEntities[0].thumbnailImage}"></li>
-																</ul>`)
-
-									$(`#coldlistTwo${i}`).append(`<ul>
-																<li><a href="#">${items[1].name}</li>
-																<li><a href="#">Price: $${items[1].salePrice}</a></li>
-																<li><a href="#">This item has a customer review of: ${items[1].customerRating} stars</a></li>
-																<li><img src="${items[1].imageEntities[0].thumbnailImage}"></li>
-																</ul>`)
-
-									$(`#coldlistThree${i}`).append(`<ul>
-																<li><a href="#">${items[2].name}</li>
-																<li><a href="#">Price: $${items[2].salePrice}</a></li>
-																<li><a href="#">This item has a customer review of: ${items[2].customerRating} stars</a></li>
-																<li><img src="${items[2].imageEntities[0].thumbnailImage}"></li>
-																</ul>`)
-								}
-							})
+					if ($('#coldRelatedProduct-area').hasClass("visible")) {
+						return
 					}
+					else {
+						for (let i = 0; i < coldList.length; i++ ) {
 
-				}
-				/// WARM /////////////////////////////////////////////////////
-				if (fahrenheit > 75) {
-
-						$('#hotRelatedProduct-area').removeClass("hide")
-						$('.hotlist').show();
-
-						for (let i = 0; i < hotList.length; i++ ) {
-
-							var hotwalmartURL = 'http://api.walmartlabs.com/v1/search?apiKey=dq426fn6pm95592scdkq99j4&query=' + hotList[i] + '&responseGroup=full';
-
+							var coldwalmartURL = 'https://api.walmartlabs.com/v1/search?apiKey=dq426fn6pm95592scdkq99j4&query=' + coldList[i] + '&responseGroup=full';
+					
 								$.ajax({
-									url: hotwalmartURL,
+									url: coldwalmartURL,
 									type: "GET",
 									dataType: 'jsonp',
 									cache: false,
@@ -395,76 +371,261 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 
 										console.log('response', response)
 										var items = response.items
-
-										$(`#hottab${i}`).text(response.query)
-										$(`.hotmenuTitle${i}`).append(response.query)
-										$(`.hotbrandMenuTitle${i}`).append(response.query)
-										$(`.hotimage${i}`).attr("src", items[0].largeImage);
-
-										$(`.hotbrandOne${i}`).append(items[0].brandName)
-										$(`.hotbrandTwo${i}`).append(items[1].brandName)
-										$(`.hotbrandThree${i}`).append(items[2].brandName)
-
-										$(`#hotlistOne${i}`).append(`<ul>
-																  <li><a href="#">${items[0].name}</li>
-																  <li><a href="#">Price: $${items[0].salePrice}</a></li>
-																  <li><a href="#">This item has a customer review of: ${items[0].customerRating} stars</a></li>
-																  <li><img src="${items[0].imageEntities[0].thumbnailImage}"></li>
-																  </ul>`)
-
-										$(`#hotlistTwo${i}`).append(`<ul>
-																  <li><a href="#">${items[1].name}</li>
-																	<li><a href="#">Price: $${items[1].salePrice}</a></li>
-																  <li><a href="#">This item has a customer review of: ${items[1].customerRating} stars</a></li>
-																  <li><img src="${items[1].imageEntities[0].thumbnailImage}"></li>
-																  </ul>`)
-
-										$(`#hotlistThree${i}`).append(`<ul>
-																	<li><a href="#">${items[2].name}</li>
-																	<li><a href="#">Price: $${items[2].salePrice}</a></li>
-																	<li><a href="#">This item has a customer review of: ${items[2].customerRating} stars</a></li>
+					
+										$(`#coldtab${i}`).text(response.query);
+										$(`.coldmenuTitle${i}`).append((response.query).toUpperCase());
+										$(`.coldbrandMenuTitle${i}`).append((response.query).toUpperCase());
+										$(`.coldimage${i}`).attr("src", items[1].largeImage);
+					
+										$(`.coldbrandOne${i}`).append(items[0].brandName)
+										$(`.coldbrandTwo${i}`).append(items[1].brandName)
+										$(`.coldbrandThree${i}`).append(items[2].brandName)
+					
+										$(`#coldlistOne${i}`).append(`<ul>
+																	<li><a href="${items[0].productUrl}">${items[0].name}</li>
+																	<li><a href="${items[0].productUrl}">Price: $${items[0].salePrice}</a></li>
+																	<li><a href="${items[0].productUrl}">This item has a customer review of: ${items[0].customerRating} stars</a></li>
+																	<li><img src="${items[0].imageEntities[0].thumbnailImage}"></li>
+																	</ul>`)
+					
+										$(`#coldlistTwo${i}`).append(`<ul>
+																	<li><a href="${items[1].productUrl}">${items[1].name}</li>
+																	<li><a href="${items[1].productUrl}">Price: $${items[1].salePrice}</a></li>
+																	<li><a href="${items[1].productUrl}">This item has a customer review of: ${items[1].customerRating} stars</a></li>
+																	<li><img src="${items[1].imageEntities[0].thumbnailImage}"></li>
+																	</ul>`)
+					
+										$(`#coldlistThree${i}`).append(`<ul>
+																	<li><a href="${items[2].productUrl}">${items[2].name}</li>
+																	<li><a href="${items[2].productUrl}">Price: $${items[2].salePrice}</a></li>
+																	<li><a href="${items[2].productUrl}">This item has a customer review of: ${items[2].customerRating} stars</a></li>
 																	<li><img src="${items[2].imageEntities[0].thumbnailImage}"></li>
 																	</ul>`)
 									}
 								})
 						}
+					}
+					$('#coldRelatedProduct-area').addClass("visible")
+				}
+				else {
+					$('#coldRelatedProduct-area').addClass("hide")
+					$('.coldlist').hide();
+				}
+				/// WARM /////////////////////////////////////////////////////
+				if (fahrenheit > 85) {
 
+						$('#hotRelatedProduct-area').removeClass("hide")
+						$('.hotlist').show();
+	
+						if ($('#hotRelatedProduct-area').hasClass("visible")) {
+							return
+						}
+						else {
+							for (let i = 0; i < hotList.length; i++ ) {
+		
+								var hotwalmartURL = 'https://api.walmartlabs.com/v1/search?apiKey=dq426fn6pm95592scdkq99j4&query=' + hotList[i] + '&responseGroup=full';
+						
+									$.ajax({
+										url: hotwalmartURL,
+										type: "GET",
+										dataType: 'jsonp',
+										cache: false, 
+										success : function (response) {
+						
+											console.log('response', response)
+											var items = response.items
+						                    
+											$(`#hottab${i}`).text(response.query)
+											$(`.hotmenuTitle${i}`).append((response.query).toUpperCase());
+											$(`.hotbrandMenuTitle${i}`).append((response.query).toUpperCase());
+											$(`.hotimage${i}`).attr("src", items[0].largeImage);
+						
+											$(`.hotbrandOne${i}`).append(items[0].brandName)
+											$(`.hotbrandTwo${i}`).append(items[1].brandName)
+											$(`.hotbrandThree${i}`).append(items[2].brandName)
+						
+											$(`#hotlistOne${i}`).append(`<ul>
+																	<li><a href="${items[0].productUrl}">${items[0].name}</li>
+																	<li><a href="${items[0].productUrl}">Price: $${items[0].salePrice}</a></li>
+																	<li><a href="${items[0].productUrl}">This item has a customer review of: ${items[0].customerRating} stars</a></li>
+																	<li><img src="${items[0].imageEntities[0].thumbnailImage}"></li>
+																	</ul>`)
+						
+											$(`#hotlistTwo${i}`).append(`<ul>
+																	<li><a href="${items[1].productUrl}">${items[1].name}</li>
+																	<li><a href="${items[1].productUrl}">Price: $${items[1].salePrice}</a></li>
+																	<li><a href="${items[1].productUrl}">This item has a customer review of: ${items[1].customerRating} stars</a></li>
+																	<li><img src="${items[1].imageEntities[0].thumbnailImage}"></li>
+																	</ul>`)
+						
+											$(`#hotlistThree${i}`).append(`<ul>
+																		<li><a href="${items[2].productUrl}">${items[2].name}</li>
+																		<li><a href="${items[2].productUrl}">Price: $${items[2].salePrice}</a></li>
+																		<li><a href="${items[2].productUrl}">This item has a customer review of: ${items[2].customerRating} stars</a></li>
+																		<li><img src="${items[2].imageEntities[0].thumbnailImage}"></li>
+																		</ul>`)
+										}
+									})
+							}
+						}
+						$('#hotRelatedProduct-area').addClass("visible")
+					}
+					else {
+						$('#hotRelatedProduct-area').addClass("hide")
+						$('.hotlist').hide();
 					}
 					/// WINDY /////////////////////////////////////////////////////
-					if (fahrenheit > _ ) {
-						//display windy suggested items
+					if (windSpeed > 15 ) {
+						
+						$('#windRelatedProduct-area').removeClass("hide")
+						$('.windlist').show();
+	
+						if ($('#windRelatedProduct-area').hasClass("visible")) {
+							return
+						}
+						else {
+							for (let i = 0; i < windList.length; i++ ) {
+		
+								var windwalmartURL = 'https://api.walmartlabs.com/v1/search?apiKey=dq426fn6pm95592scdkq99j4&query=' + windyList[i] + '&responseGroup=full';
+						
+									$.ajax({
+										url: windwalmartURL,
+										type: "GET",
+										dataType: 'jsonp',
+										cache: false, 
+										success : function (response) {
+						
+											console.log('response', response)
+											var items = response.items
+						
+											$(`#windtab${i}`).text(response.query)
+											$(`.windmenuTitle${i}`).append((response.query).toUpperCase());
+											$(`.windbrandMenuTitle${i}`).append((response.query).toUpperCase());
+											$(`.windimage${i}`).attr("src", items[0].largeImage);
+						
+											$(`.windbrandOne${i}`).append(items[0].brandName)
+											$(`.windbrandTwo${i}`).append(items[1].brandName)
+											$(`.windbrandThree${i}`).append(items[2].brandName)
+						
+											$(`#windlistOne${i}`).append(`<ul>
+																	<li><a href="${items[0].productUrl}">${items[0].name}</li>
+																	<li><a href="${items[0].productUrl}">Price: $${items[0].salePrice}</a></li>
+																	<li><a href="${items[0].productUrl}">This item has a customer review of: ${items[0].customerRating} stars</a></li>
+																	<li><img src="${items[0].imageEntities[0].thumbnailImage}"></li>
+																	</ul>`)
+						
+											$(`#windlistTwo${i}`).append(`<ul>
+																	<li><a href="${items[1].productUrl}">${items[1].name}</li>
+																	<li><a href="${items[1].productUrl}">Price: $${items[1].salePrice}</a></li>
+																	<li><a href="${items[1].productUrl}">This item has a customer review of: ${items[1].customerRating} stars</a></li>
+																	<li><img src="${items[1].imageEntities[0].thumbnailImage}"></li>
+																	</ul>`)
+						
+											$(`#windlistThree${i}`).append(`<ul>
+																		<li><a href="${items[2].productUrl}">${items[2].name}</li>
+																		<li><a href="${items[2].productUrl}">Price: $${items[2].salePrice}</a></li>
+																		<li><a href="${items[2].productUrl}">This item has a customer review of: ${items[2].customerRating} stars</a></li>
+																		<li><img src="${items[2].imageEntities[0].thumbnailImage}"></li>
+																		</ul>`)
+										}
+									})
+							}
+						}
+						$('#windRelatedProduct-area').addClass("visible")
+					}
+					else {
+						$('#windRelatedProduct-area').addClass("hide")
+						$('.windlist').hide();
 					}
 					/// RAINY /////////////////////////////////////////////////////
-					if(fahrenheit = true) {
-						//display rainy suggested items
-					}
+					if(rainCheck = "Rain") {
+						
+						$('#rainRelatedProduct-area').removeClass("hide")
+						$('.rainlist').show();
 
+						if ($('#rainRelatedProduct-area').hasClass("visible")) {
+							return
+						}
+						else {
+							for (let i = 0; i < rainyList.length; i++ ) {
+	
+								var rainwalmartURL = 'https://api.walmartlabs.com/v1/search?apiKey=dq426fn6pm95592scdkq99j4&query=' + rainyList[i] + '&responseGroup=full';
+						
+									$.ajax({
+										url: rainwalmartURL,
+										type: "GET",
+										dataType: 'jsonp',
+										cache: false, 
+										success : function (response) {
+						
+											console.log('response', response)
+											var items = response.items
+						
+											$(`#raintab${i}`).text(response.query)
+											$(`.rainmenuTitle${i}`).append((response.query).toUpperCase());
+											$(`.rainbrandMenuTitle${i}`).append((response.query).toUpperCase());
+											$(`.rainimage${i}`).attr("src", items[0].largeImage);
+						
+											$(`.rainbrandOne${i}`).append(items[0].brandName)
+											$(`.rainbrandTwo${i}`).append(items[1].brandName)
+											$(`.rainbrandThree${i}`).append(items[2].brandName)
+						
+											$(`#rainlistOne${i}`).append(`<ul>
+																	  <li><a href="${items[0].productUrl}">${items[0].name}</li>
+																	  <li><a href="${items[0].productUrl}">Price: $${items[0].salePrice}</a></li>
+																	  <li><a href="${items[0].productUrl}">This item has a customer review of: ${items[0].customerRating} stars</a></li>
+																	  <li><img src="${items[0].imageEntities[0].thumbnailImage}"></li>
+																	  </ul>`)
+						
+											$(`#rainlistTwo${i}`).append(`<ul>
+																	  <li><a href="${items[1].productUrl}">${items[1].name}</li>
+																	  <li><a href="${items[1].productUrl}">Price: $${items[1].salePrice}</a></li>
+																	  <li><a href="${items[1].productUrl}">This item has a customer review of: ${items[1].customerRating} stars</a></li>
+																	  <li><img src="${items[1].imageEntities[0].thumbnailImage}"></li>
+																	  </ul>`)
+						
+											$(`#rainlistThree${i}`).append(`<ul>
+																		<li><a href="${items[2].productUrl}">${items[2].name}</li>
+																		<li><a href="${items[2].productUrl}">Price: $${items[2].salePrice}</a></li>
+																		<li><a href="${items[2].productUrl}">This item has a customer review of: ${items[2].customerRating} stars</a></li>
+																		<li><img src="${items[2].imageEntities[0].thumbnailImage}"></li>
+																		</ul>`)
+										}
+									})
+							}
+						}
+						$('#rainRelatedProduct-area').addClass("visible")
+					}
+					else {
+						$('#rainRelatedProduct-area').addClass("hide")
+						$('.rainlist').hide();
+					}
 
 				//To convert from Kelvin to Fahrenheit: F = (K - 273.15) * 1.80 + 32
 				var tempK = weatherObj.list[0].main.temp;
 				console.log('temperature', tempK)
-				// render weather info into Weather table
-				var wCity = weatherObj.city.name;
-				var wTemp = (9/5) * (tempK - 273.15) + 32;
-				var wWind = weatherObj.list[0].wind.speed;
-				var wForecast = weatherObj.list[0].weather[0].description;
+				// // render weather info into Weather table
+				// var wCity = weatherObj.city.name;
+				// var wTemp = (9/5) * (tempK - 273.15) + 32;
+				// var wWind = weatherObj.list[0].wind.speed;
+				// var wForecast = weatherObj.list[0].weather[0].description;
 
-				//session storage
-				sessionStorage.clear();
+				// //session storage
+				// sessionStorage.clear();
 
-				// Store all content into sessionStorage
-				sessionStorage.setItem("wCity", wCity);
-				sessionStorage.setItem("wTemp", wTemp);
-				sessionStorage.setItem("wWind", wWind);
-				sessionStorage.setItem("wForecast", wForecast);
+				// // Store all content into sessionStorage
+				// sessionStorage.setItem("wCity", wCity);
+				// sessionStorage.setItem("wTemp", wTemp);
+				// sessionStorage.setItem("wWind", wWind);
+				// sessionStorage.setItem("wForecast", wForecast);
 
 
-				var wCity = $("#w_City").text(sessionStorage.getItem("wCity"));
-				var wTemp = $("#w_Temp").text(sessionStorage.getItem("wTemp"));
-				var wWind = $("#w_Wind").text(sessionStorage.getItem("wWind"));
-				var wForecast = $("#w_Forecast").text(sessionStorage.getItem("wForecast"));
+				// var wCity = $("#w_City").text(sessionStorage.getItem("wCity"));
+				// var wTemp = $("#w_Temp").text(sessionStorage.getItem("wTemp"));
+				// var wWind = $("#w_Wind").text(sessionStorage.getItem("wWind"));
+				// var wForecast = $("#w_Forecast").text(sessionStorage.getItem("wForecast"));
 
-				console.log('fahrenheit', wTemp)
+				// console.log('fahrenheit', wTemp)
 
 			});
 
@@ -474,7 +635,7 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 
 var generalList = ['tent', 'hammock', 'sleepingbag'];
 var coldList = ['winter gloves', 'long underwear', 'wool socks'];
-var windyList = ['extra stakes', 'rope', 'chapstick'];
+var windyList = ['extra stakes', 'windbreaker ', 'chapstick'];
 var hotList = ['floppy hats', 'sunscreen', 'sandals'];
 var rainyList = ['rainboots', 'umbrella', 'tarp'];
 
@@ -483,7 +644,7 @@ function productDisplay() {
 
 	for (let i = 0; i < generalList.length; i++ ) {
 
-		var walmartURL = 'http://api.walmartlabs.com/v1/search?apiKey=dq426fn6pm95592scdkq99j4&query=' + generalList[i] + '&responseGroup=full';
+		var walmartURL = 'https://api.walmartlabs.com/v1/search?apiKey=dq426fn6pm95592scdkq99j4&query=' + generalList[i] + '&responseGroup=full';
 
 			$.ajax({
 				url: walmartURL,
@@ -496,8 +657,8 @@ function productDisplay() {
 					var items = response.items
 
 					$(`#tab${i}`).text(response.query)
-					$(`.menuTitle${i}`).append(response.query)
-					$(`.brandMenuTitle${i}`).append(response.query)
+					$(`.menuTitle${i}`).append((response.query).toUpperCase());
+					$(`.brandMenuTitle${i}`).append((response.query).toUpperCase());
 					$(`.image${i}`).attr("src", items[0].largeImage);
 
 					$(`.brandOne${i}`).append(items[0].brandName)
@@ -505,23 +666,23 @@ function productDisplay() {
 					$(`.brandThree${i}`).append(items[2].brandName)
 
 					$(`#listOne${i}`).append(`<ul>
-											  <li><a href="#">${items[0].name}</li>
-											  <li><a href="#">Price: $${items[0].salePrice}</a></li>
-											  <li><a href="#">This item has a customer review of: ${items[0].customerRating} stars</a></li>
+											  <li><a href="${items[0].productUrl}">${items[0].name}</li>
+											  <li><a href="${items[0].productUrl}">Price: $${items[0].salePrice}</a></li>
+											  <li><a href="${items[0].productUrl}">This item has a customer review of: ${items[0].customerRating} stars</a></li>
 											  <li><img src="${items[0].imageEntities[0].thumbnailImage}"></li>
 											  </ul>`)
 
 					$(`#listTwo${i}`).append(`<ul>
-											  <li><a href="#">${items[1].name}</li>
-						  					  <li><a href="#">Price: $${items[1].salePrice}</a></li>
-											  <li><a href="#">This item has a customer review of: ${items[1].customerRating} stars</a></li>
+											  <li><a href="${items[1].productUrl}">${items[1].name}</li>
+						  					  <li><a href="${items[1].productUrl}">Price: $${items[1].salePrice}</a></li>
+											  <li><a href="${items[1].productUrl}">This item has a customer review of: ${items[1].customerRating} stars</a></li>
 											  <li><img src="${items[1].imageEntities[0].thumbnailImage}"></li>
 											  </ul>`)
 
 					$(`#listThree${i}`).append(`<ul>
-												<li><a href="#">${items[3].name}</li>
-												<li><a href="#">Price: $${items[3].salePrice}</a></li>
-												<li><a href="#">This item has a customer review of: ${items[3].customerRating} stars</a></li>
+												<li><a href="${items[2].productUrl}">${items[2].name}</li>
+												<li><a href="${items[2].productUrl}">Price: $${items[2].salePrice}</a></li>
+												<li><a href="${items[2].productUrl}">This item has a customer review of: ${items[2].customerRating} stars</a></li>
 												<li><img src="${items[2].imageEntities[0].thumbnailImage}"></li>
 												</ul>`)
 
