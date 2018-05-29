@@ -105,15 +105,38 @@ thead {
     background-color: #8cc8e2;
     color: white;
 }
-/* .pagination {
-    text-shadow: 2px 2px 1px rgba(150, 150, 150, 1);
-    color: #ff7f27;
-    margin: auto;
-} */
 
+#cityInputDiv{
+    display: none;
+}
 .testing-scroll {
-    overflow: scroll ;
+    overflow-y: auto;
+    overflow-x: hidden;
     height: 407px;
+}
+
+#weatherTable {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    max-width: 96%;
+   margin: 0 auto;
+    
+}
+
+.testing-scroll::-webkit-scrollbar {
+    width: 0.2em;
+}
+
+.testing-scroll::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.3);
+}
+
+.testing-scroll::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    /* outline: 1px solid slategrey; */
+}
+.nameButton{
+    cursor: pointer;
 }
 
 /* footer */
@@ -169,7 +192,6 @@ main {
 }
 
 
-
 @media (max-width: 990px) {}
 
 @media (max-width: 375px) {
@@ -179,7 +201,6 @@ main {
     .x12 {
         width: 100%;
     }
-   
     .page-footer {
         display: none;
     }
@@ -208,21 +229,23 @@ main {
         margin-right: 1%;
     }
     .resultTable {
-        
-        margin-left: 1%;
-        margin-right: 1%;
-        padding: 0px; 
+        margin-left: 3%;
+        margin-right: 3%;
+        padding: 0px;
     }
     .wtd {
-       width: 170px; 
+        width: 170px;
         width: 45vw;
     }
     .ctd {
-        width: 44vw; 
+        width: 44vw;
         overflow: scroll;
     }
-    #shoppingDiv{
+    #shoppingDiv {
         margin-bottom: 10px;
         width: 90%;
-}
+    }
+    #weatherTable {
+        padding: 0;
+    }
 }

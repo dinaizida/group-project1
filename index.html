@@ -40,10 +40,10 @@
                 </div>
             </div>
             <!-- form to select a city -->
-            <div class="row" id="cityInputDiv">
-                <div class="col m12">
-                    <div class="card z-depth-3">
-                        <div class="card-content">
+            <div class="row   scale-transition scale-out" id="cityInputDiv">
+                <div class="  col m12">
+                    <div class=" card z-depth-3">
+                        <div class=" card-content">
                             <span class="card-title"><i class=" iconTitle medium material-icons">directions_car</i><h3>Where To Go?</h3></span>
                         </div>
                         <div class="row">
@@ -135,18 +135,18 @@
 
             </div>
             <!-- weather table and campsite table -->
-            <div class="hide" id="secondary-area">
+            <div class="hide " id="secondary-area">
                 <div class="row" id="apiResult">
                      <!-- campsite info Table -->
-                        <div class="col  m6">
-                                <div class="row result">
+                        <div class=" col  m6">
+                                <div id ="campsiteInfo" class="row result ">
                                     <div class="col m12">
                                         <div class="card z-depth-3">
                                             <div class="card-content">
                                                 <span class="card-title"><i class=" iconTitle medium material-icons">terrain</i><h3>Local Camptsites</h3></span>
                                             </div>
-                                            <div style="overflow-x:auto;" class="row testing-scroll">
-                                                <table style="overflow-x:auto; overflow-y: scroll" class=" resultTable table table-striped table-responsive-md  table-borderless left-align highlight">
+                                            <div class="row testing-scroll">
+                                                <table class=" resultTable table table-striped table-responsive-md  table-borderless left-align highlight">
                                                     <thead id="thead">
                                                         <tr>
                                                             <th class="ctd">Name</th>
@@ -166,31 +166,31 @@
                                 </div>
         
                             </div>
-                    <!-- weather info Table -->
-                    <div class="col  m6">
+                   <!-- weather info Table -->
+                   <div class=" col  m6">
                         
-                        <div class="row result">
-                            <div class="col  m12">
-                                <div class="card z-depth-3">
-                                    <div class="card-content">
-                                        <span class="card-title"><i class=" iconTitle medium material-icons">wb_sunny</i><h3>Weather Today</h3></span>
-                                    </div>
-                                    <div style="overflow-x:auto;" class="row">
+                    <div id ="weatherInfo" class="row result ">
+                        <div class="col  m12">
+                            <div class="card z-depth-3">
+                                <div class="card-content">
+                                    <span class="card-title"><i class=" iconTitle medium material-icons">wb_sunny</i><h3>5 Day Forecast</h3></span>
+                                </div>
+                                <div  class="row">
+                                    <div id="weatherTable">
+                                    <table  class=" resultTable table table-hover table-responsive-md table-borderless highlight ">
+                                        <thead id="thead">
+                                            <tr>
+                                                <th class="ctd"></th>
+                                                <th class="ctd day-1">Temp (F) Current</th>
+                                                <th class="ctd day-2">Temp (F) High</th>
+                                                <th class="ctd day-3">Temp (F) Low</th>
+                                                <th class="ctd day-4">Wind Speed (MPH)</th>
+                                                <th class="ctd day-5">Forecast</th>
 
-                                        <table style="overflow-x:auto;" class=" resultTable table table-hover table-responsive-md table-borderless highlight ">
-                                            <thead id="thead">
-                                                <tr>
-                                                    <th class="ctd"></th>
-                                                    <th class="ctd day-1">Temp (F) Current</th>
-                                                    <th class="ctd day-2">Temp (F) High</th>
-                                                    <th class="ctd day-3">Temp (F) Low</th>
-                                                    <th class="ctd day-4">Wind Speed (MPH)</th>
-                                                    <th class="ctd day-5">Forecast</th>
+                                            </tr>
+                                        </thead>
 
-                                                </tr>
-                                            </thead>
-
-                                            <tbody id = "weather">
+                                        <tbody id = "weather">
                                              
                                                     <tr id = "wTempC">
                                                         <td class="wtd">Temp (F) Current</td>
@@ -234,7 +234,8 @@
                                                     </tr>
                                                 </tbody>
 
-                                        </table>
+                                    </table>
+                                    </div>
 
                                     </div>
                                 </div>
@@ -244,14 +245,14 @@
                 </div>
                 <!-- shopping section -->
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="  col-md-12">
                         <h3 class="subtitle">Check out this camping list for your camping gear needs!</h3>
                     </div>
                 </div>
                 <!-- shopping form -->
 
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="  col-md-12">
                         <div id="shoppingDiv" class="card z-depth-3">
 
                             <div class="card-content">
@@ -270,11 +271,11 @@
                                                 <div class="card-image waves-effect waves-block waves-light">
                                                   <img class="activator image0" src="assets/images/rainboots.jpg">
                                                 </div>
-                                                <div class="card-content">
-                                                  <span class="card-title activator grey-text text-darken-4 menuTitle0"><a class="btn-floating pulse lime darken-1 right"><i class="material-icons">menu</i></a></span>
+                                                <div class="card-content ">
+                                                  <span class="card-title activator lime-text text-darken-3 menuTitle0"><a class="btn-floating pulse lime darken-1 right"><i class="material-icons">menu</i></a></span>
                                                 </div>
                                                 <div class="card-reveal">
-                                                  <span class="card-title grey-text text-darken-4 brandMenuTitle0"><i class="material-icons right">close</i></span>
+                                                  <span class="card-title lime-text text-darken-3 brandMenuTitle0"><i class="material-icons right">close</i></span>
                                                   
                                                   <ul class="collapsible">
                                                         <li>
@@ -306,10 +307,10 @@
                                                   <img class="activator image1" src="assets/images/hats.jpg">
                                                 </div>
                                                 <div class="card-content">
-                                                  <span class="card-title activator grey-text text-darken-4 menuTitle1"><a class="btn-floating pulse lime darken-1 right"><i class="material-icons">menu</i></a></span>
+                                                  <span class="card-title activator lime-text text-darken-3 menuTitle1"><a class="btn-floating pulse lime darken-1 right"><i class="material-icons">menu</i></a></span>
                                                 </div>
                                                 <div class="card-reveal">
-                                                  <span class="card-title grey-text text-darken-4 brandMenuTitle1"><i class="material-icons right">close</i></span>
+                                                  <span class="card-title lime-text text-darken-3 brandMenuTitle1"><i class="material-icons right">close</i></span>
                                                   
                                                   <ul class="collapsible">
                                                         <li>
@@ -341,10 +342,10 @@
                                                   <img class="activator image2" src="assets/images/sunscreen.jpg">
                                                 </div>
                                                 <div class="card-content">
-                                                  <span class="card-title activator grey-text text-darken-4 menuTitle2"><a class="btn-floating pulse lime darken-1 right"><i class="material-icons">menu</i></a></span>
+                                                  <span class="card-title activator lime-text text-darken-3 menuTitle2"><a class="btn-floating pulse lime darken-1 right"><i class="material-icons">menu</i></a></span>
                                                 </div>
                                                 <div class="card-reveal">
-                                                  <span class="card-title grey-text text-darken-4 brandMenuTitle2"><i class="material-icons right">close</i></span>
+                                                  <span class="card-title lime-text text-darken-3 brandMenuTitle2"><i class="material-icons right">close</i></span>
                                                   
                                                   <ul class="collapsible">
                                                         <li>
@@ -408,10 +409,10 @@
                                                                 <img class="activator coldimage0" src="assets/images/rainboots.jpg">
                                                                 </div>
                                                                 <div class="card-content">
-                                                                <span class="card-title activator grey-text text-darken-4 coldmenuTitle0"><a class="btn-floating pulse lime darken-1 right"><i class="material-icons">menu</i></a></span>
+                                                                <span class="card-title activator lime-text text-darken-3 coldmenuTitle0"><a class="btn-floating pulse lime darken-1 right"><i class="material-icons">menu</i></a></span>
                                                                 </div>
                                                                 <div class="card-reveal">
-                                                                <span class="card-title grey-text text-darken-4 coldbrandMenuTitle0"><i class="material-icons right">close</i></span>
+                                                                <span class="card-title lime-text text-darken-3 coldbrandMenuTitle0"><i class="material-icons right">close</i></span>
                                                                 
                                                                 <ul class="collapsible">
                                                                         <li>
@@ -443,10 +444,10 @@
                                                                 <img class="activator coldimage1" src="assets/images/hats.jpg">
                                                                 </div>
                                                                 <div class="card-content">
-                                                                <span class="card-title activator grey-text text-darken-4 coldmenuTitle1"><a class="btn-floating pulse lime darken-1 right"><i class="material-icons">menu</i></a></span>
+                                                                <span class="card-title activator lime-text text-darken-3 coldmenuTitle1"><a class="btn-floating pulse lime darken-1 right"><i class="material-icons">menu</i></a></span>
                                                                 </div>
                                                                 <div class="card-reveal">
-                                                                <span class="card-title grey-text text-darken-4 coldbrandMenuTitle1"><i class="material-icons right">close</i></span>
+                                                                <span class="card-title lime-text text-darken-3 coldbrandMenuTitle1"><i class="material-icons right">close</i></span>
                                                                 
                                                                 <ul class="collapsible">
                                                                         <li>
@@ -478,10 +479,10 @@
                                                                 <img class="activator coldimage2" src="assets/images/sunscreen.jpg">
                                                                 </div>
                                                                 <div class="card-content">
-                                                                <span class="card-title activator grey-text text-darken-4 coldmenuTitle2">Sunscreens<a class="btn-floating pulse lime darken-1 right"><i class="material-icons">menu</i></a></span>
+                                                                <span class="card-title activator lime-text text-darken-3 coldmenuTitle2">Sunscreens<a class="btn-floating pulse lime darken-1 right"><i class="material-icons">menu</i></a></span>
                                                                 </div>
                                                                 <div class="card-reveal">
-                                                                <span class="card-title grey-text text-darken-4 coldbrandMenuTitle2">Sunscreens<i class="material-icons right">close</i></span>
+                                                                <span class="card-title lime-text text-darken-3 coldbrandMenuTitle2">Sunscreens<i class="material-icons right">close</i></span>
                                                                 
                                                                 <ul class="collapsible">
                                                                         <li>
@@ -544,10 +545,10 @@
                                                                     <img class="activator hotimage0" src="assets/images/rainboots.jpg">
                                                                     </div>
                                                                     <div class="card-content">
-                                                                    <span class="card-title activator grey-text text-darken-4 hotmenuTitle0"><a class="btn-floating pulse lime darken-1 right"><i class="material-icons">menu</i></a></span>
+                                                                    <span class="card-title activator lime-text text-darken-3 hotmenuTitle0"><a class="btn-floating pulse lime darken-1 right"><i class="material-icons">menu</i></a></span>
                                                                     </div>
                                                                     <div class="card-reveal">
-                                                                    <span class="card-title grey-text text-darken-4 hotbrandMenuTitle0"><i class="material-icons right">close</i></span>
+                                                                    <span class="card-title lime-text text-darken-3 hotbrandMenuTitle0"><i class="material-icons right">close</i></span>
                                                                     
                                                                     <ul class="collapsible">
                                                                             <li>
@@ -579,10 +580,10 @@
                                                                     <img class="activator hotimage1" src="assets/images/hats.jpg">
                                                                     </div>
                                                                     <div class="card-content">
-                                                                    <span class="card-title activator grey-text text-darken-4 hotmenuTitle1"><a class="btn-floating pulse lime darken-1 right"><i class="material-icons">menu</i></a></span>
+                                                                    <span class="card-title activator lime-text text-darken-3 hotmenuTitle1"><a class="btn-floating pulse lime darken-1 right"><i class="material-icons">menu</i></a></span>
                                                                     </div>
                                                                     <div class="card-reveal">
-                                                                    <span class="card-title grey-text text-darken-4 hotbrandMenuTitle1"><i class="material-icons right">close</i></span>
+                                                                    <span class="card-title lime-text text-darken-3 hotbrandMenuTitle1"><i class="material-icons right">close</i></span>
                                                                     
                                                                     <ul class="collapsible">
                                                                             <li>
@@ -614,10 +615,10 @@
                                                                     <img class="activator hotimage2" src="assets/images/sunscreen.jpg">
                                                                     </div>
                                                                     <div class="card-content">
-                                                                    <span class="card-title activator grey-text text-darken-4 hotmenuTitle2">Sunscreens<a class="btn-floating pulse lime darken-1 right"><i class="material-icons">menu</i></a></span>
+                                                                    <span class="card-title activator lime-text text-darken-3 hotmenuTitle2">Sunscreens<a class="btn-floating pulse lime darken-1 right"><i class="material-icons">menu</i></a></span>
                                                                     </div>
                                                                     <div class="card-reveal">
-                                                                    <span class="card-title grey-text text-darken-4 hotbrandMenuTitle2">Sunscreens<i class="material-icons right">close</i></span>
+                                                                    <span class="card-title lime-text text-darken-3 hotbrandMenuTitle2">Sunscreens<i class="material-icons right">close</i></span>
                                                                     
                                                                     <ul class="collapsible">
                                                                             <li>
@@ -680,10 +681,10 @@
                                                                     <img class="activator windimage0" src="assets/images/rainboots.jpg">
                                                                     </div>
                                                                     <div class="card-content">
-                                                                    <span class="card-title activator grey-text text-darken-4 windmenuTitle0"><a class="btn-floating pulse lime darken-1 right"><i class="material-icons">menu</i></a></span>
+                                                                    <span class="card-title activator lime-text text-darken-3 windmenuTitle0"><a class="btn-floating pulse lime darken-1 right"><i class="material-icons">menu</i></a></span>
                                                                     </div>
                                                                     <div class="card-reveal">
-                                                                    <span class="card-title grey-text text-darken-4 windbrandMenuTitle0"><i class="material-icons right">close</i></span>
+                                                                    <span class="card-title lime-text text-darken-3 windbrandMenuTitle0"><i class="material-icons right">close</i></span>
                                                                     
                                                                     <ul class="collapsible">
                                                                             <li>
@@ -715,10 +716,10 @@
                                                                     <img class="activator windimage1" src="assets/images/hats.jpg">
                                                                     </div>
                                                                     <div class="card-content">
-                                                                    <span class="card-title activator grey-text text-darken-4 windmenuTitle1"><a class="btn-floating pulse lime darken-1 right"><i class="material-icons">menu</i></a></span>
+                                                                    <span class="card-title activator lime-text text-darken-3 windmenuTitle1"><a class="btn-floating pulse lime darken-1 right"><i class="material-icons">menu</i></a></span>
                                                                     </div>
                                                                     <div class="card-reveal">
-                                                                    <span class="card-title grey-text text-darken-4 windbrandMenuTitle1"><i class="material-icons right">close</i></span>
+                                                                    <span class="card-title lime-text text-darken-3 windbrandMenuTitle1"><i class="material-icons right">close</i></span>
                                                                     
                                                                     <ul class="collapsible">
                                                                             <li>
@@ -750,10 +751,10 @@
                                                                     <img class="activator windimage2" src="assets/images/sunscreen.jpg">
                                                                     </div>
                                                                     <div class="card-content">
-                                                                    <span class="card-title activator grey-text text-darken-4 windmenuTitle2">Sunscreens<a class="btn-floating pulse lime darken-1 right"><i class="material-icons">menu</i></a></span>
+                                                                    <span class="card-title activator lime-text text-darken-3 windmenuTitle2">Sunscreens<a class="btn-floating pulse lime darken-1 right"><i class="material-icons">menu</i></a></span>
                                                                     </div>
                                                                     <div class="card-reveal">
-                                                                    <span class="card-title grey-text text-darken-4 windbrandMenuTitle2">Sunscreens<i class="material-icons right">close</i></span>
+                                                                    <span class="card-title lime-text text-darken-3 windbrandMenuTitle2">Sunscreens<i class="material-icons right">close</i></span>
                                                                     
                                                                     <ul class="collapsible">
                                                                             <li>
@@ -817,10 +818,10 @@
                                                                     <img class="activator rainimage0" src="assets/images/rainboots.jpg">
                                                                     </div>
                                                                     <div class="card-content">
-                                                                    <span class="card-title activator grey-text text-darken-4 rainmenuTitle0"><a class="btn-floating pulse lime darken-1 right"><i class="material-icons">menu</i></a></span>
+                                                                    <span class="card-title activator lime-text text-darken-3 rainmenuTitle0"><a class="btn-floating pulse lime darken-1 right"><i class="material-icons">menu</i></a></span>
                                                                     </div>
                                                                     <div class="card-reveal">
-                                                                    <span class="card-title grey-text text-darken-4 rainbrandMenuTitle0"><i class="material-icons right">close</i></span>
+                                                                    <span class="card-title lime-text text-darken-3 rainbrandMenuTitle0"><i class="material-icons right">close</i></span>
                                                                     
                                                                     <ul class="collapsible">
                                                                             <li>
@@ -852,10 +853,10 @@
                                                                     <img class="activator rainimage1" src="assets/images/hats.jpg">
                                                                     </div>
                                                                     <div class="card-content">
-                                                                    <span class="card-title activator grey-text text-darken-4 rainmenuTitle1"><a class="btn-floating pulse lime darken-1 right"><i class="material-icons">menu</i></a></span>
+                                                                    <span class="card-title activator lime-text text-darken-3 rainmenuTitle1"><a class="btn-floating pulse lime darken-1 right"><i class="material-icons">menu</i></a></span>
                                                                     </div>
                                                                     <div class="card-reveal">
-                                                                    <span class="card-title grey-text text-darken-4 rainbrandMenuTitle1"><i class="material-icons right">close</i></span>
+                                                                    <span class="card-title lime-text text-darken-3 rainbrandMenuTitle1"><i class="material-icons right">close</i></span>
                                                                     
                                                                     <ul class="collapsible">
                                                                             <li>
@@ -887,10 +888,10 @@
                                                                     <img class="activator rainimage2" src="assets/images/sunscreen.jpg">
                                                                     </div>
                                                                     <div class="card-content">
-                                                                    <span class="card-title activator grey-text text-darken-4 rainmenuTitle2">Sunscreens<a class="btn-floating pulse lime darken-1 right"><i class="material-icons">menu</i></a></span>
+                                                                    <span class="card-title activator lime-text text-darken-3 rainmenuTitle2">Sunscreens<a class="btn-floating pulse lime darken-1 right"><i class="material-icons">menu</i></a></span>
                                                                     </div>
                                                                     <div class="card-reveal">
-                                                                    <span class="card-title grey-text text-darken-4 rainbrandMenuTitle2">Sunscreens<i class="material-icons right">close</i></span>
+                                                                    <span class="card-title lime-text text-darken-3 rainbrandMenuTitle2">Sunscreens<i class="material-icons right">close</i></span>
                                                                     
                                                                     <ul class="collapsible">
                                                                             <li>
@@ -981,6 +982,7 @@
                 $('.tabs').tabs();
                 $('.collapsible').collapsible()
             });
+           
         </script>
 </body>
 
