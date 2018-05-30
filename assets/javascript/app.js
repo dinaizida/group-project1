@@ -65,40 +65,10 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 	var numberReg =  /^[0-9]+$/;
 
 	//setting validity of each input to false
-	// var validCity = false;
-	// var validZip = false;
+	
 	var validState = false;
 
-	//check if city field is blank or contains a non letter character
-	//else city is valid = true
-	// var city = $("#city-input").val().trim();
-	// if(city == ""){
-	// 	$('#formErrorCity').append(' ' + 'Please enter ' +' ' );
-	// }
-	// else if(!nameReg.test(city)){
-	// 	$('#formErrorCity').append(' ' + ' Letters only for '+ ' ' );
-	// }
-	// else{
-	// 	$(".city-error").remove();
-	// 	validCity = true;
-	// }
-
-	//check if zip field blank,contains a non number or is shorter than 5 numbers
-	//else zip is valid = true
-	// var zip = $("#zip-input").val().trim();
-	// if(zip == ""){
-	// 	$('#formErrorZip').append(' ' + 'Please enter ' +' ' );
-	// }
-	// else if(!numberReg.test(zip)){
-	// 	$('#formErrorZip').append(' ' + ' Numbers only for '+ ' ' );
-	// }
-	// else if(zip.length !== 5){
-	// 	$('#formErrorZip').append(' ' + ' Please enter valid' + ' ');
-	// }
-	// else{
-	// 	$(".zip-error").remove();
-	// 	validZip = true;
-	// }
+	
 
 	//check if state is blank
 	//else state is valid = true
@@ -130,6 +100,7 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 		   
 			// to empty weather table 
 			cleanWeatherTable();
+			$(".contentVideo").hide();
 			
 
 			//call the campsite API
