@@ -27,34 +27,32 @@
 
 <body>
 
-    <div class = "video">
-        <video autoplay muted loop id="myVideo">
-            <source src="assets/images/camping.mp4" type="video/mp4">
-            Your browser does not support HTML5 video.
-          </video>
+        <div class = "video">
+                <video autoplay muted loop id="myVideo">
+                    <source src="assets/images/camping.mp4" type="video/mp4">
+                    Your browser does not support HTML5 video.
+                  </video>
+        
+                  
+                   <div id = "screen"></div>
+        
+            </div>
 
-          <div class="contentVideo">
-            <h3 id = "videoTitle" >Once Upon a Time the UT BOOTCAMP sent Four Friends Camping...</h3>
+    <main="container">
+        <header class=" jumbotron">
+            <h1 id="title"> LET's GO CAMPING!</h1>
 
-          </div>
-           <div id = "screen"></div>
-
-    </div>
-        <main id ="startMain" class="container">
-
-            <header class=" jumbotron">
-                <h1 id="title"> LET's GO CAMPING!</h1>
-
-            </header>
+        </header>
+        <div id ="hideHeader"></div>
         <!-- main div -->
         <div id="wrapper">
             <div class="row">
                 <div class="col-md-12 col-sm-12">
-                    <h3 class="subtitle">Where Are We Camping?</h3>
+                    <h3 class="subtitle"></h3>
                 </div>
             </div>
             <!-- form to select a city -->
-            <div class="row   scale-transition scale-out" id="cityInputDiv">
+            <div class="row   " id="cityInputDiv">
                 <div class="  col m12">
                     <div class=" card z-depth-3">
                         <div class=" card-content">
@@ -63,7 +61,7 @@
                         <div class="row">
                             <form class="col m12" id="cityInputForm">
                                 <div class="row">
-
+                                   
 
                                     <div class="bmd-form-group col m4">
                                         <label for="selectState" class="bmd-label-floating"><span class="errorIcon"><i class=" error tiny material-icons state-error">error</i></span><span class="error state-error" id="formErrorState"></span>Select State</label>
@@ -165,24 +163,24 @@
                                                         <tr>
                                                             <th class="ctd">Name</th>
                                                             <th class="ctd">Address</th>
-
+        
                                                         </tr>
                                                     </thead>
                                                     <tbody id="campsiteList">
-
+        
                                                     </tbody>
                                                 </table>
-
+        
                                             </div>
                                         </div>
                                     </div>
-
+        
                                 </div>
-
+        
                             </div>
                    <!-- weather info Table -->
                    <div class=" col  m6">
-
+                        
                     <div id ="weatherInfo" class="row result ">
                         <div class="col  m12">
                             <div class="card z-depth-3">
@@ -205,11 +203,11 @@
                                         </thead>
 
                                         <tbody id = "weather">
-
+                                             
                                                     <tr id = "wTempC">
                                                         <td class="wtd">Temp (F) Current</td>
                                                         <td id= "tempC0" class="wtd cT"></td>
-                                                        <td id= "tempC2" class="wtd cT "></td>
+                                                        <td id= "tempC2" class="wtd cT"></td>
                                                         <td id= "tempC10" class="wtd cT"></td>
                                                         <td id= "tempC18" class="wtd cT"></td>
                                                         <td id= "tempC26" class="wtd cT"></td>
@@ -220,7 +218,7 @@
                                                         <td id="tempH2" class="wtd cH"></td>
                                                         <td id="tempH10" class="wtd cH"></td>
                                                         <td id="tempH18" class="wtd cH"></td>
-                                                        <td id="tempH26" class="wtd cH"></td>
+                                                        <td id="tempH26" class="wtd cH" ></td>
                                                     </tr>
                                                     <tr id = "wTempL">
                                                         <td class="wtd">Temp (F) Low</td>
@@ -246,7 +244,7 @@
                                                         <td id="for18" class="wtd wF"></td>
                                                         <td id="for26" class="wtd wF"></td>
                                                     </tr>
-                                        </tbody>
+                                                </tbody>
 
                                     </table>
                                     </div>
@@ -290,7 +288,7 @@
                                                 </div>
                                                 <div class="card-reveal">
                                                   <span class="card-title lime-text text-darken-3 brandMenuTitle0"><i class="material-icons right">close</i></span>
-
+                                                  
                                                   <ul class="collapsible">
                                                         <li>
                                                           <div class="collapsible-header brandOne0"><i class="material-icons">add_shopping_cart</i></div>
@@ -325,7 +323,7 @@
                                                 </div>
                                                 <div class="card-reveal">
                                                   <span class="card-title lime-text text-darken-3 brandMenuTitle1"><i class="material-icons right">close</i></span>
-
+                                                  
                                                   <ul class="collapsible">
                                                         <li>
                                                           <div class="collapsible-header brandOne1"><i class="material-icons">add_shopping_cart</i></div>
@@ -360,7 +358,7 @@
                                                 </div>
                                                 <div class="card-reveal">
                                                   <span class="card-title lime-text text-darken-3 brandMenuTitle2"><i class="material-icons right">close</i></span>
-
+                                                  
                                                   <ul class="collapsible">
                                                         <li>
                                                           <div class="collapsible-header brandOne2"><i class="material-icons">add_shopping_cart</i></div>
@@ -401,11 +399,11 @@
                             </div>
                         </div>
                         <!-- COLD shopping form -->
-
+                        
                         <div class="row coldlist">
                                     <div class="col-md-12">
                                         <div id="shoppingDiv" class="card z-depth-3">
-
+                        
                                             <div class="card-content">
                                                 <span class="card-title"><i class=" iconTitle medium material-icons">local_grocery_store</i><h3>Keep your self warm!</h3></span>
                                             </div>
@@ -427,7 +425,7 @@
                                                                 </div>
                                                                 <div class="card-reveal">
                                                                 <span class="card-title lime-text text-darken-3 coldbrandMenuTitle0"><i class="material-icons right">close</i></span>
-
+                                                                
                                                                 <ul class="collapsible">
                                                                         <li>
                                                                         <div class="collapsible-header coldbrandOne0"><i class="material-icons">add_shopping_cart</i></div>
@@ -451,7 +449,7 @@
                                                                 </div>
                                                         </div>
                                                 </div>
-
+                        
                                                 <div id="coldtest1">
                                                         <div class="card card1">
                                                                 <div class="card-image waves-effect waves-block waves-light">
@@ -462,7 +460,7 @@
                                                                 </div>
                                                                 <div class="card-reveal">
                                                                 <span class="card-title lime-text text-darken-3 coldbrandMenuTitle1"><i class="material-icons right">close</i></span>
-
+                                                                
                                                                 <ul class="collapsible">
                                                                         <li>
                                                                         <div class="collapsible-header coldbrandOne1"><i class="material-icons">add_shopping_cart</i></div>
@@ -486,7 +484,7 @@
                                                                 </div>
                                                     </div>
                                                 </div>
-
+                        
                                                 <div id="coldtest2">
                                                         <div class="card card2">
                                                                 <div class="card-image waves-effect waves-block waves-light">
@@ -497,7 +495,7 @@
                                                                 </div>
                                                                 <div class="card-reveal">
                                                                 <span class="card-title lime-text text-darken-3 coldbrandMenuTitle2">Sunscreens<i class="material-icons right">close</i></span>
-
+                                                                
                                                                 <ul class="collapsible">
                                                                         <li>
                                                                         <div class="collapsible-header coldbrandOne2"><i class="material-icons">add_shopping_cart</i></div>
@@ -520,7 +518,7 @@
                                                                     </ul>
                                                                 </div>
                                                         </div>
-
+                        
                                                 </div>
                                     </div>
                                     </div>
@@ -537,11 +535,11 @@
                                 </div>
                             </div>
                             <!-- HOT shopping form -->
-
+                            
                             <div class="row hotlist">
                                         <div class="col-md-12">
                                             <div id="shoppingDiv" class="card z-depth-3">
-
+                            
                                                 <div class="card-content">
                                                     <span class="card-title"><i class=" iconTitle medium material-icons">local_grocery_store</i><h3>Keep your self cool!</h3></span>
                                                 </div>
@@ -563,7 +561,7 @@
                                                                     </div>
                                                                     <div class="card-reveal">
                                                                     <span class="card-title lime-text text-darken-3 hotbrandMenuTitle0"><i class="material-icons right">close</i></span>
-
+                                                                    
                                                                     <ul class="collapsible">
                                                                             <li>
                                                                             <div class="collapsible-header hotbrandOne0"><i class="material-icons">add_shopping_cart</i></div>
@@ -587,7 +585,7 @@
                                                                     </div>
                                                             </div>
                                                     </div>
-
+                            
                                                     <div id="hottest1">
                                                             <div class="card card1">
                                                                     <div class="card-image waves-effect waves-block waves-light">
@@ -598,7 +596,7 @@
                                                                     </div>
                                                                     <div class="card-reveal">
                                                                     <span class="card-title lime-text text-darken-3 hotbrandMenuTitle1"><i class="material-icons right">close</i></span>
-
+                                                                    
                                                                     <ul class="collapsible">
                                                                             <li>
                                                                             <div class="collapsible-header hotbrandOne1"><i class="material-icons">add_shopping_cart</i></div>
@@ -622,7 +620,7 @@
                                                                     </div>
                                                         </div>
                                                     </div>
-
+                            
                                                     <div id="hottest2">
                                                             <div class="card card2">
                                                                     <div class="card-image waves-effect waves-block waves-light">
@@ -633,7 +631,7 @@
                                                                     </div>
                                                                     <div class="card-reveal">
                                                                     <span class="card-title lime-text text-darken-3 hotbrandMenuTitle2">Sunscreens<i class="material-icons right">close</i></span>
-
+                                                                    
                                                                     <ul class="collapsible">
                                                                             <li>
                                                                             <div class="collapsible-header hotbrandOne2"><i class="material-icons">add_shopping_cart</i></div>
@@ -656,7 +654,7 @@
                                                                         </ul>
                                                                     </div>
                                                             </div>
-
+                            
                                                     </div>
                                         </div>
                                         </div>
@@ -673,11 +671,11 @@
                                 </div>
                             </div>
                             <!-- HOT shopping form -->
-
+                            
                             <div class="row windlist">
                                         <div class="col-md-12">
                                             <div id="shoppingDiv" class="card z-depth-3">
-
+                            
                                                 <div class="card-content">
                                                     <span class="card-title"><i class=" iconTitle medium material-icons">local_grocery_store</i><h3>Stay strapped down!!</h3></span>
                                                 </div>
@@ -699,7 +697,7 @@
                                                                     </div>
                                                                     <div class="card-reveal">
                                                                     <span class="card-title lime-text text-darken-3 windbrandMenuTitle0"><i class="material-icons right">close</i></span>
-
+                                                                    
                                                                     <ul class="collapsible">
                                                                             <li>
                                                                             <div class="collapsible-header windbrandOne0"><i class="material-icons">add_shopping_cart</i></div>
@@ -723,7 +721,7 @@
                                                                     </div>
                                                             </div>
                                                     </div>
-
+                            
                                                     <div id="windtest1">
                                                             <div class="card card1">
                                                                     <div class="card-image waves-effect waves-block waves-light">
@@ -734,7 +732,7 @@
                                                                     </div>
                                                                     <div class="card-reveal">
                                                                     <span class="card-title lime-text text-darken-3 windbrandMenuTitle1"><i class="material-icons right">close</i></span>
-
+                                                                    
                                                                     <ul class="collapsible">
                                                                             <li>
                                                                             <div class="collapsible-header windbrandOne1"><i class="material-icons">add_shopping_cart</i></div>
@@ -758,7 +756,7 @@
                                                                     </div>
                                                         </div>
                                                     </div>
-
+                            
                                                     <div id="windtest2">
                                                             <div class="card card2">
                                                                     <div class="card-image waves-effect waves-block waves-light">
@@ -769,7 +767,7 @@
                                                                     </div>
                                                                     <div class="card-reveal">
                                                                     <span class="card-title lime-text text-darken-3 windbrandMenuTitle2">Sunscreens<i class="material-icons right">close</i></span>
-
+                                                                    
                                                                     <ul class="collapsible">
                                                                             <li>
                                                                             <div class="collapsible-header windbrandOne2"><i class="material-icons">add_shopping_cart</i></div>
@@ -792,7 +790,7 @@
                                                                         </ul>
                                                                     </div>
                                                             </div>
-
+                            
                                                     </div>
                                         </div>
                                         </div>
@@ -810,11 +808,11 @@
                                 </div>
                             </div>
                             <!-- HOT shopping form -->
-
+                            
                             <div class="row rainlist">
                                         <div class="col-md-12">
                                             <div id="shoppingDiv" class="card z-depth-3">
-
+                            
                                                 <div class="card-content">
                                                     <span class="card-title"><i class=" iconTitle medium material-icons">local_grocery_store</i><h3>Cover up!</h3></span>
                                                 </div>
@@ -836,7 +834,7 @@
                                                                     </div>
                                                                     <div class="card-reveal">
                                                                     <span class="card-title lime-text text-darken-3 rainbrandMenuTitle0"><i class="material-icons right">close</i></span>
-
+                                                                    
                                                                     <ul class="collapsible">
                                                                             <li>
                                                                             <div class="collapsible-header rainbrandOne0"><i class="material-icons">add_shopping_cart</i></div>
@@ -860,7 +858,7 @@
                                                                     </div>
                                                             </div>
                                                     </div>
-
+                            
                                                     <div id="raintest1">
                                                             <div class="card card1">
                                                                     <div class="card-image waves-effect waves-block waves-light">
@@ -871,7 +869,7 @@
                                                                     </div>
                                                                     <div class="card-reveal">
                                                                     <span class="card-title lime-text text-darken-3 rainbrandMenuTitle1"><i class="material-icons right">close</i></span>
-
+                                                                    
                                                                     <ul class="collapsible">
                                                                             <li>
                                                                             <div class="collapsible-header rainbrandOne1"><i class="material-icons">add_shopping_cart</i></div>
@@ -895,7 +893,7 @@
                                                                     </div>
                                                         </div>
                                                     </div>
-
+                            
                                                     <div id="raintest2">
                                                             <div class="card card2">
                                                                     <div class="card-image waves-effect waves-block waves-light">
@@ -906,7 +904,7 @@
                                                                     </div>
                                                                     <div class="card-reveal">
                                                                     <span class="card-title lime-text text-darken-3 rainbrandMenuTitle2">Sunscreens<i class="material-icons right">close</i></span>
-
+                                                                    
                                                                     <ul class="collapsible">
                                                                             <li>
                                                                             <div class="collapsible-header rainbrandOne2"><i class="material-icons">add_shopping_cart</i></div>
@@ -929,16 +927,16 @@
                                                                         </ul>
                                                                     </div>
                                                             </div>
-
+                            
                                                     </div>
                                         </div>
                                         </div>
                                         </div>
                                         </div>
                     </div>
-
-
-
+            
+            
+                    
 
         <br>
         <br>
@@ -947,7 +945,7 @@
         <br>
 
 
-
+        
                 <br>
                 <br>
                 <br>
@@ -996,7 +994,7 @@
                 $('.tabs').tabs();
                 $('.collapsible').collapsible()
             });
-
+           
         </script>
 </body>
 
