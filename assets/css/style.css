@@ -6,7 +6,7 @@ body {
     text-align: center;
     color: #1d8ab8;
     background-color: black;
-    
+
 }
 
 
@@ -20,11 +20,19 @@ body {
 }
 #startMain{
 
-    background: rgba(0, 0, 0, 0.5); 
+  
     width: 100%;
-    
-}
 
+}
+#screen{
+
+    background: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+}
 .contentVideo {
 
     position: fixed;
@@ -46,7 +54,7 @@ a:visited {
     color: #1d8ab8;
 }
 header {
-    
+
     margin: auto;
     color: white;
     background-size: 100% 100%;
@@ -74,7 +82,7 @@ header {
     text-shadow: 2px 2px 1px rgba(150, 150, 150, 1);
     color: #ff7f27;
     padding-bottom: 1%;
-    font-size: 2em; 
+    font-size: 2em;
 }
 
 #selectState {
@@ -96,7 +104,7 @@ header {
     margin-left: 1.5%;
     margin-right: 1.5%;
    padding-left: 30px;
-    padding-right: 30px; 
+    padding-right: 30px;
 }
 
 #cityWeather {
@@ -146,7 +154,7 @@ thead {
     overflow-y: hidden;
     max-width: 96%;
    margin: 0 auto;
-    
+
 }
 
 .testing-scroll::-webkit-scrollbar {
