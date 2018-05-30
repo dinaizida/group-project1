@@ -382,23 +382,23 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 										$(`.coldbrandThree${i}`).append(items[2].brandName)
 					
 										$(`#coldlistOne${i}`).append(`<ul>
-																	<li><a href="${items[0].productUrl}">${items[0].name}</li>
-																	<li><a href="${items[0].productUrl}">Price: $${items[0].salePrice}</a></li>
-																	<li><a href="${items[0].productUrl}">This item has a customer review of: ${items[0].customerRating} stars</a></li>
+																	<li><a target="_blank" href="${items[0].productUrl} ">${items[0].name}</li>
+																	<li><a target="_blank" href="${items[0].productUrl} ">Price: $${items[0].salePrice}</a></li>
+																	<li><a target="_blank" href="${items[0].productUrl} ">This item has a customer review of: ${items[0].customerRating} stars</a></li>
 																	<li><img src="${items[0].imageEntities[0].thumbnailImage}"></li>
 																	</ul>`)
 					
 										$(`#coldlistTwo${i}`).append(`<ul>
-																	<li><a href="${items[1].productUrl}">${items[1].name}</li>
-																	<li><a href="${items[1].productUrl}">Price: $${items[1].salePrice}</a></li>
-																	<li><a href="${items[1].productUrl}">This item has a customer review of: ${items[1].customerRating} stars</a></li>
+																	<li><a target="_blank" href="${items[1].productUrl} ">${items[1].name}</li>
+																	<li><a target="_blank" href="${items[1].productUrl} ">Price: $${items[1].salePrice}</a></li>
+																	<li><a target="_blank" href="${items[1].productUrl} ">This item has a customer review of: ${items[1].customerRating} stars</a></li>
 																	<li><img src="${items[1].imageEntities[0].thumbnailImage}"></li>
 																	</ul>`)
 					
 										$(`#coldlistThree${i}`).append(`<ul>
-																	<li><a href="${items[2].productUrl}">${items[2].name}</li>
-																	<li><a href="${items[2].productUrl}">Price: $${items[2].salePrice}</a></li>
-																	<li><a href="${items[2].productUrl}">This item has a customer review of: ${items[2].customerRating} stars</a></li>
+																	<li><a target="_blank" href="${items[2].productUrl} ">${items[2].name}</li>
+																	<li><a target="_blank" href="${items[2].productUrl} ">Price: $${items[2].salePrice}</a></li>
+																	<li><a target="_blank" href="${items[2].productUrl} ">This item has a customer review of: ${items[2].customerRating} stars</a></li>
 																	<li><img src="${items[2].imageEntities[0].thumbnailImage}"></li>
 																	</ul>`)
 									}
@@ -443,25 +443,26 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 											$(`.hotbrandOne${i}`).append(items[0].brandName)
 											$(`.hotbrandTwo${i}`).append(items[1].brandName)
 											$(`.hotbrandThree${i}`).append(items[2].brandName)
+											
 						
 											$(`#hotlistOne${i}`).append(`<ul>
-																	<li><a href="${items[0].productUrl}">${items[0].name}</li>
-																	<li><a href="${items[0].productUrl}">Price: $${items[0].salePrice}</a></li>
-																	<li><a href="${items[0].productUrl}">This item has a customer review of: ${items[0].customerRating} stars</a></li>
+																	<li><a target="_blank" href="${items[0].productUrl}">${items[0].name}</li>
+																	<li><a target="_blank" href="${items[0].productUrl}">Price: $${items[0].salePrice}</a></li>
+																	<li><a target="_blank" href="${items[0].productUrl}">This item has a customer review of: ${items[0].customerRating} stars</a></li>
 																	<li><img src="${items[0].imageEntities[0].thumbnailImage}"></li>
 																	</ul>`)
 						
 											$(`#hotlistTwo${i}`).append(`<ul>
-																	<li><a href="${items[1].productUrl}">${items[1].name}</li>
-																	<li><a href="${items[1].productUrl}">Price: $${items[1].salePrice}</a></li>
-																	<li><a href="${items[1].productUrl}">This item has a customer review of: ${items[1].customerRating} stars</a></li>
+																	<li><a target="_blank" href="${items[1].productUrl}">${items[1].name}</li>
+																	<li><a target="_blank" href="${items[1].productUrl}">Price: $${items[1].salePrice}</a></li>
+																	<li><a target="_blank" href="${items[1].productUrl}">This item has a customer review of: ${items[1].customerRating} stars</a></li>
 																	<li><img src="${items[1].imageEntities[0].thumbnailImage}"></li>
 																	</ul>`)
 						
 											$(`#hotlistThree${i}`).append(`<ul>
-																		<li><a href="${items[2].productUrl}">${items[2].name}</li>
-																		<li><a href="${items[2].productUrl}">Price: $${items[2].salePrice}</a></li>
-																		<li><a href="${items[2].productUrl}">This item has a customer review of: ${items[2].customerRating} stars</a></li>
+																		<li><a target="_blank" href="${items[2].productUrl}">${items[2].name}</li>
+																		<li><a target="_blank" href="${items[2].productUrl}">Price: $${items[2].salePrice}</a></li>
+																		<li><a target="_blank" href="${items[2].productUrl}">This item has a customer review of: ${items[2].customerRating} stars</a></li>
 																		<li><img src="${items[2].imageEntities[0].thumbnailImage}"></li>
 																		</ul>`)
 										}
@@ -508,23 +509,23 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 											$(`.windbrandThree${i}`).append(items[2].brandName)
 						
 											$(`#windlistOne${i}`).append(`<ul>
-																	<li><a href="${items[0].productUrl}">${items[0].name}</li>
-																	<li><a href="${items[0].productUrl}">Price: $${items[0].salePrice}</a></li>
-																	<li><a href="${items[0].productUrl}">This item has a customer review of: ${items[0].customerRating} stars</a></li>
+																	<li><a target="_blank" href="${items[0].productUrl}">${items[0].name}</li>
+																	<li><a target="_blank" href="${items[0].productUrl}">Price: $${items[0].salePrice}</a></li>
+																	<li><a target="_blank" href="${items[0].productUrl}">This item has a customer review of: ${items[0].customerRating} stars</a></li>
 																	<li><img src="${items[0].imageEntities[0].thumbnailImage}"></li>
 																	</ul>`)
 						
 											$(`#windlistTwo${i}`).append(`<ul>
-																	<li><a href="${items[1].productUrl}">${items[1].name}</li>
-																	<li><a href="${items[1].productUrl}">Price: $${items[1].salePrice}</a></li>
-																	<li><a href="${items[1].productUrl}">This item has a customer review of: ${items[1].customerRating} stars</a></li>
+																	<li><a target="_blank" href="${items[1].productUrl}">${items[1].name}</li>
+																	<li><a target="_blank" href="${items[1].productUrl}">Price: $${items[1].salePrice}</a></li>
+																	<li><a target="_blank" href="${items[1].productUrl}">This item has a customer review of: ${items[1].customerRating} stars</a></li>
 																	<li><img src="${items[1].imageEntities[0].thumbnailImage}"></li>
 																	</ul>`)
 						
 											$(`#windlistThree${i}`).append(`<ul>
-																		<li><a href="${items[2].productUrl}">${items[2].name}</li>
-																		<li><a href="${items[2].productUrl}">Price: $${items[2].salePrice}</a></li>
-																		<li><a href="${items[2].productUrl}">This item has a customer review of: ${items[2].customerRating} stars</a></li>
+																		<li><a target="_blank" href="${items[2].productUrl}">${items[2].name}</li>
+																		<li><a target="_blank" href="${items[2].productUrl}">Price: $${items[2].salePrice}</a></li>
+																		<li><a target="_blank" href="${items[2].productUrl}">This item has a customer review of: ${items[2].customerRating} stars</a></li>
 																		<li><img src="${items[2].imageEntities[0].thumbnailImage}"></li>
 																		</ul>`)
 										}
@@ -571,23 +572,23 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 											$(`.rainbrandThree${i}`).append(items[2].brandName)
 						
 											$(`#rainlistOne${i}`).append(`<ul>
-																	  <li><a href="${items[0].productUrl}">${items[0].name}</li>
-																	  <li><a href="${items[0].productUrl}">Price: $${items[0].salePrice}</a></li>
-																	  <li><a href="${items[0].productUrl}">This item has a customer review of: ${items[0].customerRating} stars</a></li>
+																	  <li><a target="_blank" href="${items[0].productUrl}">${items[0].name}</li>
+																	  <li><a target="_blank" href="${items[0].productUrl}">Price: $${items[0].salePrice}</a></li>
+																	  <li><a target="_blank" href="${items[0].productUrl}">This item has a customer review of: ${items[0].customerRating} stars</a></li>
 																	  <li><img src="${items[0].imageEntities[0].thumbnailImage}"></li>
 																	  </ul>`)
 						
 											$(`#rainlistTwo${i}`).append(`<ul>
-																	  <li><a href="${items[1].productUrl}">${items[1].name}</li>
-																	  <li><a href="${items[1].productUrl}">Price: $${items[1].salePrice}</a></li>
-																	  <li><a href="${items[1].productUrl}">This item has a customer review of: ${items[1].customerRating} stars</a></li>
+																	  <li><a target="_blank" href="${items[1].productUrl}">${items[1].name}</li>
+																	  <li><a target="_blank" href="${items[1].productUrl}">Price: $${items[1].salePrice}</a></li>
+																	  <li><a target="_blank" href="${items[1].productUrl}">This item has a customer review of: ${items[1].customerRating} stars</a></li>
 																	  <li><img src="${items[1].imageEntities[0].thumbnailImage}"></li>
 																	  </ul>`)
 						
 											$(`#rainlistThree${i}`).append(`<ul>
-																		<li><a href="${items[2].productUrl}">${items[2].name}</li>
-																		<li><a href="${items[2].productUrl}">Price: $${items[2].salePrice}</a></li>
-																		<li><a href="${items[2].productUrl}">This item has a customer review of: ${items[2].customerRating} stars</a></li>
+																		<li><a target="_blank" href="${items[2].productUrl}">${items[2].name}</li>
+																		<li><a target="_blank" href="${items[2].productUrl}">Price: $${items[2].salePrice}</a></li>
+																		<li><a target="_blank" href="${items[2].productUrl}">This item has a customer review of: ${items[2].customerRating} stars</a></li>
 																		<li><img src="${items[2].imageEntities[0].thumbnailImage}"></li>
 																		</ul>`)
 										}
@@ -604,28 +605,7 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 				//To convert from Kelvin to Fahrenheit: F = (K - 273.15) * 1.80 + 32
 				var tempK = weatherObj.list[0].main.temp;
 				console.log('temperature', tempK)
-				// // render weather info into Weather table
-				// var wCity = weatherObj.city.name;
-				// var wTemp = (9/5) * (tempK - 273.15) + 32;
-				// var wWind = weatherObj.list[0].wind.speed;
-				// var wForecast = weatherObj.list[0].weather[0].description;
-
-				// //session storage
-				// sessionStorage.clear();
-
-				// // Store all content into sessionStorage
-				// sessionStorage.setItem("wCity", wCity);
-				// sessionStorage.setItem("wTemp", wTemp);
-				// sessionStorage.setItem("wWind", wWind);
-				// sessionStorage.setItem("wForecast", wForecast);
-
-
-				// var wCity = $("#w_City").text(sessionStorage.getItem("wCity"));
-				// var wTemp = $("#w_Temp").text(sessionStorage.getItem("wTemp"));
-				// var wWind = $("#w_Wind").text(sessionStorage.getItem("wWind"));
-				// var wForecast = $("#w_Forecast").text(sessionStorage.getItem("wForecast"));
-
-				// console.log('fahrenheit', wTemp)
+				
 
 			});
 
@@ -666,23 +646,23 @@ function productDisplay() {
 					$(`.brandThree${i}`).append(items[2].brandName)
 
 					$(`#listOne${i}`).append(`<ul>
-											  <li><a href="${items[0].productUrl}">${items[0].name}</li>
-											  <li><a href="${items[0].productUrl}">Price: $${items[0].salePrice}</a></li>
-											  <li><a href="${items[0].productUrl}">This item has a customer review of: ${items[0].customerRating} stars</a></li>
+											  <li><a target="_blank" href="${items[0].productUrl}">${items[0].name}</li>
+											  <li><a target="_blank" href="${items[0].productUrl}">Price: $${items[0].salePrice}</a></li>
+											  <li><a target="_blank" href="${items[0].productUrl}">This item has a customer review of: ${items[0].customerRating} stars</a></li>
 											  <li><img src="${items[0].imageEntities[0].thumbnailImage}"></li>
 											  </ul>`)
 
 					$(`#listTwo${i}`).append(`<ul>
-											  <li><a href="${items[1].productUrl}">${items[1].name}</li>
-						  					  <li><a href="${items[1].productUrl}">Price: $${items[1].salePrice}</a></li>
-											  <li><a href="${items[1].productUrl}">This item has a customer review of: ${items[1].customerRating} stars</a></li>
+											  <li><a target="_blank" href="${items[1].productUrl}">${items[1].name}</li>
+						  					  <li><a target="_blank" href="${items[1].productUrl}">Price: $${items[1].salePrice}</a></li>
+											  <li><a target="_blank" href="${items[1].productUrl}">This item has a customer review of: ${items[1].customerRating} stars</a></li>
 											  <li><img src="${items[1].imageEntities[0].thumbnailImage}"></li>
 											  </ul>`)
 
 					$(`#listThree${i}`).append(`<ul>
-												<li><a href="${items[2].productUrl}">${items[2].name}</li>
-												<li><a href="${items[2].productUrl}">Price: $${items[2].salePrice}</a></li>
-												<li><a href="${items[2].productUrl}">This item has a customer review of: ${items[2].customerRating} stars</a></li>
+												<li><a target="_blank" href="${items[2].productUrl}">${items[2].name}</li>
+												<li><a target="_blank" href="${items[2].productUrl}">Price: $${items[2].salePrice}</a></li>
+												<li><a target="_blank" href="${items[2].productUrl}">This item has a customer review of: ${items[2].customerRating} stars</a></li>
 												<li><img src="${items[2].imageEntities[0].thumbnailImage}"></li>
 												</ul>`)
 
