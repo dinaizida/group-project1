@@ -361,6 +361,19 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 										$(`.coldmenuTitle${i}`).append((response.query).toUpperCase());
 										$(`.coldbrandMenuTitle${i}`).append((response.query).toUpperCase());
 										$(`.coldimage${i}`).attr("src", items[1].largeImage);
+
+										var rate0 = items[0].customerRating;
+										if (rate0 == null) {
+											rate0 = 'no';
+										}
+										var rate1 = items[1].customerRating;
+										if (rate1 == null) {
+											rate1 = 'no';
+										}
+										var rate2 = items[2].customerRating;
+										if (rate2 == null) {
+											rate2 = 'no';
+										}
 					
 										$(`.coldbrandOne${i}`).append(items[0].brandName)
 										$(`.coldbrandTwo${i}`).append(items[1].brandName)
@@ -397,7 +410,7 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 					$('.coldlist').hide();
 				}
 				/// WARM /////////////////////////////////////////////////////
-				if (fahrenheit > 85) {
+				if (fahrenheit > 75) {
 
 						$('#hotRelatedProduct-area').removeClass("hide")
 						$('.hotlist').show();
@@ -424,6 +437,19 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 											$(`.hotmenuTitle${i}`).append((response.query).toUpperCase());
 											$(`.hotbrandMenuTitle${i}`).append((response.query).toUpperCase());
 											$(`.hotimage${i}`).attr("src", items[0].largeImage);
+
+											var rate0 = items[0].customerRating;
+											if (rate0 == null) {
+												rate0 = 'no';
+											}
+											var rate1 = items[1].customerRating;
+											if (rate1 == null) {
+												rate1 = 'no';
+											}
+											var rate2 = items[2].customerRating;
+											if (rate2 == null) {
+												rate2 = 'no';
+										}
 						
 											$(`.hotbrandOne${i}`).append(items[0].brandName)
 											$(`.hotbrandTwo${i}`).append(items[1].brandName)
@@ -488,6 +514,19 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 											$(`.windmenuTitle${i}`).append((response.query).toUpperCase());
 											$(`.windbrandMenuTitle${i}`).append((response.query).toUpperCase());
 											$(`.windimage${i}`).attr("src", items[0].largeImage);
+
+											var rate0 = items[0].customerRating;
+											if (rate0 == null) {
+												rate0 = 'no';
+											}
+											var rate1 = items[1].customerRating;
+											if (rate1 == null) {
+												rate1 = 'no';
+											}
+											var rate2 = items[2].customerRating;
+											if (rate2 == null) {
+												rate2 = 'no';
+											}
 						
 											$(`.windbrandOne${i}`).append(items[0].brandName)
 											$(`.windbrandTwo${i}`).append(items[1].brandName)
@@ -524,68 +563,68 @@ $("#cityInputForm").on("click", "#checkWeather-btn", function(event){
 						$('.windlist').hide();
 					}
 					/// RAINY /////////////////////////////////////////////////////
-					if(rainCheck = "Rain") {
+					// if(rainCheck = "Rain") {
 						
-						$('#rainRelatedProduct-area').removeClass("hide")
-						$('.rainlist').show();
+					// 	$('#rainRelatedProduct-area').removeClass("hide")
+					// 	$('.rainlist').show();
 
-						if ($('#rainRelatedProduct-area').hasClass("visible")) {
-							return
-						}
-						else {
-							for (let i = 0; i < rainyList.length; i++ ) {
+					// 	if ($('#rainRelatedProduct-area').hasClass("visible")) {
+					// 		return
+					// 	}
+					// 	else {
+					// 		for (let i = 0; i < rainyList.length; i++ ) {
 	
-								var rainwalmartURL = 'https://api.walmartlabs.com/v1/search?apiKey=dq426fn6pm95592scdkq99j4&query=' + rainyList[i] + '&responseGroup=full';
+					// 			var rainwalmartURL = 'https://api.walmartlabs.com/v1/search?apiKey=dq426fn6pm95592scdkq99j4&query=' + rainyList[i] + '&responseGroup=full';
 						
-									$.ajax({
-										url: rainwalmartURL,
-										type: "GET",
-										dataType: 'jsonp',
-										cache: false, 
-										success : function (response) {
+					// 				$.ajax({
+					// 					url: rainwalmartURL,
+					// 					type: "GET",
+					// 					dataType: 'jsonp',
+					// 					cache: false, 
+					// 					success : function (response) {
 						
-											console.log('response', response)
-											var items = response.items
+					// 						console.log('response', response)
+					// 						var items = response.items
 						
-											$(`#raintab${i}`).text(response.query)
-											$(`.rainmenuTitle${i}`).append((response.query).toUpperCase());
-											$(`.rainbrandMenuTitle${i}`).append((response.query).toUpperCase());
-											$(`.rainimage${i}`).attr("src", items[0].largeImage);
+					// 						$(`#raintab${i}`).text(response.query)
+					// 						$(`.rainmenuTitle${i}`).append((response.query).toUpperCase());
+					// 						$(`.rainbrandMenuTitle${i}`).append((response.query).toUpperCase());
+					// 						$(`.rainimage${i}`).attr("src", items[0].largeImage);
 						
-											$(`.rainbrandOne${i}`).append(items[0].brandName)
-											$(`.rainbrandTwo${i}`).append(items[1].brandName)
-											$(`.rainbrandThree${i}`).append(items[2].brandName)
+					// 						$(`.rainbrandOne${i}`).append(items[0].brandName)
+					// 						$(`.rainbrandTwo${i}`).append(items[1].brandName)
+					// 						$(`.rainbrandThree${i}`).append(items[2].brandName)
 						
-											$(`#rainlistOne${i}`).append(`<ul>
-																	  <li><a target="_blank" href="${items[0].productUrl}">${items[0].name}</li>
-																	  <li><a target="_blank" href="${items[0].productUrl}">Price: $${items[0].salePrice}</a></li>
-																	  <li><a target="_blank" href="${items[0].productUrl}">This item has a customer review of: ${items[0].customerRating} stars</a></li>
-																	  <li><img src="${items[0].imageEntities[0].thumbnailImage}"></li>
-																	  </ul>`)
+					// 						$(`#rainlistOne${i}`).append(`<ul>
+					// 												  <li><a target="_blank" href="${items[0].productUrl}">${items[0].name}</li>
+					// 												  <li><a target="_blank" href="${items[0].productUrl}">Price: $${items[0].salePrice}</a></li>
+					// 												  <li><a target="_blank" href="${items[0].productUrl}">This item has a customer review of: ${items[0].customerRating} stars</a></li>
+					// 												  <li><img src="${items[0].imageEntities[0].thumbnailImage}"></li>
+					// 												  </ul>`)
 						
-											$(`#rainlistTwo${i}`).append(`<ul>
-																	  <li><a target="_blank" href="${items[1].productUrl}">${items[1].name}</li>
-																	  <li><a target="_blank" href="${items[1].productUrl}">Price: $${items[1].salePrice}</a></li>
-																	  <li><a target="_blank" href="${items[1].productUrl}">This item has a customer review of: ${items[1].customerRating} stars</a></li>
-																	  <li><img src="${items[1].imageEntities[0].thumbnailImage}"></li>
-																	  </ul>`)
+					// 						$(`#rainlistTwo${i}`).append(`<ul>
+					// 												  <li><a target="_blank" href="${items[1].productUrl}">${items[1].name}</li>
+					// 												  <li><a target="_blank" href="${items[1].productUrl}">Price: $${items[1].salePrice}</a></li>
+					// 												  <li><a target="_blank" href="${items[1].productUrl}">This item has a customer review of: ${items[1].customerRating} stars</a></li>
+					// 												  <li><img src="${items[1].imageEntities[0].thumbnailImage}"></li>
+					// 												  </ul>`)
 						
-											$(`#rainlistThree${i}`).append(`<ul>
-																		<li><a target="_blank" href="${items[2].productUrl}">${items[2].name}</li>
-																		<li><a target="_blank" href="${items[2].productUrl}">Price: $${items[2].salePrice}</a></li>
-																		<li><a target="_blank" href="${items[2].productUrl}">This item has a customer review of: ${items[2].customerRating} stars</a></li>
-																		<li><img src="${items[2].imageEntities[0].thumbnailImage}"></li>
-																		</ul>`)
-										}
-									})
-							}
-						}
-						$('#rainRelatedProduct-area').addClass("visible")
-					}
-					else {
-						$('#rainRelatedProduct-area').addClass("hide")
-						$('.rainlist').hide();
-					}
+					// 						$(`#rainlistThree${i}`).append(`<ul>
+					// 													<li><a target="_blank" href="${items[2].productUrl}">${items[2].name}</li>
+					// 													<li><a target="_blank" href="${items[2].productUrl}">Price: $${items[2].salePrice}</a></li>
+					// 													<li><a target="_blank" href="${items[2].productUrl}">This item has a customer review of: ${items[2].customerRating} stars</a></li>
+					// 													<li><img src="${items[2].imageEntities[0].thumbnailImage}"></li>
+					// 													</ul>`)
+					// 					}
+					// 				})
+					// 		}
+					// 	}
+					// 	$('#rainRelatedProduct-area').addClass("visible")
+					// }
+					// else {
+					// 	$('#rainRelatedProduct-area').addClass("hide")
+					// 	$('.rainlist').hide();
+					// }
 
 				//To convert from Kelvin to Fahrenheit: F = (K - 273.15) * 1.80 + 32
 				var tempK = weatherObj.list[0].main.temp;
@@ -625,6 +664,19 @@ function productDisplay() {
 					$(`.menuTitle${i}`).append((response.query).toUpperCase());
 					$(`.brandMenuTitle${i}`).append((response.query).toUpperCase());
 					$(`.image${i}`).attr("src", items[0].largeImage);
+
+					var rate0 = items[0].customerRating;
+					if (rate0 == null) {
+						rate0 = 'no';
+					}
+					var rate1 = items[1].customerRating;
+					if (rate1 == null) {
+						rate1 = 'no';
+					}
+					var rate2 = items[2].customerRating;
+					if (rate2 == null) {
+						rate2 = 'no';
+					}
 
 					$(`.brandOne${i}`).append(items[0].brandName)
 					$(`.brandTwo${i}`).append(items[1].brandName)
