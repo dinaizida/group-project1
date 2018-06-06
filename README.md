@@ -4,16 +4,7 @@ Camping Trip
 
 https://dinaizida.github.io/group-project1/
 
-Keith Booher
-
-
-Stuart LaFollette
-
-
-Dina Rudenko
-
-
-Julian 
+Dina Rudenko, Keith Booher, Stuart LaFollette, Julian
 
 
 Project Description:
@@ -26,7 +17,7 @@ Next the user can click a button displayed next to a campsite's name and the wea
 
 Finally when the user clicks for the weather the list of supplies will update and display items related to the weather they can expect to experience. The list will display different catagories that eaach have their own brands, prices, ratings, and a picture of the product. 
 
-Technologies Used: HTML, CSS, jQuery, JavaScript, API, Materialize, Bootstrap, Affinity Photo.
+Technologies Used: HTML, CSS, jQuery, JavaScript, Walmart API, Weather API, Active.com Camping API, Materialize, Bootstrap, Affinity Photo.
 
 ![Screen Shot](https://github.com/dinaizida/group-project1/blob/master/assets/images/git1.png)
 
