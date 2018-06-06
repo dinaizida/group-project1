@@ -28,4 +28,6 @@ Finally when the user clicks for the weather the list of supplies will update an
 
 Technologies Used: HTML, CSS, jQuery, JavaScript, API, Materialize, Bootstrap, Affinity Photo.
 
+![Screen Shot](https://github.com/dinaizida/group-project1/blob/master/assets/images/git1.png)
+
 ![Screen Shot](https://github.com/dinaizida/group-project1/blob/master/assets/images/git.png)
